@@ -12,27 +12,27 @@
     <div>
     
         Введите логин<br />
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Login" runat="server"></asp:TextBox>
         <br />
         <br />
         Введите&nbsp; пароль<br />
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Password" runat="server"></asp:TextBox>
         <br />
         <br />
         Введите имя<br />
-        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+        <asp:TextBox ID="FirstName" runat="server"></asp:TextBox>
         <br />
         <br />
         Введите фамилию<br />
-        <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+        <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
         <br />
         <br />
         Введите почту<br />
-        <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Mail" runat="server"></asp:TextBox>
         <br />
         <br />
         Введите телефон<br />
-        <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Tel" runat="server"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" />
@@ -43,7 +43,8 @@
         <p>
             &nbsp;</p>
         <p>
-            &nbsp;</p>
+            <asp:TextBox ID="UserList" runat="server" Height="173px" Width="1197px"></asp:TextBox>
+        </p>
     </form>
 </body>
 </html>

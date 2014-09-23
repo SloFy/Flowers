@@ -28,18 +28,27 @@ namespace Flower
                     connection.Open();
 
                     string id;
+                    string cnt;
                     string count = "select count(*)from Users";
                     SqlCommand select = new SqlCommand(count, connection);
-                    id = select.ExecuteScalar().ToString();                   
+                    id = select.ExecuteScalar().ToString(); 
+                 Login.Text=null;
+                    
+                    string insert_users = "INSERT INTO Users VALUES ("+ id + ",'" 
+                        + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
+                        "','" + Mail.Text + "'," + Tel.Text + ")";
 
-                    string strSQL = "INSERT INTO Users VALUES ("+ id + ",'" 
-                        + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text +
-                        "','" + TextBox5.Text + "'," + TextBox6.Text + ")";
 
-                
-                    SqlCommand command = new SqlCommand(strSQL, connection);
-                    command.ExecuteNonQuery();
-                  
+                    SqlCommand insert = new SqlCommand(insert_users, connection);
+                    insert.ExecuteNonQuery();
+                 //   string show="select*from users";
+                   // SqlCommand show_users = new SqlCommand(show, connection);
+                   // UserList.Text = show_users.ExecuteReader().ToString();
+                    cnt = id = select.ExecuteScalar().ToString();
+                  if (cnt==id)
+                      UserList.Text="Успешная регистрация";
+                    else
+                      UserList.Text="провал";
                 }
                 catch (Exception ex)
                 {
