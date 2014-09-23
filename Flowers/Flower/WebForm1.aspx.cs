@@ -11,22 +11,27 @@ namespace Flower
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
         protected void Button1_Click(object sender, EventArgs e)
-        {
-            string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-                   
-    
-            using (SqlConnection connection = new SqlConnection(connectionString))
+        {        
+                 
+          using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    int id = 1488;
                     connection.Open();
+
+                    string id;
+                    string count = "select count(*)from Users";
+                    SqlCommand select = new SqlCommand(count, connection);
+                    id = select.ExecuteScalar().ToString();                   
+
                     string strSQL = "INSERT INTO Users VALUES ("+ id + ",'" 
                         + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text +
                         "','" + TextBox5.Text + "'," + TextBox6.Text + ")";
@@ -41,7 +46,6 @@ namespace Flower
                    
                 }
             }
-        }
-               
+        }                     
     }
 }

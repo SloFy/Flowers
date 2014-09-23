@@ -40,6 +40,11 @@
         <br />
     
     </div>
+        <p>
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
+        </p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>
