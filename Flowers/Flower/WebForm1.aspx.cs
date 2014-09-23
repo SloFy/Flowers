@@ -18,14 +18,14 @@ namespace Flower
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True";
+            string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
                    
     
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    int id = 1;
+                    int id = 1488;
                     connection.Open();
                     string strSQL = "INSERT INTO Users VALUES ("+ id + ",'" 
                         + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text +
@@ -42,6 +42,6 @@ namespace Flower
                 }
             }
         }
-
+               
     }
 }
