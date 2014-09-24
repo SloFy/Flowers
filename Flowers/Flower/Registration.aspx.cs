@@ -15,7 +15,7 @@ namespace Flower
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -31,8 +31,8 @@ namespace Flower
                     string cnt;
                     string count = "select count(*)from Users";
                     SqlCommand select = new SqlCommand(count, connection);
-                    id = select.ExecuteScalar().ToString(); 
-               //  Login.Text=null;
+                    id = select.ExecuteScalar().ToString();
+                   
                         string insert_users = "INSERT INTO Users VALUES ("+ id + ",'" 
                         + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
                         "','" + Mail.Text + "','" + Tel.Text + "')";

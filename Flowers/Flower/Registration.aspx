@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Flower.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="Flower.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -42,7 +42,8 @@
       -ms-user-select: none;
        -o-user-select: none;
           user-select: none;
-}
+            margin-left: 2px;
+        }
 
 a {
   color: #428bca;
@@ -68,9 +69,19 @@ a {
   </style>
 </head>
 <body>
+     <p style="margin-left: 200px">
+&nbsp;&nbsp;&nbsp;
+     <a class="btn btn-primary btn-lg" href="http://localhost:51550/Catalog.aspx">На главную</a>
+     </p>
     <form id="form1" runat="server">
-    <div style="margin-left: 120px">
+        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Properties/Logo.png" Width="200px" />
+    <div style="margin-left: 360px">
+        <asp:Label ID="Label1" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" BorderColor="#6699FF" BorderWidth="1px" Width="291px" style="margin-left: 0px"></asp:Label>
     
+    </div>
+        <div style="margin-left: 100px; width: 202px;" aria-disabled="False">
+      
+            <br />
         Введите логин<br />
         <asp:TextBox ID="Login" runat="server"></asp:TextBox>
         <br />
@@ -99,9 +110,9 @@ a {
         <br />
         <br />
     
-        <a class="btn btn-primary btn-lg" href="http://www.asp.net">Learn more »</a></div>
-        <p>
-            &nbsp;</p>
+       
+          
+        </div>
         <p>
             <asp:TextBox ID="UserList" runat="server" Height="173px" Width="1197px"></asp:TextBox>
         </p>
