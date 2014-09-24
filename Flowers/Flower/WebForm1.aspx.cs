@@ -41,14 +41,14 @@ namespace Flower
 
                     SqlCommand insert = new SqlCommand(insert_users, connection);
                     insert.ExecuteNonQuery();
-                 //   string show="select*from users";
-                   // SqlCommand show_users = new SqlCommand(show, connection);
-                   // UserList.Text = show_users.ExecuteReader().ToString();
-                    cnt = select.ExecuteScalar().ToString();
-                  if (cnt==id)
-                      UserList.Text="Успешная регистрация";
-                    else
-                      UserList.Text="провал";
+                
+
+                    
+                  //  cnt = select.ExecuteScalar().ToString();
+                  //if (cnt==id)
+                  //    UserList.Text="Успешная регистрация";
+                  //  else
+                  //    UserList.Text="провал";
                 }
                 catch (Exception ex)
                 {

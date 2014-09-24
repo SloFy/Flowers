@@ -10,3 +10,9 @@ C:\Users\hunte_000\Documents\GitHub\flowers\Flowers\Flower\bin\Flower.pdb
 C:\Users\hunte_000\Documents\GitHub\flowers\Flowers\Flower\obj\Debug\Flower.csprojResolveAssemblyReference.cache
 C:\Users\hunte_000\Documents\GitHub\flowers\Flowers\Flower\obj\Debug\Flower.dll
 C:\Users\hunte_000\Documents\GitHub\flowers\Flowers\Flower\obj\Debug\Flower.pdb
+C:\Users\Алексей\Documents\GitHub\flowers\Flowers\Flower\bin\Flower.dll.config
+C:\Users\Алексей\Documents\GitHub\flowers\Flowers\Flower\bin\Flower.dll
+C:\Users\Алексей\Documents\GitHub\flowers\Flowers\Flower\bin\Flower.pdb
+C:\Users\Алексей\Documents\GitHub\flowers\Flowers\Flower\obj\Debug\Flower.csprojResolveAssemblyReference.cache
+C:\Users\Алексей\Documents\GitHub\flowers\Flowers\Flower\obj\Debug\Flower.dll
+C:\Users\Алексей\Documents\GitHub\flowers\Flowers\Flower\obj\Debug\Flower.pdb

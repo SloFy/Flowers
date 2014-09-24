@@ -6,10 +6,70 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+
+
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+    height: 23px;
+    width: 106px;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+  a {
+    text-decoration: underline;
+  }
+  
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+  * {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div style="margin-left: 120px">
     
         Введите логин<br />
         <asp:TextBox ID="Login" runat="server"></asp:TextBox>
@@ -39,7 +99,7 @@
         <br />
         <br />
     
-    </div>
+        <a class="btn btn-primary btn-lg" href="http://www.asp.net">Learn more »</a></div>
         <p>
             &nbsp;</p>
         <p>
