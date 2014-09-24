@@ -11,7 +11,7 @@ namespace Flower
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,19 +32,28 @@ namespace Flower
                     string count = "select count(*)from Users";
                     SqlCommand select = new SqlCommand(count, connection);
                     id = select.ExecuteScalar().ToString(); 
-                 Login.Text=null;
-                    
-                    string insert_users = "INSERT INTO Users VALUES ("+ id + ",'" 
+               //  Login.Text=null;
+                        string insert_users = "INSERT INTO Users VALUES ("+ id + ",'" 
                         + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
-                        "','" + Mail.Text + "'," + Tel.Text + ")";
+                        "','" + Mail.Text + "','" + Tel.Text + "')";
 
 
                     SqlCommand insert = new SqlCommand(insert_users, connection);
-                    insert.ExecuteNonQuery();
-                
+                 //   insert.ExecuteNonQuery();
+                  //  UserList.Text = "Успешная регистрация";
 
-                    
-                  //  cnt = select.ExecuteScalar().ToString();
+
+                    if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != "")
+                    {
+                        
+                        insert.ExecuteNonQuery();
+                        UserList.Text = "Успешная регистрация";
+                    }
+                    else
+                    {
+                        UserList.Text = "провал"; 
+                    }                
+                        //  cnt = select.ExecuteScalar().ToString();
                   //if (cnt==id)
                   //    UserList.Text="Успешная регистрация";
                   //  else
@@ -54,7 +63,9 @@ namespace Flower
                 {
                    ////
                 }
+            
             }
         }                     
     }
+    
 }
