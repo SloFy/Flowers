@@ -74,16 +74,18 @@ a {
      <a class="btn btn-primary btn-lg" href="http://localhost:51550/Catalog.aspx">На главную</a>
      </p>
     <form id="form1" runat="server">
-        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Properties/Logo.png" Width="200px" />
+        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px"  AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
+        <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
+        <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
     <div style="margin-left: 360px">
-        <asp:Label ID="Label1" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" BorderColor="#6699FF" BorderWidth="1px" Width="291px" style="margin-left: 0px"></asp:Label>
+        <asp:Label ID="First_label" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" Width="375px" style="margin-left: 0px" ForeColor="#6699FF" Height="27px"></asp:Label>
     
     </div>
         <div style="margin-left: 100px; width: 202px;" aria-disabled="False">
       
             <br />
         Введите логин<br />
-        <asp:TextBox ID="Login" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Login" runat="server"  ></asp:TextBox>
         <br />
         <br />
         Введите&nbsp; пароль<br />
@@ -91,7 +93,7 @@ a {
         <br />
         <br />
         Введите имя<br />
-        <asp:TextBox ID="FirstName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="FirstName" runat="server" ></asp:TextBox>
         <br />
         <br />
         Введите фамилию<br />
@@ -103,7 +105,8 @@ a {
         <br />
         <br />
         Введите телефон<br />
-        <asp:TextBox ID="Tel" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Tel" runat="server" ></asp:TextBox>
+        
         <br />
         <br />
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" />
@@ -111,6 +114,8 @@ a {
         <br />
     
        
+
+
           
         </div>
         <p>

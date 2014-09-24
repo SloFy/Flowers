@@ -65,7 +65,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\Logo.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Scripts\Control.js" />
     <Content Include="Web.config" />
     <Content Include="Registration.aspx" />
     <Content Include="Catalog.aspx" />

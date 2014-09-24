@@ -11,7 +11,7 @@ namespace Flower
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,13 +26,13 @@ namespace Flower
                 try
                 {
                     connection.Open();
-
+                    UserList.Text = ""; 
                     string id;
                     string cnt;
                     string count = "select count(*)from Users";
                     SqlCommand select = new SqlCommand(count, connection);
                     id = select.ExecuteScalar().ToString();
-                   
+                    double tel;
                         string insert_users = "INSERT INTO Users VALUES ("+ id + ",'" 
                         + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
                         "','" + Mail.Text + "','" + Tel.Text + "')";
