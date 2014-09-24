@@ -44,7 +44,7 @@ namespace Flower
                  //   string show="select*from users";
                    // SqlCommand show_users = new SqlCommand(show, connection);
                    // UserList.Text = show_users.ExecuteReader().ToString();
-                    cnt = id = select.ExecuteScalar().ToString();
+                    cnt = select.ExecuteScalar().ToString();
                   if (cnt==id)
                       UserList.Text="Успешная регистрация";
                     else
