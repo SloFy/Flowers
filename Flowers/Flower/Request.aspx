@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="Flower.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Request.aspx.cs" Inherits="Flower.WebForm3" %>
 
 <!DOCTYPE html>
 
@@ -73,43 +73,49 @@ a {
 &nbsp;&nbsp;&nbsp;
      <a class="btn btn-primary btn-lg" href="http://localhost:51550/Catalog.aspx">На главную</a>
      </p>
-    <form id="form1" runat="server">
+    <form id="form2" runat="server">
         <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px"  AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
         <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
         <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
     <div style="margin-left: 360px">
-        <asp:Label ID="First_label" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" Width="375px" style="margin-left: 0px" ForeColor="#6699FF" Height="27px"></asp:Label>
-    
-    </div>
+        Заполните форму заказа(поля, отмеченные знаком &quot;*&quot; заполняются обязательно):</div>
         <div style="margin-left: 100px; width: 202px;" aria-disabled="False">
       
             <br />
-        Введите логин*<br />
-        <asp:TextBox ID="Login" runat="server"  ></asp:TextBox>
+            Выберите тип букета*<br />
+        <asp:TextBox ID="Type" runat="server" Width="158px"  ></asp:TextBox>
         <br />
         <br />
-        Введите&nbsp; пароль*<br />
-        <asp:TextBox ID="Password" runat="server" OnTextChanged="Password_TextChanged"></asp:TextBox>
+            ФИО*<br />
+        <asp:TextBox ID="FIO" runat="server" Width="158px"  ></asp:TextBox>
         <br />
         <br />
-        Введите имя*<br />
-        <asp:TextBox ID="FirstName" runat="server" ></asp:TextBox>
+            Адрес получения*<br />
+        <asp:TextBox ID="Address" runat="server" Width="158px"  ></asp:TextBox>
         <br />
         <br />
-        Введите фамилию<br />
-        <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
+            Дата доставки*<br />
+        <asp:TextBox ID="Data" runat="server" Width="158px"  ></asp:TextBox>
+        <br />
+            <br />
+            Время доставки*<br />
+        <asp:TextBox ID="Time" runat="server" Width="158px"  ></asp:TextBox>
         <br />
         <br />
-        Введите почту*<br />
-        <asp:TextBox ID="Mail" runat="server"></asp:TextBox>
-        <br />
-        <br />
-        Введите телефон<br />
-        <asp:TextBox ID="Tel" runat="server" ></asp:TextBox>
+            Телефон заказчика*<br />
+        <asp:TextBox ID="TelZak" runat="server" Width="158px"  ></asp:TextBox>
+            <br />
+            <br />
+            Телефон получателя*<br />
+        <asp:TextBox ID="TelPol" runat="server" Width="158px"  ></asp:TextBox>
+            <br />
+            <br />
+            Подпись к букету<br />
+        <asp:TextBox ID="Note" runat="server" Width="158px"  ></asp:TextBox>
         
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Оформить заказ" />
         <br />
         <br />
     
