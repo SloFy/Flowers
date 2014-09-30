@@ -66,19 +66,23 @@ a {
     background: transparent !important;
     box-shadow: none !important;
   }
+        .новыйСтиль1 {
+            background-image: url('../Images/4.jpg');
+        }
   </style>
 </head>
 <body>
     <form id="form2" runat="server">
     <div>
     
-  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 375px" AccessKey="p" PostBackUrl="~/Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
+  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 375px" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
         <br />
         <br />
 
-        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 117px"  AccessKey="p" PostBackUrl="~/Request.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
-        <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
-        <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
+        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 117px"  AccessKey="p" PostBackUrl="~/Pages//Registration.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
+        <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages//Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
+        <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages//Request.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
+        <asp:ImageButton ID="ImageButton5" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages/My.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
         <br />
     
         <br />
@@ -121,17 +125,19 @@ a {
 
 
           
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" OnSelecting="SqlDataSource1_Selecting" ProviderName="System.Data.SqlClient" SelectCommand="Select*from Users;"></asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1"
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="Select*from Request;"></asp:SqlDataSource>
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1" CssClass="новыйСтиль1"
                 >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
-                    <asp:BoundField DataField="Login" HeaderText="Login" SortExpression="Login" />
-                    <asp:BoundField DataField="Pass" HeaderText="Pass" SortExpression="Pass" />
-                    <asp:BoundField DataField="First_Name" HeaderText="First_Name" SortExpression="First_Name" />
-                    <asp:BoundField DataField="Last_Name" HeaderText="Last_Name" SortExpression="Last_Name" />
-                    <asp:BoundField DataField="Mail" HeaderText="Mail" SortExpression="Mail" />
+                    <asp:BoundField DataField="User_ID" HeaderText="User_ID" SortExpression="User_ID" />
+                    <asp:BoundField DataField="Flower_ID" HeaderText="Flower_ID" SortExpression="Flower_ID" />
+                    <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
+                    <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
+                    <asp:BoundField DataField="User_tel" HeaderText="User_tel" SortExpression="User_tel" />
                     <asp:BoundField DataField="Tel" HeaderText="Tel" SortExpression="Tel" />
+                    <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
+                    <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
                 </Columns>
             </asp:GridView>
     

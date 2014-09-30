@@ -10,7 +10,7 @@
 <body style="height: 724px">
     <form id="form1" runat="server">
         <p>
-            <asp:ImageButton ID="ImageButton1" runat="server" Height="644px" ImageUrl="~/Images/Black.jpg" PostBackUrl="~/Request.aspx" Width="829px" />
+            <asp:ImageButton ID="ImageButton1" runat="server" Height="644px" ImageUrl="~/Images/Black.jpg" PostBackUrl="~/Pages//Request.aspx" Width="829px" />
         </p>
     </form>
     </body>

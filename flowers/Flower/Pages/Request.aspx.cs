@@ -33,14 +33,18 @@ namespace Flower
                     connection.Open();
                     UserList.Text = "";
                     string id;
-                    string count = "select count(*)from Request";
+                    int money;
+                    string command = "select count(*)from Request";
 
-                    SqlCommand select = new SqlCommand(count, connection);
+                    SqlCommand select = new SqlCommand(command, connection);
                     id = select.ExecuteScalar().ToString();
-                   // DateTime dt = Calendar1.SelectedDate.AddHours(Convert.ToDouble(Time.Text));
+                    command = "select price from Flowers where id=" + Type.Text;
+                    select = new SqlCommand(command, connection);
+                    money =Convert.ToInt32(select.ExecuteScalar());
+                
                     
                     int User_ID=1;
-                    int money=10;
+                   
                     string insert_users = "INSERT INTO Request VALUES (" + id + ","+ User_ID +","
                       +  Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','" + Convert.ToDateTime(Date_Time.Text) + "'," 
                      + TelZak.Text + "," + TelPol.Text + ",'" + Note.Text+ "',"+money+")";
@@ -48,7 +52,7 @@ namespace Flower
                     SqlCommand insert = new SqlCommand(insert_users, connection);
 
 
-                   // if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Calendar1.SelectedDate!= null 
+                  
                     if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Date_Time.Text != null 
                          && TelZak.Text != "" && TelPol.Text != "")
                     {

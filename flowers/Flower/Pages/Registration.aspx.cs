@@ -60,10 +60,7 @@ namespace Flower
             }
         }
 
-        protected void Password_TextChanged(object sender, EventArgs e)
-        {
-
-        }                     
+                       
     }
     
 }
