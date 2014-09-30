@@ -11,7 +11,7 @@ namespace Flower
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
         protected void Page_Load(object sender, EventArgs e)
         {
