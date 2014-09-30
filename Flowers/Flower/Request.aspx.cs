@@ -15,7 +15,12 @@ namespace Flower
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+                TelPol.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+                TelZak.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -32,19 +37,20 @@ namespace Flower
 
                     SqlCommand select = new SqlCommand(count, connection);
                     id = select.ExecuteScalar().ToString();
-                    DateTime dt = Calendar1.SelectedDate.AddHours(Convert.ToDouble(Time.Text));
+                   // DateTime dt = Calendar1.SelectedDate.AddHours(Convert.ToDouble(Time.Text));
                     
                     int User_ID=1;
+                    int money=10;
                     string insert_users = "INSERT INTO Request VALUES (" + id + ","+ User_ID +","
-                      + Type.Text + ",'" + Address.Text + "','" + dt + "','" 
-                     + TelZak.Text + "," + TelPol.Text + ",'" + Note.Text+ "')";
-                    
-                    
+                      +  Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','" + Convert.ToDateTime(Date_Time.Text) + "'," 
+                     + TelZak.Text + "," + TelPol.Text + ",'" + Note.Text+ "',"+money+")";
+                                       
                     SqlCommand insert = new SqlCommand(insert_users, connection);
 
 
-                    if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Calendar1.SelectedDate!= null 
-                        && Time.Text != "" && TelZak.Text != "" && TelPol.Text != "")
+                   // if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Calendar1.SelectedDate!= null 
+                    if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Date_Time.Text != null 
+                         && TelZak.Text != "" && TelPol.Text != "")
                     {
 
                         insert.ExecuteNonQuery();
@@ -68,7 +74,10 @@ namespace Flower
 
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
-
+            
         }
+       
+           
+        
     }
 }

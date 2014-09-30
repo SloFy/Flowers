@@ -85,7 +85,7 @@ a {
         <asp:Label ID="First_label" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" Width="375px" style="margin-left: 0px" ForeColor="#6699FF" Height="27px"></asp:Label>
     
     </div>
-        <div style="margin-left: 245px; width: 500px;" aria-disabled="False">
+        <div style="margin-left: 100px; width: 500px;" aria-disabled="False">
       
             <br />
         Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox  ID="Login" runat="server"  ></asp:TextBox>
@@ -93,7 +93,7 @@ a {
         <br />
         <br />
         Введите&nbsp; пароль*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Password" runat="server" OnTextChanged="Password_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="Password" runat="server" OnTextChanged="Password_TextChanged" TextMode="Password"></asp:TextBox>
             <br />
         <br />
         <br />
@@ -108,12 +108,12 @@ a {
         <br />
         <br />
         Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Mail" runat="server"></asp:TextBox>
+        <asp:TextBox ID="Mail" runat="server" TextMode="Email"></asp:TextBox>
             <br />
         <br />
         <br />
         Введите телефон&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Tel" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="Tel" runat="server" TextMode="Phone" ></asp:TextBox>
         
             <br />
         

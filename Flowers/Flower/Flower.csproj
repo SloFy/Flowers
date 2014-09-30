@@ -73,6 +73,8 @@
     <Content Include="Images\logo %281%29.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\main1.png" />
+    <Content Include="Images\Black.jpg" />
+    <Content Include="Scripts\Check.js" />
     <Content Include="Web.config" />
     <Content Include="Registration.aspx" />
     <Content Include="Catalog.aspx" />
@@ -110,9 +112,7 @@
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

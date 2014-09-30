@@ -72,7 +72,7 @@ a {
     <form id="form2" runat="server">
     <div>
     
-  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 375px" AccessKey="p" PostBackUrl="~/Request.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
+  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 375px" AccessKey="p" PostBackUrl="~/Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
         <br />
         <br />
 
@@ -84,50 +84,32 @@ a {
         <br />
     
     </div>
-    <div style="margin-left: 360px">
+    <div style="margin-left: 200px">
         Заполните форму заказа(поля, отмеченные знаком &quot;*&quot; заполняются обязательно):</div>
-        <div style="margin-left: 100px; width: 202px; margin-right: 229px;" aria-disabled="False">
+        <div style="margin-left: 100px; width: 500px; " aria-disabled="False">
       
             <br />
-            Выберите тип букета*<br />
-        <asp:TextBox ID="Type" runat="server" Width="216px"  ></asp:TextBox>
-        <br />z
-        <br />
-            ФИО*<br />
-        <asp:TextBox ID="FIO" runat="server" Width="216px"  ></asp:TextBox>
+            Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="216px" style="margin-left:7px" TextMode="Number"  ></asp:TextBox>
         <br />
         <br />
-            Адрес получения*<br />
-        <asp:TextBox ID="Address" runat="server" Width="216px"  ></asp:TextBox>
+            ФИО*<asp:TextBox ID="FIO" runat="server" Width="216px" style="margin-left: 116px"  ></asp:TextBox>
+        <br />
+        <br />
+            Адрес получения*<asp:TextBox ID="Address" runat="server" Width="216px" style="margin-left: 35px"  ></asp:TextBox>
             <br />
         <br />
-            Выберите дату доставки*<br />
-            <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" AccessKey="D">
-                <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-                <OtherMonthDayStyle ForeColor="#999999" />
-                <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" BorderColor="Yellow" />
-                <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                <WeekendDayStyle BackColor="#CCCCFF" />
-            </asp:Calendar>
-        <br />
-            <br />
-            Время доставки*<br />
-        <asp:TextBox ID="Time" runat="server" Width="216px"  ></asp:TextBox>
-        <br />
-        <br />
-            Телефон заказчика*<br />
-        <asp:TextBox ID="TelZak" runat="server" Width="216px"  ></asp:TextBox>
+            Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" style="margin-left: 0px" TextMode="DateTimeLocal"  ></asp:TextBox>
             <br />
             <br />
-            Телефон получателя*<br />
-        <asp:TextBox ID="TelPol" runat="server" Width="216px"  ></asp:TextBox>
+            Телефон заказчика*<asp:TextBox ID="TelZak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone"  ></asp:TextBox>
             <br />
             <br />
-            Подпись к букету<br />
-        <asp:TextBox ID="Note" runat="server" Width="216px"  ></asp:TextBox>
+            Телефон получателя*<asp:TextBox ID="TelPol" runat="server" Width="216px" style="margin-left: 17px" TextMode="Phone"  ></asp:TextBox>
+            <br />
+            <br />
+            Подпись к букету<asp:TextBox ID="Note" runat="server" Width="216px" style="margin-left: 46px"  ></asp:TextBox>
+        
+            <br />
         
         <br />
         <br />
