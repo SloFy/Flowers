@@ -11,7 +11,7 @@ namespace Flower
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,17 +32,18 @@ namespace Flower
 
                     SqlCommand select = new SqlCommand(count, connection);
                     id = select.ExecuteScalar().ToString();
-
+                    DateTime dt = Calendar1.SelectedDate.AddHours(Convert.ToDouble(Time.Text));
                     
-                    string insert_users = "INSERT INTO Request VALUES (" + id + ","
-                    + FIO.Text + "," + Type.Text  + ",'" + Address.Text + "','" + Data.Text + "','" 
-                     + Time.Text + "'," + TelZak.Text + "," + TelPol.Text + ",'" + Note.Text+ "')";
-
-
+                    int User_ID=1;
+                    string insert_users = "INSERT INTO Request VALUES (" + id + ","+ User_ID +","
+                      + Type.Text + ",'" + Address.Text + "','" + dt + "','" 
+                     + TelZak.Text + "," + TelPol.Text + ",'" + Note.Text+ "')";
+                    
+                    
                     SqlCommand insert = new SqlCommand(insert_users, connection);
 
 
-                    if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Data.Text != "" 
+                    if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Calendar1.SelectedDate!= null 
                         && Time.Text != "" && TelZak.Text != "" && TelPol.Text != "")
                     {
 
@@ -62,6 +63,11 @@ namespace Flower
 
             }
 
+
+        }
+
+        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
 
         }
     }

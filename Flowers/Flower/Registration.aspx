@@ -69,43 +69,53 @@ a {
   </style>
 </head>
 <body>
-     <p style="margin-left: 200px">
-&nbsp;&nbsp;&nbsp;
-     <a class="btn btn-primary btn-lg" href="http://localhost:51550/Catalog.aspx">На главную</a>
-     </p>
     <form id="form1" runat="server">
-        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px"  AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
+    <div>    
+   
+        <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 375px" AccessKey="p" PostBackUrl="~/Request.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
+        <br />
+        <br />
+    
+    </div>
+        
+        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 117px"  AccessKey="p" PostBackUrl="~/Request.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
         <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
         <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
     <div style="margin-left: 360px">
         <asp:Label ID="First_label" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" Width="375px" style="margin-left: 0px" ForeColor="#6699FF" Height="27px"></asp:Label>
     
     </div>
-        <div style="margin-left: 100px; width: 202px;" aria-disabled="False">
+        <div style="margin-left: 245px; width: 500px;" aria-disabled="False">
       
             <br />
-        Введите логин*<br />
-        <asp:TextBox ID="Login" runat="server"  ></asp:TextBox>
+        Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox  ID="Login" runat="server"  ></asp:TextBox>
+            <br />
         <br />
         <br />
-        Введите&nbsp; пароль*<br />
+        Введите&nbsp; пароль*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Password" runat="server" OnTextChanged="Password_TextChanged"></asp:TextBox>
+            <br />
         <br />
         <br />
-        Введите имя*<br />
+        Введите имя*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="FirstName" runat="server" ></asp:TextBox>
+            <br />
         <br />
         <br />
-        Введите фамилию<br />
+        Введите фамилию&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
+            <br />
         <br />
         <br />
-        Введите почту*<br />
+        Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Mail" runat="server"></asp:TextBox>
+            <br />
         <br />
         <br />
-        Введите телефон<br />
+        Введите телефон&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Tel" runat="server" ></asp:TextBox>
+        
+            <br />
         
         <br />
         <br />
@@ -117,7 +127,7 @@ a {
 
 
           
-        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
         <p>
             <asp:TextBox ID="UserList" runat="server" Height="173px" Width="1197px"></asp:TextBox>
         </p>
