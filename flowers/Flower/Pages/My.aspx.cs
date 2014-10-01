@@ -39,8 +39,6 @@ namespace Flower.Pages
                     if (password == (Password.Text.ToString()))
                     {
                         select = new SqlCommand("select id from Users where login="+"'"+Login.Text+"'", connection);
-
-
                         Session["user_id"] = select.ExecuteScalar().ToString();
                         string a = Session["user_id"].ToString();
                         Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
@@ -70,6 +68,45 @@ namespace Flower.Pages
             
 
               
+        }
+
+        protected void Badress_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                  
+                    SAdress.SelectCommand= "select adress from adress where user_id=" + Session["user_id"].ToString();
+                    GridAdress.Visible = true;           
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+        }
+
+        protected void Brequests_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    
+                    SRequest.SelectCommand = "select *  from request where user_id=" + Session["user_id"].ToString();
+                    GridRequest.Visible = true; 
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
         }
 
         

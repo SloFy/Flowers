@@ -44,8 +44,6 @@
     
         <br />
         <br />
-        <br />
-        <br />
     
     </div>
         
@@ -68,16 +66,35 @@
         <asp:Button ID="Sign" runat="server"  Text="Войти"  Width="250px" OnClick="Button1_Click" />
             <br />
         <br />
-        <asp:Button ID="Badress" runat="server"  Text="Вывести список адресов"  Width="250px" Visible="False" />
+        <asp:Button ID="Badress" runat="server"  Text="Вывести список адресов"  Width="250px" Visible="False" OnClick="Badress_Click" />
         <br />
         <br />
-        <asp:Button ID="Brequests" runat="server"  Text="Вывести предыдщие заказы"  Width="250px" Visible="False" />
+        <asp:Button ID="Brequests" runat="server"  Text="Вывести предыдщие заказы"  Width="250px" Visible="False" OnClick="Brequests_Click" />
         <br />
        
 
 
           
-            <asp:Label ID="Label1" runat="server" Text="Label" Width="1009px" Height="237px" Visible="False"></asp:Label>
+            <asp:SqlDataSource ID="SAdress" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select adress from adress where id=0"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SRequest" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select * from request where id=-1"></asp:SqlDataSource>
+        <asp:GridView ID="GridAdress" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SAdress" Visible="False">
+            <Columns>
+                <asp:BoundField DataField="adress" HeaderText="adress" SortExpression="adress" />
+            </Columns>
+        </asp:GridView>
+        <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SRequest">
+            <Columns>
+                <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
+                <asp:BoundField DataField="User_ID" HeaderText="User_ID" SortExpression="User_ID" />
+                <asp:BoundField DataField="Flower_ID" HeaderText="Flower_ID" SortExpression="Flower_ID" />
+                <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
+                <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
+                <asp:BoundField DataField="User_tel" HeaderText="User_tel" SortExpression="User_tel" />
+                <asp:BoundField DataField="Tel" HeaderText="Tel" SortExpression="Tel" />
+                <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
+                <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
+            </Columns>
+        </asp:GridView>
        
 
 
