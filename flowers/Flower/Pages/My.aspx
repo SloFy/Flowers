@@ -53,9 +53,6 @@
     </div>
         
       
-            <asp:Image ID="logged" runat="server" ImageUrl="~/Images/Black.jpg" Visible="False" />
-        
-      
             <br />
             <asp:Label ID="lLogin" runat="server" style="margin-left: 15px" Text="Имя пользователя:" Width="130px"></asp:Label>
         <asp:TextBox  ID="Login" runat="server" style="margin-left: 0px"  ></asp:TextBox>

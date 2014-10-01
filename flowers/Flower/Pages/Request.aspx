@@ -128,27 +128,8 @@ a {
         <br />
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Оформить заказ" Width="216px" />
         <br />
+            <asp:Label ID="UserList" runat="server" Text="Label" Visible="False"></asp:Label>
         <br />
-    
-       
-
-
-          
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="Select*from Request;"></asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1" CssClass="новыйСтиль1"
-                >
-                <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
-                    <asp:BoundField DataField="User_ID" HeaderText="User_ID" SortExpression="User_ID" />
-                    <asp:BoundField DataField="Flower_ID" HeaderText="Flower_ID" SortExpression="Flower_ID" />
-                    <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
-                    <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-                    <asp:BoundField DataField="User_tel" HeaderText="User_tel" SortExpression="User_tel" />
-                    <asp:BoundField DataField="Tel" HeaderText="Tel" SortExpression="Tel" />
-                    <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
-                    <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
-                </Columns>
-            </asp:GridView>
     
        
 
@@ -156,8 +137,7 @@ a {
           
         </div>
         <p>
-            <asp:TextBox ID="UserList" runat="server" Height="173px" Width="1197px"></asp:TextBox>
-        </p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

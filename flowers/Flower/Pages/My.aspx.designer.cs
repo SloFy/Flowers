@@ -76,15 +76,6 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.Label Welcome;
         
         /// <summary>
-        /// logged элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image logged;
-        
-        /// <summary>
         /// lLogin элемент управления.
         /// </summary>
         /// <remarks>

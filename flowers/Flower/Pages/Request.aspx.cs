@@ -70,6 +70,7 @@ namespace Flower
                             insert.ExecuteNonQuery();
                         }
 
+                        UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
                     }
                     else
@@ -94,6 +95,7 @@ namespace Flower
                     }
                     else
                     {*/
+                        UserList.Visible = true;
                         UserList.Text = "Заполните все поля, помеченные знаком *";
                     }
                     

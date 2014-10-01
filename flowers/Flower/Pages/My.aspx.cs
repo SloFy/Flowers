@@ -19,7 +19,7 @@ namespace Flower.Pages
             {
                 
                 Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
-                logged.Visible = Badress.Visible = Brequests.Visible = true;
+                Badress.Visible = Brequests.Visible = true;
                 Welcome.Text = "Личный кабинет";
             }
         }
@@ -42,7 +42,7 @@ namespace Flower.Pages
                         Session["user_id"] = select.ExecuteScalar().ToString();
                         string a = Session["user_id"].ToString();
                         Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
-                        logged.Visible = Badress.Visible =Brequests.Visible= true;
+                        Badress.Visible =Brequests.Visible= true;
                         Welcome.Text = "Личный кабинет";
                         
 
