@@ -3,11 +3,15 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head runat="server"
+   
+
+    > 
+   <script src="/scripts/check.js" ></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
-
+    
 
 .btn-lg {
   padding: 10px 16px;
@@ -75,16 +79,21 @@ a {
     <form id="form2" runat="server">
     <div>
     
-  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 375px" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
+  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 468px" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
         <br />
         <br />
 
-        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 117px"  AccessKey="p" PostBackUrl="~/Pages//Registration.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
-        <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages//Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
-        <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages//Request.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
-        <asp:ImageButton ID="ImageButton5" runat="server" Height="100px" ImageUrl="~/Images/Logo.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages/My.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
-        <br />
+        <asp:ImageButton ID="ImageButton1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Registration.png" Width="200px" style="margin-left: 91px"  AccessKey="p" PostBackUrl="~/Pages/Registration.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" AlternateText="Перейти к каталогу букетов" />
+        <asp:ImageButton ID="ImageButton3" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/Catalog.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages/Catalog.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
+        <asp:ImageButton ID="ImageButton2" runat="server" Height="100px" ImageUrl="~/Images/Request.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages/Request.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
     
+        <asp:ImageButton ID="ImageButton5" runat="server" Height="100px" ImageUrl="~/Images/My.png" Width="200px" style="margin-left: 50px" AccessKey="p" PostBackUrl="~/Pages/My.aspx" ToolTip="Перейти к каталогу букетов" ValidateRequestMode="Disabled" />
+    
+        <br />
+        <br />
+        <br />
+        <br />
+
         <br />
     
     </div>
@@ -105,10 +114,10 @@ a {
             Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" style="margin-left: 0px" TextMode="DateTimeLocal"  ></asp:TextBox>
             <br />
             <br />
-            Телефон заказчика*<asp:TextBox ID="TelZak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone"  ></asp:TextBox>
+            Телефон заказчика*<asp:TextBox ID="TelZak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone" MaxLength="11"   ></asp:TextBox>
             <br />
             <br />
-            Телефон получателя*<asp:TextBox ID="TelPol" runat="server" Width="216px" style="margin-left: 17px" TextMode="Phone"  ></asp:TextBox>
+            Телефон получателя*<asp:TextBox ID="TelPol" runat="server" Width="216px" style="margin-left: 17px" TextMode="Phone" MaxLength="11"  ></asp:TextBox>
             <br />
             <br />
             Подпись к букету<asp:TextBox ID="Note" runat="server" Width="216px" style="margin-left: 46px"  ></asp:TextBox>

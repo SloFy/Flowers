@@ -67,13 +67,31 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton5;
         
         /// <summary>
-        /// First_label элемент управления.
+        /// Welcome элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label First_label;
+        protected global::System.Web.UI.WebControls.Label Welcome;
+        
+        /// <summary>
+        /// logged элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image logged;
+        
+        /// <summary>
+        /// lLogin элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lLogin;
         
         /// <summary>
         /// Login элемент управления.
@@ -85,6 +103,15 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.TextBox Login;
         
         /// <summary>
+        /// lPassword элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lPassword;
+        
+        /// <summary>
         /// Password элемент управления.
         /// </summary>
         /// <remarks>
@@ -94,21 +121,39 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
-        /// Button1 элемент управления.
+        /// Sign элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Sign;
         
         /// <summary>
-        /// Button2 элемент управления.
+        /// Badress элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button Badress;
+        
+        /// <summary>
+        /// Brequests элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Brequests;
+        
+        /// <summary>
+        /// Label1 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

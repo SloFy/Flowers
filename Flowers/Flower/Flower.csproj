@@ -71,7 +71,10 @@
     <Content Include="Images\4.jpg" />
     <Content Include="Images\4.png" />
     <Content Include="Images\logo %281%29.png" />
-    <Content Include="Images\Logo.png" />
+    <Content Include="Images\Catalog.png" />
+    <Content Include="Images\My.png" />
+    <Content Include="Images\Registration.png" />
+    <Content Include="Images\Request.png" />
     <Content Include="Images\main1.png" />
     <Content Include="Images\Black.jpg" />
     <Content Include="Pages\Test.aspx" />
