@@ -18,51 +18,34 @@ namespace Flower
                 try
                 {
                     connection.Open();
-                    
-                    for (int i = 1; i < 5; i++)
+                    string photo;
+                    string id;                                   
+                    int count = 1;
+                    while ((FindControl("Flw"+count))!= null)
                     {
-                        string photo;
+                        count++;
+                    }
+                    for (int i = 1; i < count; i++)
+                    {                    
                         string ph = "select Photo from Flowers where ID=" + i;
                         string text = "select Name from Flowers where ID=" + i;
                         SqlCommand select = new SqlCommand(ph, connection);
                         photo = select.ExecuteScalar().ToString();
                         select = new SqlCommand(text, connection);
-                        text = select.ExecuteScalar().ToString()+" (Букет №"+i+")";
-                        if (i==1)
-                        { 
-                        Flw1.ImageUrl="~/Images/"+photo+".jpg";
-                        Flw1.Visible = true;
-                        LFlw1.Text = text;
-                        LFlw1.Visible = true;
-                        }
-                        if (i == 2)
+                        if (photo != "")
                         {
-                            Flw2.ImageUrl = "~/Images/" + photo + ".jpg";
-                            Flw2.Visible = true;
-                            LFlw2.Text = text;
-                            LFlw2.Visible = true;
-                        }
-                        if (i == 3)
-                        {
-                            Flw3.ImageUrl = "~/Images/" + photo + ".jpg";
-                            Flw3.Visible = true;
-                            LFlw3.Text = text;
-                            LFlw3.Visible = true;
-                        }
-                        if (i == 4)
-                        {
-                            Flw4.ImageUrl = "~/Images/" + photo + ".jpg";
-                            Flw4.Visible = true;
-                            LFlw4.Text = text;
-                            LFlw4.Visible = true;
-                        }
-                        
+                            text = select.ExecuteScalar().ToString() + " (Букет №" + i + ")";
+                            id = "Flw" + i;
+                            ((Image)FindControl(id)).ImageUrl = "~/Images/" + photo + ".jpg";
+                            ((Image)FindControl(id)).Visible = ((Label)FindControl("L" + id)).Visible = true;
+                            ((Label)FindControl("L" + id)).Text = text;
+                        }              
                     }
                    
                 }
                 catch (Exception ex)
                 {
-                    ////
+                    
                 }
 
             }
