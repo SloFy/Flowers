@@ -43,15 +43,15 @@ namespace Flower
                     SqlCommand insert = new SqlCommand(insert_users, connection);
                 
                     if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != "")
-                    {
-                        
+                    {                      
                         insert.ExecuteNonQuery();
                         UserList.Text = "Успешная регистрация";
+                        
                     }
                     else
                     {
                         UserList.Text = "провал"; 
-                    }                
+                    }            
                      
                 }
                 catch (Exception ex)

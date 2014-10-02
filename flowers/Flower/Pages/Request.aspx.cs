@@ -75,26 +75,7 @@ namespace Flower
                     }
                     else
                     {
-                    /*
-                    int User_ID=1;
-                   
-                    string insert_users = "INSERT INTO Request VALUES (" + id + ","+ User_ID +","
-                      +  Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','" + Convert.ToDateTime(Date_Time.Text) + "'," 
-                     + TelZak.Text + "," + TelPol.Text + ",'" + Note.Text+ "',"+money+")";
-                                       
-                    SqlCommand insert = new SqlCommand(insert_users, connection);
-
-
                   
-                    if (Type.Text != "" && FIO.Text != "" && Address.Text != "" && Date_Time.Text != null 
-                         && TelZak.Text != "" && TelPol.Text != "")
-                    {
-
-                        insert.ExecuteNonQuery();
-                        UserList.Text = "Заказ оформлен успешно!";
-                    }
-                    else
-                    {*/
                         UserList.Visible = true;
                         UserList.Text = "Заполните все поля, помеченные знаком *";
                     }

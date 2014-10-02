@@ -128,7 +128,7 @@ a {
         
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" PostBackUrl="~/Pages/Catalog.aspx" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться"  />
         <br />
         <br />
     
