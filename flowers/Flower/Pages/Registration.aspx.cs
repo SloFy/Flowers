@@ -8,20 +8,21 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
+using System.Drawing;
 
 namespace Flower
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ErrorBox1.Visible = false;
-            ErrorBox2.Visible = false;
-            ErrorBox3.Visible = false;
+            Login_error.Visible = false;
+            Phone_error.Visible = false;
+            Mail_error.Visible = false;
 
-            Tel.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
         }
         public static void SendMail(string smtpServer, string from, string password, string mailto, string caption, string message, string attachFile = null)
         {
@@ -61,20 +62,20 @@ namespace Flower
                     
                     string id;
                     string new_login="";
-                    string new_tel="";
+                    string new_Phone="";
                     string new_mail="";
                     //Проверка на ввод
 
                     string login_cnt = "select count(*) from Users WHERE Login = '" + Login.Text + "'";
-                    string tel_cnt = "select count(*) from Users WHERE Tel = " + Tel.Text;
+                    string Phone_cnt = "select count(*) from Users WHERE Phone = " + Phone.Text;
                     string mail_cnt = "select count(*) from Users WHERE Mail = '" + Mail.Text + "'";
 
                      SqlCommand select_login = new SqlCommand(login_cnt, connection);
                      new_login = select_login.ExecuteScalar().ToString();
                      //Login.Text = select_login.ExecuteScalar().ToString();
 
-                     SqlCommand select_tel = new SqlCommand(tel_cnt, connection);
-                     new_tel = select_tel.ExecuteScalar().ToString();
+                     SqlCommand select_Phone = new SqlCommand(Phone_cnt, connection);
+                     new_Phone = select_Phone.ExecuteScalar().ToString();
 
                      SqlCommand select_mail = new SqlCommand(mail_cnt, connection);
                      new_mail = select_mail.ExecuteScalar().ToString();
@@ -85,45 +86,49 @@ namespace Flower
 
                         string insert_users = "INSERT INTO Users VALUES (" + id + ",'"
                         + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
-                        "','" + Mail.Text + "','" + Tel.Text + "')";
+                        "','" + Mail.Text + "','" + Phone.Text + "')";
 
                         SqlCommand insert = new SqlCommand(insert_users, connection);
 
-                        if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != ""&& Tel.Text!="")
+                        if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != ""&& Phone.Text!="")
                         {
-                           if(new_login=="0" && new_tel == "0" && new_mail == "0")
+                           if(new_login=="0" && new_Phone == "0" && new_mail == "0")
                            {
-                                ErrorBox1.Visible = false;
-                                ErrorBox2.Visible = false;
-                                ErrorBox3.Visible = false;
+                                Login_error.Visible = false;
+                                Phone_error.Visible = false;
+                                Mail_error.Visible = false;
 
                                 insert.ExecuteNonQuery();
                                 UserList.Text = "Успешная регистрация";
                                 string send = "Логин: " + Login.Text + " , Пароль: " + Password.Text + " , Имя: " + FirstName.Text + " , Фамилия: " + LastName.Text +
-                                " , Почта: " + Mail.Text + " , Телефон: " + Tel.Text;
+                                " , Почта: " + Mail.Text + " , Телефон: " + Phone.Text;
                       ////      SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией", send);
                                    //  SendMail("smtp.gmail.com", "mikopytin@gmail.com", "3150315VbIf", Mail.Text, "Поздравляем с регистрацией", "Поздравляем с регистрацией", "C:\\1.txt");
                            }
 
                            if (new_login == "1")
                            {
-                               ErrorBox1.Visible = true;
-                               ErrorBox1.Text = "Введенный логин уже занят другим пользователем";
+                              Login_error.Visible = true;
+                               Login_error.Text = "Введенный логин уже занят другим пользователем";
                                UserList.Text = "Провал";
+                              // Login.Text = Login.Text + "- Имя пользовател занято";
+                               Login.BorderColor = Color.Red;
                            }
 
-                           if (new_tel == "1")
+                           if (new_Phone == "1")
                            {
-                               ErrorBox2.Visible = true;
-                               ErrorBox2.Text = "Пользователь с таким телефоном уже зарегистрирован";
+                               Phone_error.Visible = true;
+                               Phone_error.Text = "Пользователь с таким телефоном уже зарегистрирован";
                                UserList.Text = "Провал";
+                               Phone.BorderColor = Color.Red;
                            }
 
                            if (new_mail == "1")
                            {
-                               ErrorBox3.Visible = true;
-                               ErrorBox3.Text = "Пользователь с такой почтой уже зарегистрирован";
+                               Mail_error.Visible = true;
+                               Mail_error.Text = "Пользователь с такой почтой уже зарегистрирован";
                                UserList.Text = "Провал";
+                               Mail.BorderColor = Color.Red;
                            }
 
 

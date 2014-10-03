@@ -76,13 +76,13 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Type;
         
         /// <summary>
-        /// FIO элемент управления.
+        /// Name элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FIO;
+        protected global::System.Web.UI.WebControls.TextBox Name;
         
         /// <summary>
         /// Address элемент управления.
@@ -103,22 +103,22 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Date_Time;
         
         /// <summary>
-        /// TelZak элемент управления.
+        /// Phone_zak элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TelZak;
+        protected global::System.Web.UI.WebControls.TextBox Phone_zak;
         
         /// <summary>
-        /// TelPol элемент управления.
+        /// Phone_pol элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TelPol;
+        protected global::System.Web.UI.WebControls.TextBox Phone_pol;
         
         /// <summary>
         /// Note элемент управления.

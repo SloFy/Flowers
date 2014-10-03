@@ -85,13 +85,13 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Login;
         
         /// <summary>
-        /// ErrorBox1 элемент управления.
+        /// Login_error элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ErrorBox1;
+        protected global::System.Web.UI.WebControls.TextBox Login_error;
         
         /// <summary>
         /// Password элемент управления.
@@ -130,31 +130,31 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Mail;
         
         /// <summary>
-        /// ErrorBox3 элемент управления.
+        /// Mail_error элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ErrorBox3;
+        protected global::System.Web.UI.WebControls.TextBox Mail_error;
         
         /// <summary>
-        /// Tel элемент управления.
+        /// Phone элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Tel;
+        protected global::System.Web.UI.WebControls.TextBox Phone;
         
         /// <summary>
-        /// ErrorBox2 элемент управления.
+        /// Phone_error элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ErrorBox2;
+        protected global::System.Web.UI.WebControls.TextBox Phone_error;
         
         /// <summary>
         /// Button1 элемент управления.

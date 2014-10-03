@@ -55,10 +55,10 @@
       
             <br />
             <asp:Label ID="lLogin" runat="server" style="margin-left: 15px" Text="Имя пользователя:" Width="130px"></asp:Label>
-        <asp:TextBox  ID="Login" runat="server" style="margin-left: 0px"  ></asp:TextBox>
+        <asp:TextBox  ID="Login" runat="server" style="margin-left: 0px" BorderWidth="1px"  ></asp:TextBox>
         <br />
         <asp:Label ID="lPassword" runat="server" style="margin-left: 87px" Text="Пароль:" Width="55px"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: -70px"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: -70px" BorderWidth="1px"></asp:TextBox>
         <br />
         <asp:Button ID="Sign" runat="server"  Text="Войти"  Width="250px" OnClick="Button1_Click" />
             <br />
@@ -90,8 +90,8 @@
                 <asp:BoundField DataField="Flower_ID" HeaderText="Flower_ID" SortExpression="Flower_ID" />
                 <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
                 <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-                <asp:BoundField DataField="User_tel" HeaderText="User_tel" SortExpression="User_tel" />
-                <asp:BoundField DataField="Tel" HeaderText="Tel" SortExpression="Tel" />
+                <asp:BoundField DataField="User_Phone" HeaderText="User_Phone" SortExpression="User_Phone" />
+                <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                 <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
                 <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
             </Columns>

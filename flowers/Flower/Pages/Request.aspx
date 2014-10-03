@@ -102,10 +102,10 @@ a {
         <div style="margin-left: 100px; width: 500px; " aria-disabled="False">
       
             <br />
-            Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="216px" style="margin-left:7px" TextMode="Number"  ></asp:TextBox>
+            Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="216px" style="margin-left:9px" TextMode="Number"  ></asp:TextBox>
         <br />
         <br />
-            ФИО*<asp:TextBox ID="FIO" runat="server" Width="216px" style="margin-left: 116px"  ></asp:TextBox>
+            ФИО*<asp:TextBox ID="Name" runat="server" Width="216px" style="margin-left: 116px"  ></asp:TextBox>
         <br />
         <br />
             Адрес получения*<asp:TextBox ID="Address" runat="server" Width="216px" style="margin-left: 35px"  ></asp:TextBox>
@@ -114,13 +114,13 @@ a {
             Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" style="margin-left: 0px" TextMode="DateTimeLocal"  ></asp:TextBox>
             <br />
             <br />
-            Телефон заказчика*<asp:TextBox ID="TelZak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone" MaxLength="11"   ></asp:TextBox>
+            Телефон заказчика*<asp:TextBox ID="Phone_zak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone" MaxLength="11"   ></asp:TextBox>
             <br />
             <br />
-            Телефон получателя*<asp:TextBox ID="TelPol" runat="server" Width="216px" style="margin-left: 17px" TextMode="Phone" MaxLength="11"  ></asp:TextBox>
+            Телефон получателя*<asp:TextBox ID="Phone_pol" runat="server" Width="216px" style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"  ></asp:TextBox>
             <br />
             <br />
-            Подпись к букету<asp:TextBox ID="Note" runat="server" Width="216px" style="margin-left: 46px"  ></asp:TextBox>
+            Подпись к букету<asp:TextBox ID="Note" runat="server" Width="216px" style="margin-left: 46px" BorderWidth="1px"  ></asp:TextBox>
         
             <br />
         

@@ -97,35 +97,35 @@ a {
         <div style="margin-left: 100px; width: 1035px; height: 511px;" aria-disabled="False">
       
             <br />
-        Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox  ID="Login" runat="server"  ></asp:TextBox>
-            <asp:TextBox ID="ErrorBox1" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
+        Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox  ID="Login" runat="server" BorderWidth="1px"  ></asp:TextBox>
+            <asp:TextBox ID="Login_error" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
             <br />
         <br />
         <br />
         Введите&nbsp; пароль*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Password" runat="server"  TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="Password" runat="server"  TextMode="Password" BorderWidth="1px"></asp:TextBox>
             <br />
         <br />
         <br />
         Введите имя*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="FirstName" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="FirstName" runat="server" BorderWidth="1px" ></asp:TextBox>
             <br />
         <br />
         <br />
         Введите фамилию&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="LastName" runat="server" BorderWidth="1px"></asp:TextBox>
             <br />
         <br />
         <br />
         Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Mail" runat="server" TextMode="Email" ForeColor="#FF3300"></asp:TextBox>
-            <asp:TextBox ID="ErrorBox3" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
+        <asp:TextBox ID="Mail" runat="server" TextMode="Email" ForeColor="#FF3300" BorderWidth="1px"></asp:TextBox>
+            <asp:TextBox ID="Mail_error" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px" Height="17px"></asp:TextBox>
             <br />
         <br />
         <br />
-        Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Tel" runat="server"  TextMode="Number" ></asp:TextBox>
+        Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Phone" runat="server"  TextMode="Number" BorderWidth="1px" MaxLength="11" ></asp:TextBox>
         
-            <asp:TextBox ID="ErrorBox2" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
+            <asp:TextBox ID="Phone_error" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
         
             <br />
         
