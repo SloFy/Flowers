@@ -98,6 +98,7 @@ a {
       
             <br />
         Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox  ID="Login" runat="server"  ></asp:TextBox>
+            <asp:TextBox ID="ErrorBox1" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
             <br />
         <br />
         <br />
@@ -118,10 +119,13 @@ a {
         <br />
         Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Mail" runat="server" TextMode="Email" ForeColor="#FF3300"></asp:TextBox>
+            <asp:TextBox ID="ErrorBox3" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
             <br />
         <br />
         <br />
         Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Tel" runat="server"  TextMode="Number" ></asp:TextBox>
+        
+            <asp:TextBox ID="ErrorBox2" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
         
             <br />
         

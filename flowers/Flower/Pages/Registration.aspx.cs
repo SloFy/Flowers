@@ -13,10 +13,13 @@ namespace Flower
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ErrorBox1.Visible = false;
+            ErrorBox2.Visible = false;
+            ErrorBox3.Visible = false;
 
             Tel.Attributes.Add("onkeypress", "return numeralsOnly(event)");
         }
@@ -57,39 +60,25 @@ namespace Flower
                     UserList.Text = "";
                     
                     string id;
-                    /*
-                    string check_phone = "select id from Users where tel=" + Tel.Text;
-                    string check_login = "select id from Users where login=" + Login.Text;
-                    string check_mail = "select id from Users where mail=" + Mail.Text;
-                    SqlCommand select = new SqlCommand(check_phone, connection);
-                    string s_check_phone = select.ExecuteScalar().ToString();
-                    select = new SqlCommand(check_login, connection);
-                   string s_check_login = select.ExecuteScalar().ToString();
-                    select = new SqlCommand(check_mail, connection);
-                   string s_check_mail = select.ExecuteScalar().ToString();
-                    bool c_mail = (s_check_mail == "");
-                    bool c_login = (s_check_login == "");
-                    bool c_phone = (s_check_phone == "");
-                     * */
-                    /*
-                    if ((!(c_mail)) || !(c_login) || !(c_phone))
-                    {
-                        if (!(c_mail))
-                        {
-                         Mail.Text = "Такой E-mail уже существует";
-                        }
-                        if (!(c_login))
-                        {
-                            Login.Text = "Такой Логин уже существует";
-                        }
-                        if (!(c_phone))
-                        {
-                            Tel.Text = "Такой номер уже существует";
-                        }
-                    }
-                    else
-                    {
-                     * */
+                    string new_login="";
+                    string new_tel="";
+                    string new_mail="";
+                    //Проверка на ввод
+
+                    string login_cnt = "select count(*) from Users WHERE Login = '" + Login.Text + "'";
+                    string tel_cnt = "select count(*) from Users WHERE Tel = " + Tel.Text;
+                    string mail_cnt = "select count(*) from Users WHERE Mail = '" + Mail.Text + "'";
+
+                     SqlCommand select_login = new SqlCommand(login_cnt, connection);
+                     new_login = select_login.ExecuteScalar().ToString();
+                     //Login.Text = select_login.ExecuteScalar().ToString();
+
+                     SqlCommand select_tel = new SqlCommand(tel_cnt, connection);
+                     new_tel = select_tel.ExecuteScalar().ToString();
+
+                     SqlCommand select_mail = new SqlCommand(mail_cnt, connection);
+                     new_mail = select_mail.ExecuteScalar().ToString();
+
                         string count = "select count(*)from Users";
                         SqlCommand select = new SqlCommand(count, connection);
                         id = select.ExecuteScalar().ToString();
@@ -102,12 +91,42 @@ namespace Flower
 
                         if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != ""&& Tel.Text!="")
                         {
-                            insert.ExecuteNonQuery();
-                            UserList.Text = "Успешная регистрация";
-                            string send = "Логин: " + Login.Text + " , Пароль: " + Password.Text + " , Имя: " + FirstName.Text + " , Фамилия: " + LastName.Text +
-                        " , Почта: " + Mail.Text + " , Телефон: " + Tel.Text;
-                            SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией", send);
-                          //  SendMail("smtp.gmail.com", "mikopytin@gmail.com", "3150315VbIf", Mail.Text, "Поздравляем с регистрацией", "Поздравляем с регистрацией", "C:\\1.txt");
+                           if(new_login=="0" && new_tel == "0" && new_mail == "0")
+                           {
+                                ErrorBox1.Visible = false;
+                                ErrorBox2.Visible = false;
+                                ErrorBox3.Visible = false;
+
+                                insert.ExecuteNonQuery();
+                                UserList.Text = "Успешная регистрация";
+                                string send = "Логин: " + Login.Text + " , Пароль: " + Password.Text + " , Имя: " + FirstName.Text + " , Фамилия: " + LastName.Text +
+                                " , Почта: " + Mail.Text + " , Телефон: " + Tel.Text;
+                      ////      SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией", send);
+                                   //  SendMail("smtp.gmail.com", "mikopytin@gmail.com", "3150315VbIf", Mail.Text, "Поздравляем с регистрацией", "Поздравляем с регистрацией", "C:\\1.txt");
+                           }
+
+                           if (new_login == "1")
+                           {
+                               ErrorBox1.Visible = true;
+                               ErrorBox1.Text = "Введенный логин уже занят другим пользователем";
+                               UserList.Text = "Провал";
+                           }
+
+                           if (new_tel == "1")
+                           {
+                               ErrorBox2.Visible = true;
+                               ErrorBox2.Text = "Пользователь с таким телефоном уже зарегистрирован";
+                               UserList.Text = "Провал";
+                           }
+
+                           if (new_mail == "1")
+                           {
+                               ErrorBox3.Visible = true;
+                               ErrorBox3.Text = "Пользователь с такой почтой уже зарегистрирован";
+                               UserList.Text = "Провал";
+                           }
+
+
                         }
                         else
                         {
