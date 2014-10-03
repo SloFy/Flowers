@@ -104,7 +104,9 @@ namespace Flower
                         {
                             insert.ExecuteNonQuery();
                             UserList.Text = "Успешная регистрация";
-                            SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией", "Поздравляем с регистрацией");
+                            string send = "Логин: " + Login.Text + " , Пароль: " + Password.Text + " , Имя: " + FirstName.Text + " , Фамилия: " + LastName.Text +
+                        " , Почта: " + Mail.Text + " , Телефон: " + Tel.Text;
+                            SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией", send);
                           //  SendMail("smtp.gmail.com", "mikopytin@gmail.com", "3150315VbIf", Mail.Text, "Поздравляем с регистрацией", "Поздравляем с регистрацией", "C:\\1.txt");
                         }
                         else
