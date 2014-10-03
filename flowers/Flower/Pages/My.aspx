@@ -48,7 +48,7 @@
     </div>
         
     <div style="margin-left: 360px">
-        <asp:Label ID="Welcome" runat="server" Text="Добро пожаловать на форму регистрации!" BackColor="#6699FF" Width="375px" style="margin-left: 0px" ForeColor="#6699FF" Height="27px"></asp:Label>
+        <asp:Label ID="Welcome" runat="server" Text="Вход в личный кабинет" BackColor="#6699FF" Width="185px" style="margin-left: 130px" ForeColor="#6699FF" Height="27px"></asp:Label>
     
     </div>
         
@@ -68,6 +68,10 @@
         <br />
         <asp:Button ID="Brequests" runat="server"  Text="Вывести предыдщие заказы"  Width="250px" Visible="False" OnClick="Brequests_Click" />
         <br />
+        <br />
+        <asp:Button ID="Exit" runat="server"  Text="Выйти"  Width="250px" Visible="False" OnClick="Exit_Click" />
+        <br />
+        <br />
        
 
 
@@ -79,7 +83,7 @@
                 <asp:BoundField DataField="adress" HeaderText="adress" SortExpression="adress" />
             </Columns>
         </asp:GridView>
-        <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SRequest">
+        <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SRequest" Visible="False">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
                 <asp:BoundField DataField="User_ID" HeaderText="User_ID" SortExpression="User_ID" />

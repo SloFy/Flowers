@@ -117,12 +117,11 @@ a {
         <br />
         <br />
         Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Mail" runat="server" TextMode="Email"></asp:TextBox>
+        <asp:TextBox ID="Mail" runat="server" TextMode="Email" ForeColor="#FF3300"></asp:TextBox>
             <br />
         <br />
         <br />
-        Введите телефон&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Tel" runat="server"  TextMode="Number" ></asp:TextBox>
+        Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Tel" runat="server"  TextMode="Number" ></asp:TextBox>
         
             <br />
         

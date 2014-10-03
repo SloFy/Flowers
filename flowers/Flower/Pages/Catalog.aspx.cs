@@ -21,22 +21,27 @@ namespace Flower
                     string photo;
                     string id;                                   
                     int count = 1;
+                    string select_flower_count = "select count(*) from flowers";
+                    SqlCommand select = new SqlCommand(select_flower_count, connection);
+                    int flower_count = Convert.ToInt32(select.ExecuteScalar().ToString());
+                    /*
                     while ((FindControl("Flw"+count))!= null)
                     {
                         count++;
                     }
-                    for (int i = 1; i < count; i++)
+                     * */
+                    for (int i = 1; i <= flower_count; i++)
                     {                    
                         string ph = "select Photo from Flowers where ID=" + i;
                         string text = "select Name from Flowers where ID=" + i;
-                        SqlCommand select = new SqlCommand(ph, connection);
+                         select = new SqlCommand(ph, connection);
                         photo = select.ExecuteScalar().ToString();
                         select = new SqlCommand(text, connection);
                         if (photo != "")
                         {
                             text = select.ExecuteScalar().ToString() + " (Букет №" + i + ")";
                             id = "Flw" + i;
-                            ((Image)FindControl(id)).ImageUrl = "~/Images/" + photo + ".jpg";
+                            ((Image)FindControl(id)).ImageUrl = "~/Images/" + photo + ".png";
                             ((Image)FindControl(id)).Visible = ((Label)FindControl("L" + id)).Visible = true;
                             ((Label)FindControl("L" + id)).Text = text;
                         }              

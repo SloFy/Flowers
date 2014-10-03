@@ -19,7 +19,7 @@ namespace Flower.Pages
             {
                 
                 Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
-                Badress.Visible = Brequests.Visible = true;
+                Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = true;
                 Welcome.Text = "Личный кабинет";
             }
         }
@@ -40,30 +40,14 @@ namespace Flower.Pages
                     {
                         select = new SqlCommand("select id from Users where login="+"'"+Login.Text+"'", connection);
                         Session["user_id"] = select.ExecuteScalar().ToString();
-                        string a = Session["user_id"].ToString();
                         Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
-                        Badress.Visible =Brequests.Visible= true;
-                        Welcome.Text = "Личный кабинет";
-                        
-
-                        
-
+                        Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = true;
+                        Welcome.Text = "Личный кабинет"; 
                     }
-                    else
-                    { 
-                    }
-
-
-                    
-
-                    
-
-                }
+              }
                 catch (Exception ex)
-                {
-                    
+                {                    
                 }
-
             }
             
 
@@ -89,15 +73,21 @@ namespace Flower.Pages
             }
 
         }
-
+        protected void Exit_Click(object sender, EventArgs e)
+        {
+            Session["user_id"]=null;           
+                Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = true;
+                Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible=GridRequest.Visible=false;
+                Welcome.Text = "Вход в личный кабинет";          
+            
+        }
         protected void Brequests_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    connection.Open();
-                    
+                    connection.Open();                    
                     SRequest.SelectCommand = "select *  from request where user_id=" + Session["user_id"].ToString();
                     GridRequest.Visible = true; 
                 }
