@@ -15,19 +15,11 @@ namespace Flower
     public partial class WebForm1 : System.Web.UI.Page
     {
         string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            Login_error.Visible = false;
-            Phone_error.Visible = false;
-            Mail_error.Visible = false;
-
-            Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
-        }
         public static void SendMail(string smtpServer, string from, string password, string mailto, string caption, string message, string attachFile = null)
         {
             try
             {
+                
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress(from);
                 mail.To.Add(new MailAddress(mailto));
@@ -36,7 +28,7 @@ namespace Flower
                 if (!string.IsNullOrEmpty(attachFile))
                     mail.Attachments.Add(new Attachment(attachFile));
                 SmtpClient client = new SmtpClient();
-                client.Host = smtpServer;               
+                client.Host = smtpServer;
                 client.Port = 587;
                 client.EnableSsl = true;
                 client.Credentials = new NetworkCredential(from.Split('@')[0], password);
@@ -50,6 +42,15 @@ namespace Flower
             }
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Login_error.Visible = false;
+            Phone_error.Visible = false;
+            Mail_error.Visible = false;
+
+            Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+        }
+       
         protected void Button1_Click(object sender, EventArgs e)
         {        
                  
@@ -58,9 +59,8 @@ namespace Flower
                 try
                 {
                     connection.Open();
-                    UserList.Text = "";
-                    
-                    string id;
+                    UserList.Text = "";                    
+                    int id;
                     string new_login="";
                     string new_Phone="";
                     string new_mail="";
@@ -72,7 +72,7 @@ namespace Flower
 
                      SqlCommand select_login = new SqlCommand(login_cnt, connection);
                      new_login = select_login.ExecuteScalar().ToString();
-                     //Login.Text = select_login.ExecuteScalar().ToString();
+                    
 
                      SqlCommand select_Phone = new SqlCommand(Phone_cnt, connection);
                      new_Phone = select_Phone.ExecuteScalar().ToString();
@@ -82,9 +82,9 @@ namespace Flower
 
                         string count = "select count(*)from Users";
                         SqlCommand select = new SqlCommand(count, connection);
-                        id = select.ExecuteScalar().ToString();
-
-                        string insert_users = "INSERT INTO Users VALUES (" + id + ",'"
+                        id = Convert.ToInt32(select.ExecuteScalar());
+                    
+                        string insert_users = "INSERT INTO Users VALUES (" + (id + ",'"
                         + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
                         "','" + Mail.Text + "','" + Phone.Text + "')";
 
@@ -100,18 +100,18 @@ namespace Flower
 
                                 insert.ExecuteNonQuery();
                                 UserList.Text = "Успешная регистрация";
-                                string send = "Логин: " + Login.Text + " , Пароль: " + Password.Text + " , Имя: " + FirstName.Text + " , Фамилия: " + LastName.Text +
+                                string send = FirstName.Text+", Вы зарегистрировались на сате достаки букетов Black Flower Power Со следющими личными данными: Логин: "
+                                + Login.Text + " , Пароль: " + Password.Text + " , Имя: " + FirstName.Text + " , Фамилия: " + LastName.Text +
                                 " , Почта: " + Mail.Text + " , Телефон: " + Phone.Text;
-                      ////      SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией", send);
-                                   //  SendMail("smtp.gmail.com", "mikopytin@gmail.com", "3150315VbIf", Mail.Text, "Поздравляем с регистрацией", "Поздравляем с регистрацией", "C:\\1.txt");
+                           SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail.Text, "Поздравляем с регистрацией! ", send);
+                                  
                            }
 
                            if (new_login == "1")
                            {
-                              Login_error.Visible = true;
+                               Login_error.Visible = true;
                                Login_error.Text = "Введенный логин уже занят другим пользователем";
                                UserList.Text = "Провал";
-                              // Login.Text = Login.Text + "- Имя пользовател занято";
                                Login.BorderColor = Color.Red;
                            }
 
@@ -139,7 +139,7 @@ namespace Flower
                         }
 
                     }
-               // }
+               
                 catch (Exception ex)
                 {                    
                 }

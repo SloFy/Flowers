@@ -12,14 +12,6 @@ namespace Flower
     public partial class WebForm3 : System.Web.UI.Page
     {
         string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-        
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-            Phone_pol.Attributes.Add("onkeypress", "return numeralsOnly(event)");
-            Phone_zak.Attributes.Add("onkeypress", "return numeralsOnly(event)");
-            autoimp();
-        }
         protected void autoimp()
         {
             if ((Session["user_id"]) != null)
@@ -29,15 +21,15 @@ namespace Flower
                     try
                     {
                         connection.Open();
-                        string command = "select first_name from Users where id=" + "'" +((Session["user_id"]).ToString())+ "'";
+                        string command = "select first_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         SqlCommand select = new SqlCommand(command, connection);
                         Name.Text = select.ExecuteScalar().ToString();
                         command = "select last_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         select = new SqlCommand(command, connection);
-                        Name.Text += select.ExecuteScalar().ToString();
+                        Name.Text += " "+select.ExecuteScalar().ToString();
                         command = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         select = new SqlCommand(command, connection);
-                        Phone_zak.Text = select.ExecuteScalar().ToString();                        
+                        Phone_zak.Text = select.ExecuteScalar().ToString();
                     }
                     catch (Exception ex)
                     {
@@ -45,6 +37,14 @@ namespace Flower
                 }
             }
         }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            Phone_pol.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            Phone_zak.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            autoimp();
+        }
+        
         protected void Button1_Click(object sender, EventArgs e)
         {
 
