@@ -123,7 +123,7 @@ a {
             <br />
         <br />
         <br />
-        Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Phone" runat="server"  TextMode="Number" BorderWidth="1px" MaxLength="11" ></asp:TextBox>
+        Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Phone" runat="server"  TextMode="Phone" BorderWidth="1px" MaxLength="11" ></asp:TextBox>
         
             <asp:TextBox ID="Phone_error" runat="server" BorderStyle="None" style="margin-left: 40px" Width="370px"></asp:TextBox>
         

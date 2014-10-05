@@ -84,9 +84,10 @@ namespace Flower
                         SqlCommand select = new SqlCommand(count, connection);
                         id = Convert.ToInt32(select.ExecuteScalar());
                     
-                        string insert_users = "INSERT INTO Users VALUES (" + (id + ",'"
+                        string insert_users = "INSERT INTO Users VALUES (" + id + ",'"
                         + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
                         "','" + Mail.Text + "','" + Phone.Text + "')";
+
 
                         SqlCommand insert = new SqlCommand(insert_users, connection);
 
