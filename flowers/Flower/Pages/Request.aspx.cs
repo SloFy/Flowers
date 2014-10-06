@@ -30,6 +30,9 @@ namespace Flower
                         command = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         select = new SqlCommand(command, connection);
                         Phone_zak.Text = select.ExecuteScalar().ToString();
+                        command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        AdressSource.SelectCommand = command;
+                        AdressBox.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -44,7 +47,27 @@ namespace Flower
             Phone_zak.Attributes.Add("onkeypress", "return numeralsOnly(event)");
             autoimp();
         }
-        
+        protected void Insert_Adress(int user_id,string adress)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string command = "select count(*) from adress";
+                    SqlCommand select = new SqlCommand(command, connection);
+                    int id = Convert.ToInt32(select.ExecuteScalar().ToString());
+                    command = "Insert into Adress values(" + id + "," + user_id + ",'" + adress+"')";
+                    SqlCommand insert = new SqlCommand(command, connection);
+                    insert.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+                
         protected void Button1_Click(object sender, EventArgs e)
         {
 
@@ -59,7 +82,14 @@ namespace Flower
                     int money;
                     string User_ID = null;
                     string command = "select count(*)from Request";
-
+                    if ((Address.Text == "") && (AdressBox.SelectedValue!=""))
+                    {
+                        Address.Text=AdressBox.SelectedValue;
+                    }
+                    else if (AdressBox.Visible == true)
+                    {
+                        Insert_Adress(Convert.ToInt32(Session["user_id"]), Address.Text);
+                    }
                     SqlCommand select = new SqlCommand(command, connection);
                     id = select.ExecuteScalar().ToString();
                     command = "select price from Flowers where id=" + Type.Text;

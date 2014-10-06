@@ -102,19 +102,21 @@ a {
         <div style="margin-left: 100px; width: 500px; " aria-disabled="False">
       
             <br />
-            Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="216px" style="margin-left:9px" TextMode="Number"  ></asp:TextBox>
+            Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="216px" style="margin-left:9px" TextMode="Number" BorderWidth="1px"  ></asp:TextBox>
         <br />
         <br />
-            ФИО*<asp:TextBox ID="Name" runat="server" Width="216px" style="margin-left: 116px"  ></asp:TextBox>
+            ФИО*<asp:TextBox ID="Name" runat="server" Width="216px" style="margin-left: 116px" BorderWidth="1px"  ></asp:TextBox>
         <br />
         <br />
-            Адрес получения*<asp:TextBox ID="Address" runat="server" Width="216px" style="margin-left: 35px"  ></asp:TextBox>
+            Адрес получения*<asp:TextBox ID="Address" runat="server" Width="216px" style="margin-left: 35px" BorderWidth="1px"  ></asp:TextBox>
             <br />
+            <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="adress" DataValueField="adress" Rows="1" style="margin-left: 159px" Visible="False" Width="223px"></asp:ListBox>
+            <asp:SqlDataSource ID="AdressSource" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select adress from adress where id=-1"></asp:SqlDataSource>
         <br />
-            Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" style="margin-left: 0px" TextMode="DateTimeLocal"  ></asp:TextBox>
+            Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" style="margin-left: 0px" TextMode="DateTimeLocal" BorderWidth="1px"  ></asp:TextBox>
             <br />
             <br />
-            Телефон заказчика*<asp:TextBox ID="Phone_zak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone" MaxLength="11"   ></asp:TextBox>
+            Телефон заказчика*<asp:TextBox ID="Phone_zak" runat="server" Width="216px" style="margin-left: 28px" TextMode="Phone" MaxLength="11" BorderWidth="1px"   ></asp:TextBox>
             <br />
             <br />
             Телефон получателя*<asp:TextBox ID="Phone_pol" runat="server" Width="216px" style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"  ></asp:TextBox>
