@@ -94,6 +94,15 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Address;
         
         /// <summary>
+        /// Adress_label элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Adress_label;
+        
+        /// <summary>
         /// AdressBox элемент управления.
         /// </summary>
         /// <remarks>

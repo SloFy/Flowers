@@ -110,7 +110,8 @@ a {
         <br />
             Адрес получения*<asp:TextBox ID="Address" runat="server" Width="216px" style="margin-left: 35px" BorderWidth="1px"  ></asp:TextBox>
             <br />
-            <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="adress" DataValueField="adress" Rows="1" style="margin-left: 159px" Visible="False" Width="223px"></asp:ListBox>
+            <asp:Label ID="Adress_label" runat="server" Text="Выберите адрес" Visible="False"></asp:Label>
+            <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="adress" DataValueField="adress" Rows="1" style="margin-left: 50px" Visible="False" Width="223px" ></asp:ListBox>
             <asp:SqlDataSource ID="AdressSource" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select adress from adress where id=-1"></asp:SqlDataSource>
         <br />
             Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" style="margin-left: 0px" TextMode="DateTimeLocal" BorderWidth="1px"  ></asp:TextBox>

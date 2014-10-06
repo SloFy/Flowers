@@ -33,6 +33,7 @@ namespace Flower
                         command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         AdressSource.SelectCommand = command;
                         AdressBox.Visible = true;
+                        Adress_label.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -40,13 +41,30 @@ namespace Flower
                 }
             }
         }
+        /*
+        private void ListBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (AdressBox.SelectedIndex!= -1)
+            {
+                Address.Text = AdressBox.SelectedValue.ToString();
+                            }
+        }
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
 
             Phone_pol.Attributes.Add("onkeypress", "return numeralsOnly(event)");
             Phone_zak.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+       //     AdressBox.Attributes.Add("onSelectedValueChanged", "return insert_text()");
             autoimp();
         }
+        /*
+        protected void insert_text()
+        {
+            Address.Text = AdressBox.SelectedValue.ToString();
+        }
+         * */
+
         protected void Insert_Adress(int user_id,string adress)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
