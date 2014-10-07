@@ -11,7 +11,7 @@ namespace Flower
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         protected void autoimp()
         {
             if ((Session["user_id"]) != null)
@@ -113,45 +113,65 @@ namespace Flower
                     command = "select price from Flowers where id=" + Type.Text;
                     select = new SqlCommand(command, connection);
                     money =Convert.ToInt32(select.ExecuteScalar());
-                    
+
+
                     if (Type.Text != "" && Name.Text != "" && Address.Text != "" && Date_Time.Text != null
                          && Phone_zak.Text != "" && Phone_pol.Text != "")
                     {
-                        string check_cnt = "select count(*) from Users WHERE Phone =" + Phone_zak.Text;
-                        SqlCommand select_cnt = new SqlCommand(check_cnt, connection);
-
-                        if (select_cnt.ExecuteScalar().ToString() == "1") //если такой пользователь есть
+                        
+                        if (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour+2.0f&&
+                            Convert.ToDateTime(Date_Time.Text).Date==DateTime.Now.Date||
+                            Convert.ToDateTime(Date_Time.Text).Day <= DateTime.Now.Day+10.0f&&
+                            Convert.ToDateTime(Date_Time.Text).Date != DateTime.Now.Date)
                         {
-                            string check = "select ID from Users WHERE Phone =" + Phone_zak.Text;
-                            SqlCommand select_user = new SqlCommand(check, connection);
-                            User_ID = select_user.ExecuteScalar().ToString();
+                            string check_cnt = "select count(*) from Users WHERE Phone =" + Phone_zak.Text;
+                            SqlCommand select_cnt = new SqlCommand(check_cnt, connection);
 
-                            string insert_users_withid = "INSERT INTO Request VALUES ("
-                    + id + "," + User_ID + "," + Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','"
-                    + Convert.ToDateTime(Date_Time.Text) + "'," + Phone_zak.Text + "," + Phone_pol.Text + ",'" + Note.Text + "'," + money + ")";
+                            if (select_cnt.ExecuteScalar().ToString() == "1") //если такой пользователь есть
+                            {
+                                string check = "select ID from Users WHERE Phone =" + Phone_zak.Text;
+                                SqlCommand select_user = new SqlCommand(check, connection);
+                                User_ID = select_user.ExecuteScalar().ToString();
 
-                            SqlCommand insert_withid = new SqlCommand(insert_users_withid, connection);
-                            insert_withid.ExecuteNonQuery();
+                                string insert_users_withid = "INSERT INTO Request VALUES ("
+                        + id + "," + User_ID + "," + Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','"
+                        + Convert.ToDateTime(Date_Time.Text) + "'," + Phone_zak.Text + "," + Phone_pol.Text + ",'" + Note.Text + "'," + money + ")";
+
+                                SqlCommand insert_withid = new SqlCommand(insert_users_withid, connection);
+                                insert_withid.ExecuteNonQuery();
+
+                            }
+                            else //если пользователя нету
+                            {
+                                string insert_users = "INSERT INTO Request (ID,Flower_ID,Adress,Date,User_Phone,Phone,Note,Money) VALUES ("
+                        + id + "," + Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','"
+                        + Convert.ToDateTime(Date_Time.Text) + "'," + Phone_zak.Text + "," + Phone_pol.Text + ",'" + Note.Text + "'," + money + ")";
+
+                                SqlCommand insert = new SqlCommand(insert_users, connection);
+                                insert.ExecuteNonQuery();
+                            }
+
+                            UserList.Visible = true;
+                            UserList.Text = "Заказ оформлен успешно!";
+                        }
+                      //  if (Convert.ToDateTime(Date_Time.Text).Hour < DateTime.Now.Hour+2.0f)
+                        else
+                        {
+                            UserList.Text = "Необходимо указывать дату, отличающуюся от текущей не менее чем на 2 часа и не более чем на 10 дней";
+                            UserList.Visible = true;
 
                         }
-                        else //если пользователя нету
-                        {
-                            string insert_users = "INSERT INTO Request (ID,Flower_ID,Name,Adress,Date,User_Phone,Phone,Note,Money) VALUES ("
-                    + id + "," + Convert.ToDouble(Type.Text) + ",'" + Address.Text + "','"
-                    + Convert.ToDateTime(Date_Time.Text) + "'," + Phone_zak.Text + "," + Phone_pol.Text + ",'" + Note.Text + "'," + money + ")";
-
-                            SqlCommand insert = new SqlCommand(insert_users, connection);
-                            insert.ExecuteNonQuery();
-                        }
-
-                        UserList.Visible = true;
-                        UserList.Text = "Заказ оформлен успешно!";
                     }
                     else
                     {
-                  
+                        //if (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour)
+                        //{
+                        //    UserList.Text = "Необходимо указывать дату, отличающуюся от текущей не более чем на 2 часа";
+                        //}
                         UserList.Visible = true;
                         UserList.Text = "Заполните все поля, помеченные знаком *";
+
+
                     }
                     
                 }

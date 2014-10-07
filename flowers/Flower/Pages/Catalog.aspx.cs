@@ -13,7 +13,7 @@ namespace Flower
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            using (SqlConnection connection = new SqlConnection("Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=ALEX-PC;Initial Catalog=Flower_DB;Integrated Security=True"))
             {
                 try
                 {
