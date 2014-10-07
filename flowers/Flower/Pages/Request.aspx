@@ -99,10 +99,11 @@ a {
     </div>
     <div style="margin-left: 200px">
         Заполните форму заказа(поля, отмеченные знаком &quot;*&quot; заполняются обязательно):</div>
-        <div style="margin-left: 100px; width: 500px; " aria-disabled="False">
+        <div style="margin-left: 100px; width: 979px; " aria-disabled="False">
       
             <br />
             Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="216px" style="margin-left:9px" TextMode="Number" BorderWidth="1px"  ></asp:TextBox>
+            <asp:Label ID="ErrFlower" runat="server" Width="415px" style="margin-left:22px" Visible="False"></asp:Label>
         <br />
         <br />
             ФИО*<asp:TextBox ID="Name" runat="server" Width="216px" style="margin-left: 116px" BorderWidth="1px"  ></asp:TextBox>

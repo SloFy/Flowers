@@ -76,6 +76,15 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Type;
         
         /// <summary>
+        /// ErrFlower элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrFlower;
+        
+        /// <summary>
         /// Name элемент управления.
         /// </summary>
         /// <remarks>
