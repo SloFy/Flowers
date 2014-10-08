@@ -12,24 +12,18 @@ namespace Flower
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            using (SqlConnection connection = new SqlConnection("Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True"))
+
+            using (SqlConnection connection = new SqlConnection("Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True"))
             {
                 try
                 {
                     connection.Open();
                     string photo;
                     string id;                                   
-                    int count = 1;
                     string select_flower_count = "select count(*) from flowers";
                     SqlCommand select = new SqlCommand(select_flower_count, connection);
                     int flower_count = Convert.ToInt32(select.ExecuteScalar().ToString());
-                    /*
-                    while ((FindControl("Flw"+count))!= null)
-                    {
-                        count++;
-                    }
-                     * */
+                  
                     for (int i = 1; i <= flower_count; i++)
                     {                    
                         string ph = "select Photo from Flowers where ID=" + i;

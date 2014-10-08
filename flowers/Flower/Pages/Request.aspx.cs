@@ -12,7 +12,7 @@ namespace Flower
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        string connectionString = @"Data Source=DELL-PC;Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source="+Environment.MachineName+";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         protected void autoimp()
         {
             if ((Session["user_id"]) != null)
@@ -78,7 +78,7 @@ namespace Flower
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
-                {
+                { 
                     connection.Open();
                     string command = "select count(*)from Request";
                     SqlCommand select = new SqlCommand(command, connection);
@@ -92,6 +92,16 @@ namespace Flower
                         + date + "'," + user_phone + "," + phone + ",'" + note + "'," + money + ")";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
+                   
+                    if (user_id!="null")
+                    {
+                        select.CommandText = "select mail from users where id=" + Convert.ToInt32(user_id);
+                        string Mail = select.ExecuteScalar().ToString();
+                        string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букет №"
+                            + flower_id + ", Адрес: " + adress + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + phone + ", Сумма к оплате: " + money;
+                         WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",Mail, "Ваш заказ ", send);
+                    }
+                   
                   
                 }
                 catch (Exception ex)
@@ -142,6 +152,13 @@ namespace Flower
                 }
             }
         }
+        protected bool check_date(DateTime date)
+        {
+            return (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour + 2.0f &&
+                        Convert.ToDateTime(date).Date == DateTime.Now.Date ||
+                        Convert.ToDateTime(date).Day <= DateTime.Now.Day + 10.0f &&
+                        Convert.ToDateTime(date).Date != DateTime.Now.Date);
+        }
         protected void Button1_Click(object sender, EventArgs e)
         {
 
@@ -171,10 +188,7 @@ namespace Flower
                      && Phone_zak.Text != "" && Phone_pol.Text != "")
                 {
 
-                    if (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour + 2.0f &&
-                        Convert.ToDateTime(Date_Time.Text).Date == DateTime.Now.Date ||
-                        Convert.ToDateTime(Date_Time.Text).Day <= DateTime.Now.Day + 10.0f &&
-                        Convert.ToDateTime(Date_Time.Text).Date != DateTime.Now.Date)
+                    if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
 
                         insert_request(check_user(Phone_zak.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Phone_zak.Text, Phone_pol.Text, Note.Text);
