@@ -7,10 +7,19 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace Flower.Pages {
+namespace Flower {
     
     
-    public partial class WebForm1 {
+    public partial class Site {
+        
+        /// <summary>
+        /// head элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
         /// form1 элемент управления.
@@ -22,6 +31,15 @@ namespace Flower.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ImageButton4 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
+        
+        /// <summary>
         /// Label1 элемент управления.
         /// </summary>
         /// <remarks>
@@ -31,12 +49,12 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Menu1 элемент управления.
+        /// MainContent элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu Menu1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

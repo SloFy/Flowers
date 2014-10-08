@@ -1,19 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="Flower.Pages.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="WebForm4.aspx.cs" Inherits="Flower.Pages.WebForm4" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        #form1 {
-            width: 1135px;
-            height: 1500px;
-        }
-    </style>
-</head>
-<body>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <body>
     <form id="form1" runat="server">
   
 
@@ -30,4 +20,5 @@
 
         </form>
 </body>
-</html>
+
+    </asp:Content>

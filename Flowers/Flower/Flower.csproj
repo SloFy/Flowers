@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -83,6 +84,7 @@
     <Content Include="Images\Black.jpg" />
     <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\My.aspx" />
+    <Content Include="Pages\WebForm4.aspx" />
     <Content Include="Scripts\Check.js" />
     <Content Include="Web.config" />
     <Content Include="Pages\Registration.aspx" />
@@ -104,6 +106,13 @@
     </Compile>
     <Compile Include="Pages\My.aspx.designer.cs">
       <DependentUpon>My.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WebForm4.aspx.cs">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\WebForm4.aspx.designer.cs">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\Registration.aspx.cs">
@@ -133,6 +142,13 @@
     </Compile>
     <Compile Include="Pages\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
