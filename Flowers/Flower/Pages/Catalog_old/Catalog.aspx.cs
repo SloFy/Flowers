@@ -35,13 +35,9 @@ namespace Flower
                         {
                             text = select.ExecuteScalar().ToString() + " (Букет №" + i + ")";
                             id = "Flw" + i;
-                            
                             ((Image)FindControl(id)).ImageUrl = "~/Images/" + photo + ".png";
                             ((Image)FindControl(id)).Visible = ((Label)FindControl("L" + id)).Visible = true;
-                           
-
-                            id = "MainContent_LFlw" + i;
-                            ((Label)FindControl(id)).Text = text;
+                            ((Label)FindControl("L" + id)).Text = text;
                         }              
                     }
                    

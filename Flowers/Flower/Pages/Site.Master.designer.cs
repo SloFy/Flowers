@@ -13,22 +13,13 @@ namespace Flower {
     public partial class Site {
         
         /// <summary>
-        /// head элемент управления.
+        /// HeadContent элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
-        /// <summary>
-        /// form1 элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
         /// ImageButton4 элемент управления.
@@ -40,13 +31,13 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
         
         /// <summary>
-        /// Label1 элемент управления.
+        /// Menu1 элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Menu Menu1;
         
         /// <summary>
         /// MainContent элемент управления.

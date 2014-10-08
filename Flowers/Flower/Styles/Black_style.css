@@ -1,0 +1,14 @@
+﻿body {
+    background: none repeat scroll 0 0 #b6b7bc;
+   color: #dde4ec;
+    font-family: "Helvetica Neue","Lucida Grande","Segoe UI",Arial,Helvetica,Verdana,sans-serif;
+   
+}
+
+.main {
+     background: url("/images/content.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+     display: inline-block;
+    margin: 0;
+    min-height: 419px;
+    width: 1300px;
+  }

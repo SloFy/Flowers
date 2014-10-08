@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Flower.Pages
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class My : System.Web.UI.Page
     {
         string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         

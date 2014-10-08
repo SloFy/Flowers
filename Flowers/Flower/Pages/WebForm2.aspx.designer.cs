@@ -7,7 +7,7 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace Flower {
+namespace Flower.Pages {
     
     
     public partial class WebForm2 {

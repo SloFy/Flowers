@@ -1,43 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="My.aspx.cs" Inherits="Flower.Pages.WebForm2" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="My.aspx.cs" Inherits="Flower.Pages.My" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
 
 
-         #form1 {
-            width: 1135px;
-            height: 1500px;
-        }
-        </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>    
-   
-  <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 468px" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
-        <br />
-        <br />
 
-        <asp:Menu ID="Menu1" runat="server" CssClass="dynamic"  Orientation="Horizontal" style="margin-left: 163px">
-            <Items>
-                <asp:MenuItem ImageUrl="~/Images/My.png" NavigateUrl="~/Pages/My.aspx"  ></asp:MenuItem>
-                <asp:MenuItem ImageUrl="~/Images/Request.png" NavigateUrl="~/Pages/Request.aspx"  ></asp:MenuItem>
-                <asp:MenuItem ImageUrl="~/Images/Catalog.png" NavigateUrl="~/Pages/Catalog.aspx" ></asp:MenuItem>
-                <asp:MenuItem ImageUrl="~/Images/Registration.png" NavigateUrl="~/Pages/Registration.aspx" ></asp:MenuItem>
-            </Items>
-        </asp:Menu>
-
-        <br />
-
-        <br />
-    
-    </div>
-        
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+            
     <div style="margin-left: 360px">
         <asp:Label ID="Welcome" runat="server" Text="Вход в личный кабинет" Width="185px" style="margin-left: 130px" Height="27px"></asp:Label>
     
@@ -45,11 +13,11 @@
         
       
             <br />
-            <asp:Label ID="lLogin" runat="server" style="margin-left: 15px" Text="Имя пользователя:" Width="130px"></asp:Label>
+            <asp:Label ID="lLogin" runat="server" style="margin-left: 15px" Text="Имя пользователя:" Width="140px"></asp:Label>
         <asp:TextBox  ID="Login" runat="server" style="margin-left: 0px" BorderWidth="1px"  ></asp:TextBox>
         <br />
-        <asp:Label ID="lPassword" runat="server" style="margin-left: 87px" Text="Пароль:" Width="55px"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: -70px" BorderWidth="1px"></asp:TextBox>
+        <asp:Label ID="lPassword" runat="server" style="margin-left: 94px" Text="Пароль:" Width="55px"></asp:Label>
+         <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: 6px" BorderWidth="1px"></asp:TextBox>
         <br />
         <asp:Button ID="Sign" runat="server"  Text="Войти"  Width="250px" OnClick="Button1_Click" />
             <br />
@@ -90,7 +58,5 @@
        
 
 
-          
-        </form>
-</body>
-</html>
+        
+</asp:Content>

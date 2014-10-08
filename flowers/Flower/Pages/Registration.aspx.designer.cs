@@ -13,33 +13,6 @@ namespace Flower {
     public partial class WebForm1 {
         
         /// <summary>
-        /// form1 элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// ImageButton4 элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
-        
-        /// <summary>
-        /// Menu1 элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu Menu1;
-        
-        /// <summary>
         /// First_label элемент управления.
         /// </summary>
         /// <remarks>

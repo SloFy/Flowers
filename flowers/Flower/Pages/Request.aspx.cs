@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace Flower
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class Request : System.Web.UI.Page
     {
         string connectionString = @"Data Source="+Environment.MachineName+";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         protected void autoimp()

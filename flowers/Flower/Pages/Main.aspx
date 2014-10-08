@@ -1,17 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Flower.WebForm4" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Flower.WebForm4" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body style="height: 724px">
-    <form id="form1" runat="server">
-        <p>
-            <asp:ImageButton ID="ImageButton1" runat="server" Height="644px" ImageUrl="~/Images/Black.jpg" PostBackUrl="~/Pages//Request.aspx" Width="829px" />
-        </p>
-    </form>
-    </body>
-</html>
+ <asp:ImageButton ID="ImageButton1" runat="server" Height="644px" ImageUrl="~/Images/Black.jpg" PostBackUrl="~/Pages//Request.aspx" Width="829px" />
+        
+</asp:Content>
