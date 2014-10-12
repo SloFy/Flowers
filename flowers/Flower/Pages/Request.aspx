@@ -25,10 +25,10 @@
         Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="216px" Style="margin-left: 0px" TextMode="DateTimeLocal" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
-        Телефон заказчика*<asp:TextBox ID="Phone_zak" runat="server" Width="216px" Style="margin-left: 28px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
+        Телефон заказчика*<asp:TextBox ID="Sender_Phone" runat="server" Width="216px" Style="margin-left: 28px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
-        Телефон получателя*<asp:TextBox ID="Phone_pol" runat="server" Width="216px" Style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
+        Телефон получателя*<asp:TextBox ID="Receiver_Phone" runat="server" Width="216px" Style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
         Подпись к букету<asp:TextBox ID="Note" runat="server" Width="216px" Style="margin-left: 46px" BorderWidth="1px"></asp:TextBox>

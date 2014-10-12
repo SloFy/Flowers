@@ -85,22 +85,22 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Date_Time;
         
         /// <summary>
-        /// Phone_zak элемент управления.
+        /// Sender_Phone элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Phone_zak;
+        protected global::System.Web.UI.WebControls.TextBox Sender_Phone;
         
         /// <summary>
-        /// Phone_pol элемент управления.
+        /// Receiver_Phone элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Phone_pol;
+        protected global::System.Web.UI.WebControls.TextBox Receiver_Phone;
         
         /// <summary>
         /// Note элемент управления.

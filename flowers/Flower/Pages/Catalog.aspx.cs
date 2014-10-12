@@ -17,30 +17,31 @@ namespace Flower
             {
                 try
                 {
-                    connection.Open();
-                    string photo;
-                    string id;                                   
+                    connection.Open();        
+                                                     
                     string select_flower_count = "select count(*) from flowers";
                     SqlCommand select = new SqlCommand(select_flower_count, connection);
                     int flower_count = Convert.ToInt32(select.ExecuteScalar().ToString());
-                  
+                    Flw1.ToolTip = "Test";
                     for (int i = 1; i <= flower_count; i++)
                     {                    
                         string ph = "select Photo from Flowers where ID=" + i;
                         string text = "select Name from Flowers where ID=" + i;
                          select = new SqlCommand(ph, connection);
-                        photo = select.ExecuteScalar().ToString();
-                        select = new SqlCommand(text, connection);
+                         string photo = select.ExecuteScalar().ToString();
+                         string Info = "select Info from Flowers where ID=" + i; ;
+                         select = new SqlCommand(Info, connection);
+                         Info = select.ExecuteScalar().ToString();
+                         select = new SqlCommand(text, connection);
+                        
                         if (photo != "")
                         {
                             text = select.ExecuteScalar().ToString() + " (Букет №" + i + ")";
-                            id = "Flw" + i;
-                            
+                            string id  = "Flw" + i;
                             ((Image)FindControl(id)).ImageUrl = "~/Images/" + photo + ".png";
                             ((Image)FindControl(id)).Visible = ((Label)FindControl("L" + id)).Visible = true;
-                           
-
-                            id = "MainContent_LFlw" + i;
+                            ((Image)FindControl(id)).ToolTip = Info; 
+                            id = "LFlw" + i;
                             ((Label)FindControl(id)).Text = text;
                         }              
                     }

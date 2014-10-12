@@ -11,7 +11,12 @@ namespace Flower.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = Environment.MachineName;
+
+    //       int a= this.Controls.Count;
+    //       L1.Text = a.ToString();
+         //  ((Label)FindControl("L1")).Text = "123";
+
+
         }
 
       

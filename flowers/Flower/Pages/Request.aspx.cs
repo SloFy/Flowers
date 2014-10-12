@@ -30,7 +30,7 @@ namespace Flower
                         Name.Text += " "+select.ExecuteScalar().ToString();
                         command = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         select = new SqlCommand(command, connection);
-                        Phone_zak.Text = select.ExecuteScalar().ToString();
+                        Sender_Phone.Text = select.ExecuteScalar().ToString();
                         command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         AdressSource.SelectCommand = command;
                         AdressBox.Visible = true;
@@ -46,8 +46,8 @@ namespace Flower
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Phone_pol.Attributes.Add("onkeypress", "return numeralsOnly(event)");
-            Phone_zak.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            Receiver_Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            Sender_Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
             ErrFlower.Visible = false;
             autoimp();
         }
@@ -73,7 +73,7 @@ namespace Flower
                 }
             }
         }
-        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string phone,string note)
+        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string Receiver_Phone,string note)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -86,10 +86,10 @@ namespace Flower
                     command = "select price from Flowers where id=" + flower_id;
                     select = new SqlCommand(command, connection);
                     int money = Convert.ToInt32(select.ExecuteScalar());
-                   
+                    DateTime now = DateTime.Now;
                     command = "INSERT INTO Request VALUES ("
-                        + id + "," + user_id + "," + flower_id + ",'" + adress + "','"
-                        + date + "'," + user_phone + "," + phone + ",'" + note + "'," + money + ")";
+                        + id + "," + user_id + "," + flower_id + ",'" + adress + "','" + now +"','"
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + ")";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
                    
@@ -98,7 +98,7 @@ namespace Flower
                         select.CommandText = "select mail from users where id=" + Convert.ToInt32(user_id);
                         string Mail = select.ExecuteScalar().ToString();
                         string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букет №"
-                            + flower_id + ", Адрес: " + adress + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + phone + ", Сумма к оплате: " + money;
+                            + flower_id + ", Адрес: " + adress + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
                          WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",Mail, "Ваш заказ ", send);
                     }
                    
@@ -110,14 +110,14 @@ namespace Flower
                 }
             }
         }
-        protected string  check_user(string phone)
+        protected string  check_user(string Sender_Phone)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string check_cnt = "select id from Users WHERE Phone =" + phone;
+                    string check_cnt = "select id from Users WHERE Phone =" + Sender_Phone;
                     SqlCommand select_cnt = new SqlCommand(check_cnt, connection);
                     string user_id = select_cnt.ExecuteScalar().ToString();
                     if (select_cnt.ExecuteScalar().ToString() != "")
@@ -185,13 +185,13 @@ namespace Flower
 
 
                 if (Type.Text != "" && Name.Text != "" && Address.Text != "" && Date_Time.Text != null
-                     && Phone_zak.Text != "" && Phone_pol.Text != "")
+                     && Sender_Phone.Text != "" && Receiver_Phone.Text != "")
                 {
 
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
 
-                        insert_request(check_user(Phone_zak.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Phone_zak.Text, Phone_pol.Text, Note.Text);
+                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
                     }

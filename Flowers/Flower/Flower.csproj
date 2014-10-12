@@ -84,7 +84,6 @@
     <Content Include="Images\Black.jpg" />
     <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\My.aspx" />
-    <Content Include="Pages\WebForm2.aspx" />
     <Content Include="Scripts\Check.js" />
     <Content Include="Styles\Black_style.css" />
     <Content Include="Web.config" />
@@ -107,13 +106,6 @@
     </Compile>
     <Compile Include="Pages\My.aspx.designer.cs">
       <DependentUpon>My.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\Registration.aspx.cs">
