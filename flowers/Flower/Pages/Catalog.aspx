@@ -8,9 +8,6 @@
         <asp:Label ID="Privet" runat="server" Text="В данный момент имеются букеты :" Style="margin-left: 442px" Width="269px"></asp:Label>
         <br />
         <br />
-        <br />
-        <br />
-        <br />
         <asp:Image ID="Flw1" runat="server" Height="220px" Width="220px" Style="margin-left: 50px" ImageUrl="~/Images/1.png" />
         <asp:Image ID="Flw2" runat="server" Height="220px" Width="220px" Style="margin-left: 50px" ImageUrl="~/Images/2.png" />
         <asp:Image ID="Flw3" runat="server" Height="220px" Width="220px" Style="margin-left: 50px" ImageUrl="~/Images/3.png" />

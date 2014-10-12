@@ -32,6 +32,7 @@ namespace Flower
                         select = new SqlCommand(command, connection);
                         Sender_Phone.Text = select.ExecuteScalar().ToString();
                         command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                      //  command = "select Street,Building,Korpus,Flat from Adress_new where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         AdressSource.SelectCommand = command;
                         AdressBox.Visible = true;
                         Adress_label.Visible = true;
@@ -64,6 +65,26 @@ namespace Flower
                     SqlCommand select = new SqlCommand(command, connection);
                     int id = Convert.ToInt32(select.ExecuteScalar().ToString());
                     command = "Insert into Adress values(" + id + "," + user_id + ",'" + adress+"')";
+                    SqlCommand insert = new SqlCommand(command, connection);
+                    insert.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+        protected void Insert_Adress(int user_id,string street,string building,string korpus,string flat)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string command = "select count(*) from adress_new";
+                    SqlCommand select = new SqlCommand(command, connection);
+                    int id = Convert.ToInt32(select.ExecuteScalar().ToString());
+                    command = "Insert into Adress_new values(" + id + "," + user_id + ",'" + street + ",'"+building+",'"+korpus+",'"+flat+"')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
                 }
@@ -177,6 +198,7 @@ namespace Flower
                 if ((Address.Text == "") && (AdressBox.SelectedValue != ""))
                 {
                     Address.Text = AdressBox.SelectedValue;
+                    
                 }
                 else if (AdressBox.Visible == true)
                 {
@@ -210,10 +232,29 @@ namespace Flower
 
 
                 }
-
-
+                
 
             }
+        }
+        int Check_Clicked()
+        {           
+            for (int i = 0; i < PayBox.Items.Count; i++)
+            {
+
+                if (PayBox.Items[i].Selected)
+                {
+
+                    return i;
+
+                }
+
+            }
+            return 0;
+
+        }
+        protected void Adress_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         }                  

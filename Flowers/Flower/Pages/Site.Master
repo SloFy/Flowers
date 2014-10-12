@@ -9,20 +9,24 @@
     <link href="~/Styles/Black_style.css" rel="stylesheet" type="text/css" />
  <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .header {
+            height: 300px;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
     <div class="page">
         <div class="header">
-            <asp:ImageButton ID="ImageButton4" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Images/logo (1).png" Width="200px" style="margin-left: 468px; margin-top: 35px;" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
-        <br />
+            <asp:ImageButton ID="ImageButton4" runat="server" Height="130px" ImageAlign="Top" ImageUrl="~/Images/Лого1.png" Width="200px" style="margin-left: 468px; margin-top: 35px;" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
         <br />
             <asp:Menu ID="Menu1" runat="server" CssClass="dynamic" Orientation="Horizontal" Style="margin-left: 163px">
                 <Items>
-                    <asp:MenuItem ImageUrl="~/Images/My.png" NavigateUrl="~/Pages/My.aspx"></asp:MenuItem>
-                    <asp:MenuItem ImageUrl="~/Images/Request.png" NavigateUrl="~/Pages/Request.aspx"></asp:MenuItem>
-                    <asp:MenuItem ImageUrl="~/Images/Catalog.png" NavigateUrl="~/Pages/Catalog.aspx"></asp:MenuItem>
-                    <asp:MenuItem ImageUrl="~/Images/Registration.png" NavigateUrl="~/Pages/Registration.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Личный кабинет.jpg" NavigateUrl="~/Pages/My.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Заказ.jpg" NavigateUrl="~/Pages/Request.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Каталог.jpg" NavigateUrl="~/Pages/Catalog.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Регистрация.jpg" NavigateUrl="~/Pages/Registration.aspx"></asp:MenuItem>
                 </Items>
             </asp:Menu>
         </div>
