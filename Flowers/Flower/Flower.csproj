@@ -63,7 +63,10 @@
     <Content Include="Images\4.png" />
     <Content Include="Images\5.png" />
     <Content Include="Images\content.png" />
+    <Content Include="Images\Fon.png" />
+    <Content Include="Images\Head.png" />
     <Content Include="Images\instagram.png" />
+    <Content Include="Images\Main.png" />
     <Content Include="Images\main1.png" />
     <Content Include="Images\vk.jpg" />
     <Content Include="Images\Заказ.png" />

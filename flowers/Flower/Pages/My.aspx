@@ -5,7 +5,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-            
+       <div  style="margin-right: 1500px">    
     <div style="margin-left: 360px">
         <asp:Label ID="Welcome" runat="server" Text="Вход в личный кабинет" Width="185px" style="margin-left: 130px" Height="27px"></asp:Label>
     
@@ -55,7 +55,7 @@
                 <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
             </Columns>
         </asp:GridView>
-       
+       </div>
 
 
         

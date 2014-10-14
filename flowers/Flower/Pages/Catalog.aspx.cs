@@ -23,7 +23,7 @@ namespace Flower
                     string select_flower_count = "select count(*) from flowers";
                     SqlCommand select = new SqlCommand(select_flower_count, connection);
                     int flower_count = Convert.ToInt32(select.ExecuteScalar().ToString());
-                    Flw1.ToolTip = "Test";
+                   
                     for (int i = 1; i <= flower_count; i++)
                     {                    
                         string ph = "select Photo from Flowers where ID=" + i;
