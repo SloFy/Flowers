@@ -175,13 +175,13 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Note;
         
         /// <summary>
-        /// PayBox элемент управления.
+        /// PayList элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList PayBox;
+        protected global::System.Web.UI.WebControls.RadioButtonList PayList;
         
         /// <summary>
         /// Button1 элемент управления.

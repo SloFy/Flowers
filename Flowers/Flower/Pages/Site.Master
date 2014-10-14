@@ -19,14 +19,14 @@
     <form runat="server">
     <div class="page">
         <div class="header">
-            <asp:ImageButton ID="ImageButton4" runat="server" Height="130px" ImageAlign="Top" ImageUrl="~/Images/Лого1.png" Width="200px" style="margin-left: 510px; margin-top: 15px;" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
+            <asp:ImageButton ID="ImageButton4" runat="server" Height="130px" ImageAlign="Top" ImageUrl="~/Images/Лого1.png" Width="200px" style="margin-left: 460px; margin-top: 15px;" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
         <br />
-            <asp:Menu ID="Menu1" runat="server" CssClass="dynamic" Orientation="Horizontal" Style="margin-left: 100px">
+            <asp:Menu ID="Menu1" runat="server" CssClass="dynamic" Orientation="Horizontal" Style="margin-left: 35px"  >
                 <Items>
-                    <asp:MenuItem ImageUrl="~/Images/Личный кабинет.jpg" NavigateUrl="~/Pages/My.aspx" Value="     " Text="     " ></asp:MenuItem>
-                    <asp:MenuItem ImageUrl="~/Images/Заказ.jpg" NavigateUrl="~/Pages/Request.aspx"></asp:MenuItem>
-                    <asp:MenuItem ImageUrl="~/Images/Каталог.jpg" NavigateUrl="~/Pages/Catalog.aspx"></asp:MenuItem>
-                    <asp:MenuItem ImageUrl="~/Images/Регистрация.jpg" NavigateUrl="~/Pages/Registration.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Личный кабинет.png" NavigateUrl="~/Pages/My.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Заказ.png" NavigateUrl="~/Pages/Request.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Каталог.png" NavigateUrl="~/Pages/Catalog.aspx"></asp:MenuItem>
+                    <asp:MenuItem ImageUrl="~/Images/Регистрация.png" NavigateUrl="~/Pages/Registration.aspx"></asp:MenuItem>
                     <asp:MenuItem ImageUrl="~/Images/О нас.png"></asp:MenuItem>
                 </Items>
             </asp:Menu>

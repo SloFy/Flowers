@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <div id="CatalogContainer">
         <br />
         <asp:Label ID="Privet" runat="server" Text="В данный момент имеются букеты :" Style="margin-left: 442px" Width="269px"></asp:Label>
         <br />
@@ -41,5 +41,6 @@
         <asp:Label ID="LFlw9" runat="server" Style="margin-left: 75px" Width="170px" Visible="False"></asp:Label>
         <asp:Label ID="LFlw10" runat="server" Style="margin-left: 115px" Width="170px" Visible="False"></asp:Label>
         <asp:Label ID="LFlw11" runat="server" Style="margin-left: 115px" Width="170px" Visible="False"></asp:Label>
-        <asp:Label ID="LFlw12" runat="server" Style="margin-left: 115px" Width="170px" Visible="False"></asp:Label>      
+        <asp:Label ID="LFlw12" runat="server" Style="margin-left: 115px" Width="170px" Visible="False"></asp:Label>   
+        </div>   
 </asp:Content>

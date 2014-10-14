@@ -32,7 +32,7 @@ namespace Flower
                         select = new SqlCommand(command, connection);
                         Sender_Phone.Text = select.ExecuteScalar().ToString();
                         command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                      //  command = "select Street,Building,Korpus,Flat from Adress_new where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                      //command = "select Street,Building,Korpus,Flat from Adress_new where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         AdressSource.SelectCommand = command;
                         AdressBox.Visible = true;
                         Adress_label.Visible = true;
@@ -94,13 +94,14 @@ namespace Flower
                 }
             }
         }
-        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string Receiver_Phone,string note)
+        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string Receiver_Phone,string note,int pay)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 { 
                     connection.Open();
+                    int status = 1;
                     string command = "select count(*)from Request";
                     SqlCommand select = new SqlCommand(command, connection);
                     int id = Convert.ToInt32(select.ExecuteScalar());
@@ -110,7 +111,7 @@ namespace Flower
                     DateTime now = DateTime.Now;
                     command = "INSERT INTO Request VALUES ("
                         + id + "," + user_id + "," + flower_id + ",'" + adress + "','" + now +"','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + ")";
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + ","+pay+","+status+")";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
                    
@@ -184,6 +185,7 @@ namespace Flower
         {
 
             UserList.Text = "";
+            int pay = Check_Clicked();
             if (!check_flower(Convert.ToInt32(Type.Text)))
             {
                 ErrFlower.Text = "Выбран несуществующий тип букета";
@@ -207,15 +209,21 @@ namespace Flower
 
 
                 if (Type.Text != "" && Name.Text != "" && Address.Text != "" && Date_Time.Text != null
-                     && Sender_Phone.Text != "" && Receiver_Phone.Text != "")
+                     && Sender_Phone.Text != "" && Receiver_Phone.Text != "" && Check_Clicked()!=0)
                 {
 
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
 
-                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text);
+                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text,pay);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
+                        
+
+                        if (pay==1)
+                        {
+                            Response.Redirect("Pay.aspx");    
+                        }
                     }
                     
                     else
@@ -238,13 +246,13 @@ namespace Flower
         }
         int Check_Clicked()
         {           
-            for (int i = 0; i < PayBox.Items.Count; i++)
+            for (int i = 0; i < PayList.Items.Count; i++)
             {
 
-                if (PayBox.Items[i].Selected)
+                if (PayList.Items[i].Selected)
                 {
 
-                    return i;
+                    return i+1;
 
                 }
 

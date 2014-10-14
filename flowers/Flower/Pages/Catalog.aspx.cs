@@ -17,8 +17,9 @@ namespace Flower
             {
                 try
                 {
-                    connection.Open();        
-                                                     
+                    connection.Open();
+                    ContentPlaceHolder Cont = (ContentPlaceHolder)Master.FindControl("MainContent");  
+                  
                     string select_flower_count = "select count(*) from flowers";
                     SqlCommand select = new SqlCommand(select_flower_count, connection);
                     int flower_count = Convert.ToInt32(select.ExecuteScalar().ToString());
@@ -37,12 +38,13 @@ namespace Flower
                         if (photo != "")
                         {
                             text = select.ExecuteScalar().ToString() + " (Букет №" + i + ")";
-                            string id  = "Flw" + i;
-                            ((Image)FindControl(id)).ImageUrl = "~/Images/" + photo + ".png";
-                            ((Image)FindControl(id)).Visible = ((Label)FindControl("L" + id)).Visible = true;
-                            ((Image)FindControl(id)).ToolTip = Info; 
-                            id = "LFlw" + i;
-                            ((Label)FindControl(id)).Text = text;
+                           string id  = "Flw" + i;
+                           ((Image)(Cont.FindControl(id))).ImageUrl = "~/Images/" + photo + ".png";
+                           ((Image)(Cont.FindControl(id))).Visible = ((Label)(Cont.FindControl("L"+id))).Visible = true;
+                           ((Image)(Cont.FindControl(id))).ToolTip = Info; 
+                             id = "LFlw" + i;                            
+                           ((Label)(Cont.FindControl(id))).Text = text;                  
+                            
                         }              
                     }
                    

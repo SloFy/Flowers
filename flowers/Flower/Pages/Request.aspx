@@ -45,14 +45,15 @@
 
         <br />
         Способ Оплаты:
-        <asp:CheckBoxList ID="PayBox" runat="server" Height="127px" Width="294px">
+        <asp:RadioButtonList ID="PayList" runat="server">
             <asp:ListItem>Оплата по карте on-line</asp:ListItem>
-            <asp:ListItem>Оплата по карте при получении</asp:ListItem>
             <asp:ListItem>Оплата наличными при получении</asp:ListItem>
-        </asp:CheckBoxList>
+            <asp:ListItem>Оплата по карте при получении</asp:ListItem>
+        </asp:RadioButtonList>
+        
 
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Оформить заказ" Width="216px" />
+        <asp:Button ID="Button1" runat="server"  Text="Оформить заказ" Width="216px" />
         <br />
         <asp:Label ID="UserList" runat="server" Text="Label" Visible="False"></asp:Label>
         <br />

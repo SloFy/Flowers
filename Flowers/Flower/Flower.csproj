@@ -66,12 +66,12 @@
     <Content Include="Images\instagram.png" />
     <Content Include="Images\main1.png" />
     <Content Include="Images\vk.jpg" />
-    <Content Include="Images\Заказ.jpg" />
-    <Content Include="Images\Каталог.jpg" />
-    <Content Include="Images\Личный кабинет.jpg" />
+    <Content Include="Images\Заказ.png" />
+    <Content Include="Images\Каталог.png" />
+    <Content Include="Images\Личный кабинет.png" />
     <Content Include="Images\Лого1.png" />
     <Content Include="Images\О нас.png" />
-    <Content Include="Images\Регистрация.jpg" />
+    <Content Include="Images\Регистрация.png" />
     <Content Include="Images\фон.jpg" />
     <Content Include="Pages\Site.Master" />
     <None Include="Web.Debug.config">
