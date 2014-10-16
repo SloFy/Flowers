@@ -49,7 +49,7 @@
         <br />
 
         <br />
-        Способ Оплаты:
+        Способ Оплаты* :
         <asp:RadioButtonList ID="PayList" runat="server">
             <asp:ListItem>Оплата по карте on-line</asp:ListItem>
             <asp:ListItem>Оплата наличными при получении</asp:ListItem>
