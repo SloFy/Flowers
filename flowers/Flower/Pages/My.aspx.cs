@@ -62,7 +62,7 @@ namespace Flower.Pages
                 {
                     connection.Open();
                   
-                    SAdress.SelectCommand= "select adress from adress where user_id=" + Session["user_id"].ToString();
+                    SAdress.SelectCommand= "select street,building,korpus,flat from adress_new where user_id=" + Session["user_id"].ToString();
                     GridAdress.Visible = true;           
                 }
                 catch (Exception ex)

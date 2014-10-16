@@ -1,0 +1,1 @@
+select Street + ','+ Building +'-'+Korpus+'-'+Flat  from Adress_New where id=0;

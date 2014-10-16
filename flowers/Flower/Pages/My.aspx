@@ -35,11 +35,14 @@
 
 
           
-        <asp:SqlDataSource ID="SAdress" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select adress from adress where id=-1"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SAdress" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select street,building,korpus,flat from adress_new where user_id=-2"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SRequest" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select * from request where id=-1"></asp:SqlDataSource>
         <asp:GridView ID="GridAdress" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SAdress" Visible="False">
             <Columns>
-                <asp:BoundField DataField="adress" HeaderText="adress" SortExpression="adress" />
+                <asp:BoundField DataField="street" HeaderText="street" SortExpression="street" />
+                <asp:BoundField DataField="building" HeaderText="building" SortExpression="building" />
+                <asp:BoundField DataField="korpus" HeaderText="korpus" SortExpression="korpus" />
+                <asp:BoundField DataField="flat" HeaderText="flat" SortExpression="flat" />
             </Columns>
         </asp:GridView>
         <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SRequest" Visible="False">
@@ -48,11 +51,15 @@
                 <asp:BoundField DataField="User_ID" HeaderText="User_ID" SortExpression="User_ID" />
                 <asp:BoundField DataField="Flower_ID" HeaderText="Flower_ID" SortExpression="Flower_ID" />
                 <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
+                <asp:BoundField DataField="Reg_Date" HeaderText="Reg_Date" SortExpression="Reg_Date" />
                 <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-                <asp:BoundField DataField="User_Phone" HeaderText="User_Phone" SortExpression="User_Phone" />
-                <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                <asp:BoundField DataField="Sender_Phone" HeaderText="Sender_Phone" SortExpression="Sender_Phone" />
+                <asp:BoundField DataField="Receiver_Phone" HeaderText="Receiver_Phone" SortExpression="Receiver_Phone" />
                 <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
                 <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
+                <asp:BoundField DataField="PayCode" HeaderText="PayCode" SortExpression="PayCode" />
+                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                <asp:BoundField DataField="Receiver_Name" HeaderText="Receiver_Name" SortExpression="Receiver_Name" />
             </Columns>
         </asp:GridView>
        </div>

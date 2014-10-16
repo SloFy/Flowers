@@ -16,7 +16,7 @@
         ФИО*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 130px" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
-        Адрес получения*<asp:TextBox ID="Address" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px" OnTextChanged="Adress_TextChanged"></asp:TextBox>
+        Адрес получения*<asp:TextBox ID="Address" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px" ></asp:TextBox>
         <asp:TextBox ID="Building" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
         <asp:TextBox ID="Korpus" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
         <asp:TextBox ID="Flat" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
@@ -39,6 +39,11 @@
         Телефон получателя*<asp:TextBox ID="Receiver_Phone" runat="server" Width="250px" Style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
+        Имя получателя <asp:TextBox ID="Receiver_Name" runat="server" Width="250px" Style="margin-left: 50px"  BorderWidth="1px" ></asp:TextBox>
+        
+
+                <br />
+        <br />
         Подпись к букету<asp:TextBox ID="Note" runat="server" Width="250px" Style="margin-left: 46px" BorderWidth="1px"></asp:TextBox>
 
         <br />
@@ -53,7 +58,7 @@
         
 
         <br />
-        <asp:Button ID="Button1" runat="server"  Text="Оформить заказ" Width="216px" />
+        <asp:Button ID="Button1" runat="server"  Text="Оформить заказ" Width="216px" OnClick="Button1_Click" />
         <br />
         <asp:Label ID="UserList" runat="server" Text="Label" Visible="False"></asp:Label>
         <br />

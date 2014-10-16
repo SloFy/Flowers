@@ -32,7 +32,6 @@ namespace Flower
                         select = new SqlCommand(command, connection);
                         Sender_Phone.Text = select.ExecuteScalar().ToString();
                         command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                      //command = "select Street,Building,Korpus,Flat from Adress_new where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         AdressSource.SelectCommand = command;
                         AdressBox.Visible = true;
                         Adress_label.Visible = true;
@@ -94,7 +93,7 @@ namespace Flower
                 }
             }
         }
-        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string Receiver_Phone,string note,int pay)
+        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string Receiver_Phone,string note,int pay,string Receiver_Name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -111,7 +110,7 @@ namespace Flower
                     DateTime now = DateTime.Now;
                     command = "INSERT INTO Request VALUES ("
                         + id + "," + user_id + "," + flower_id + ",'" + adress + "','" + now +"','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + ","+pay+","+status+")";
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + ","+pay+","+status+",'"+Receiver_Name+"')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
                    
@@ -215,7 +214,8 @@ namespace Flower
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
 
-                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text,pay);
+                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text,pay,Receiver_Name.Text);
+                        
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
                         
@@ -260,10 +260,7 @@ namespace Flower
             return 0;
 
         }
-        protected void Adress_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+     
 
         }                  
         
