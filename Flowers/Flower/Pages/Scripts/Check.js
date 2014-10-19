@@ -10,4 +10,6 @@
         }
         return true;
    }
-  
+   function getfocus() {
+       document.getElementById("Button1").focus();
+   }

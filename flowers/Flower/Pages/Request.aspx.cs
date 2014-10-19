@@ -12,7 +12,7 @@ namespace Flower
 {
     public partial class Request : System.Web.UI.Page
     {
-        string connectionString = @"Data Source="+Environment.MachineName+";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         protected void autoimp()
         {
             if ((Session["user_id"]) != null)
@@ -25,24 +25,23 @@ namespace Flower
                         string command = "select first_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         SqlCommand select = new SqlCommand(command, connection);
                         Name.Text = select.ExecuteScalar().ToString();
-                        command = "select last_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        select = new SqlCommand(command, connection);
-                        Name.Text += " "+select.ExecuteScalar().ToString();
-                        command = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        select = new SqlCommand(command, connection);
+                        select.CommandText = "select last_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        Name.Text += " " + select.ExecuteScalar().ToString();
+                        select.CommandText = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         Sender_Phone.Text = select.ExecuteScalar().ToString();
-                        command = "select Adress from Adress where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        AdressSource.SelectCommand = command;
-                        AdressBox.Visible = true;
-                        Adress_label.Visible = true;
+                        AdressSource.SelectCommand = "select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        AdressBox.Visible = Adress_label.Visible = true;
+
+
+
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                     }
                 }
             }
         }
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -51,54 +50,43 @@ namespace Flower
             ErrFlower.Visible = false;
             autoimp();
         }
-     
-
-        protected void Insert_Adress(int user_id,string adress)
+        protected int Insert_Adress(string street, string building, string korpus, string flat)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    connection.Open();
-                    string command = "select count(*) from adress";
-                    SqlCommand select = new SqlCommand(command, connection);
-                    int id = Convert.ToInt32(select.ExecuteScalar().ToString());
-                    command = "Insert into Adress values(" + id + "," + user_id + ",'" + adress+"')";
-                    SqlCommand insert = new SqlCommand(command, connection);
-                    insert.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-        }
-        protected void Insert_Adress(int user_id,string street,string building,string korpus,string flat)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
+                    string user_id;
+                    if (Session["user_id"] == null)
+                    {
+                        user_id = "-1";
+                    }
+                    else
+                    {
+                        user_id = Session["user_id"].ToString();
+                    }
                     connection.Open();
                     string command = "select count(*) from adress_new";
                     SqlCommand select = new SqlCommand(command, connection);
                     int id = Convert.ToInt32(select.ExecuteScalar().ToString());
-                    command = "Insert into Adress_new values(" + id + "," + user_id + ",'" + street + ",'"+building+",'"+korpus+",'"+flat+"')";
+
+                    command = "Insert into Adress_new values(" + id + "," + user_id + ",'" + street + "','" + building + "','" + korpus + "','" + flat + "')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
+                    return id;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    return -1;
                 }
             }
         }
-        protected void insert_request(string user_id,int flower_id,string adress,DateTime date,string user_phone,string Receiver_Phone,string note,int pay,string Receiver_Name)
+        protected void insert_request(string user_id, int flower_id, int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
-                { 
+                {
                     connection.Open();
                     int status = 1;
                     string command = "select count(*)from Request";
@@ -108,30 +96,32 @@ namespace Flower
                     select = new SqlCommand(command, connection);
                     int money = Convert.ToInt32(select.ExecuteScalar());
                     DateTime now = DateTime.Now;
+                    if (user_id == null)
+                        user_id = "-1";
                     command = "INSERT INTO Request VALUES ("
-                        + id + "," + user_id + "," + flower_id + ",'" + adress + "','" + now +"','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + ","+pay+","+status+",'"+Receiver_Name+"')";
+                        + id + "," + user_id + "," + flower_id + "," + adress_id + ",'" + now + "','"
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
-                   
-                    if (user_id!="null")
+
+                    if (user_id != "-1")
                     {
                         select.CommandText = "select mail from users where id=" + Convert.ToInt32(user_id);
                         string Mail = select.ExecuteScalar().ToString();
                         string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букет №"
-                            + flower_id + ", Адрес: " + adress + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
-                         WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",Mail, "Ваш заказ ", send);
+                            + flower_id + ", Адрес: " + adress_id + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
+                        WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
                     }
-                   
-                  
+
+
                 }
                 catch (Exception ex)
                 {
-                   
+
                 }
             }
         }
-        protected string  check_user(string Sender_Phone)
+        protected string check_user(string Sender_Phone)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -144,11 +134,11 @@ namespace Flower
                     if (select_cnt.ExecuteScalar().ToString() != "")
                         return user_id;
                     else
-                        return "null";
+                        return "-1";
                 }
-                catch (Exception )
+                catch (Exception)
                 {
-                    return "null";
+                    return "-1";
                 }
             }
         }
@@ -161,7 +151,7 @@ namespace Flower
                     connection.Open();
                     string check = "select count(*) from flowers WHERE id =" + id;
                     SqlCommand select = new SqlCommand(check, connection);
-                     
+
                     if (select.ExecuteScalar().ToString() != "0")
                         return true;
                     else
@@ -180,6 +170,85 @@ namespace Flower
                         Convert.ToDateTime(date).Day <= DateTime.Now.Day + 10.0f &&
                         Convert.ToDateTime(date).Date != DateTime.Now.Date);
         }
+        protected int check_address(string street, string building, string korpus, string flat)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    string user_id;
+                    if (Session["user_id"] == null)
+                    {
+                        user_id = "-1";
+                    }
+                    else
+                    {
+                        user_id = Session["user_id"].ToString();
+                    }
+
+
+                    int id;
+                    connection.Open();
+                    string check = "select id from adress_new where user_id='" + user_id + "' AND street='" + street + "' AND building='" + building + "' AND flat='" + flat + "' AND korpus='" + korpus + "'";
+                    SqlCommand select = new SqlCommand(check, connection);
+                    if (select.ExecuteScalar() == null)
+                        id = -1;
+                    else
+                        id = Convert.ToInt32(select.ExecuteScalar().ToString());
+                    return id;
+                }
+
+                catch (Exception)
+                {
+                    return -2;
+                }
+            }
+        }
+        protected int get_adress_id(string street, string building, string korpus, string flat)
+        {
+            int adress_id = -1;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    int check_adress_result = check_address(street, building, korpus, flat);
+                    if (check_adress_result == -1)
+                    {
+                        adress_id = Insert_Adress(street, building, korpus, flat);
+                    }
+                    else
+                    {
+                        adress_id = check_adress_result;
+
+
+                    }
+                    return adress_id;
+
+
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+        }
+
+        int Check_Clicked()
+        {
+            for (int i = 0; i < PayList.Items.Count; i++)
+            {
+
+                if (PayList.Items[i].Selected)
+                {
+
+                    return i + 1;
+
+                }
+
+            }
+            return 0;
+
+        }
         protected void Button1_Click(object sender, EventArgs e)
         {
 
@@ -188,44 +257,55 @@ namespace Flower
             if (!check_flower(Convert.ToInt32(Type.Text)))
             {
                 ErrFlower.Text = "Выбран несуществующий тип букета";
-                ErrFlower.Visible = true;                
+                ErrFlower.Visible = true;
                 Type.BorderColor = Color.Red;
             }
             else
-                
             {
                 ErrFlower.Visible = false;
                 Type.BorderColor = Color.Black;
-                if ((Address.Text == "") && (AdressBox.SelectedValue != ""))
+                int adress_id;
+
+                string s;
+                if (AdressBox.SelectedValue.ToString() != "" && Street.Text == "")
                 {
-                    Address.Text = AdressBox.SelectedValue;
-                    
+                    s = AdressBox.SelectedValue.ToString();
+
+                    Street.Text = s.Substring(0, s.IndexOf(','));
+
+                    s = s.Remove(0, Street.Text.Length + 1);
+
+                    Building.Text = s.Substring(0, s.IndexOf('-'));
+
+                    s = s.Remove(0, Building.Text.Length + 1);
+
+                    Korpus.Text = s.Substring(0, s.IndexOf('-'));
+
+                    s = s.Remove(0, Korpus.Text.Length + 1);
+
+                    Flat.Text = s;
                 }
-                else if (AdressBox.Visible == true)
-                {
-                    Insert_Adress(Convert.ToInt32(Session["user_id"]), Address.Text);
-                }
+                adress_id = get_adress_id(Street.Text, Building.Text, Korpus.Text, Flat.Text);
 
 
-                if (Type.Text != "" && Name.Text != "" && Address.Text != "" && Date_Time.Text != null
-                     && Sender_Phone.Text != "" && Receiver_Phone.Text != "" && Check_Clicked()!=0)
+
+                if (Type.Text != "" && Name.Text != "" && Street.Text != "" && Building.Text != "" && Date_Time.Text != ""
+                       && Sender_Phone.Text != "" && Receiver_Phone.Text != "" && Check_Clicked() != 0)
                 {
 
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
 
-                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), Address.Text, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text,pay,Receiver_Name.Text);
-                        
+                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
-                        
 
-                        if (pay==1)
+                        if (pay == 1)
                         {
-                            Response.Redirect("Pay.aspx");    
+                            Response.Redirect("Pay.aspx");
                         }
                     }
-                    
+
                     else
                     {
                         UserList.Text = "Необходимо указывать дату, отличающуюся от текущей не менее чем на 2 часа и не более чем на 10 дней";
@@ -234,34 +314,17 @@ namespace Flower
                     }
                 }
                 else
-                {                    
+                {
                     UserList.Visible = true;
                     UserList.Text = "Заполните все поля, помеченные знаком *";
 
 
                 }
-                
+
 
             }
         }
-        int Check_Clicked()
-        {           
-            for (int i = 0; i < PayList.Items.Count; i++)
-            {
 
-                if (PayList.Items[i].Selected)
-                {
-
-                    return i+1;
-
-                }
-
-            }
-            return 0;
-
-        }
-     
-
-        }                  
-        
     }
+
+}

@@ -88,7 +88,7 @@
     <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\My.aspx" />
     <Content Include="Pages\Pay.aspx" />
-    <Content Include="Scripts\Check.js" />
+    <Content Include="Pages\Scripts\Check.js" />
     <Content Include="Styles\Black_style.css" />
     <Content Include="Web.config" />
     <Content Include="Pages\Registration.aspx" />

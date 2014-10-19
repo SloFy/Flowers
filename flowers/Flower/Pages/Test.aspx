@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="Flower.Pages.Test" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript" src="Scripts/Check.js"> </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="margin-left: 200px">

@@ -268,21 +268,24 @@ namespace Flower.Pages
                 int adress_id;
                
                 string s;
-                s = AdressBox.SelectedValue.ToString();
+                if (AdressBox.SelectedValue.ToString() != "" && Street.Text=="")
+                {
+                    s = AdressBox.SelectedValue.ToString();
 
-                Street.Text = s.Substring(0, s.IndexOf(','));
+                    Street.Text = s.Substring(0, s.IndexOf(','));
 
-                s = s.Remove(0, Street.Text.Length+1);
+                    s = s.Remove(0, Street.Text.Length + 1);
 
-                Building.Text = s.Substring(0, s.IndexOf('-'));
+                    Building.Text = s.Substring(0, s.IndexOf('-'));
 
-                s = s.Remove(0, Building.Text.Length+ 1);
+                    s = s.Remove(0, Building.Text.Length + 1);
 
-                Korpus.Text = s.Substring(0, s.IndexOf('-'));
+                    Korpus.Text = s.Substring(0, s.IndexOf('-'));
 
-                s = s.Remove(0, Korpus.Text.Length+1);
+                    s = s.Remove(0, Korpus.Text.Length + 1);
 
-                Flat.Text = s;
+                    Flat.Text = s;
+                }
                 adress_id = get_adress_id(Street.Text, Building.Text, Korpus.Text, Flat.Text);
 
 
