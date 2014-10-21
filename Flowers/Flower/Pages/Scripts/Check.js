@@ -13,3 +13,14 @@
    function getfocus() {
        document.getElementById("Button1").focus();
    }
+   function adress_Only(evt)
+   {
+       evt = (evt) ? evt : event;
+        var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+        if (charCode ==45)
+        {
+            // alert("Wow!, So words much");
+           return false;
+        }
+        return true;
+   }

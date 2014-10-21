@@ -14,10 +14,12 @@
       
             <br />
             <asp:Label ID="lLogin" runat="server" style="margin-left: 15px" Text="Имя пользователя:" Width="140px"></asp:Label>
-        <asp:TextBox  ID="Login" runat="server" style="margin-left: 0px" BorderWidth="1px"  ></asp:TextBox>
+        <asp:TextBox  ID="Login" runat="server" style="margin-left: 15px" BorderWidth="1px"  ></asp:TextBox>
+           <br />
         <br />
-        <asp:Label ID="lPassword" runat="server" style="margin-left: 94px" Text="Пароль:" Width="55px"></asp:Label>
-         <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: 6px" BorderWidth="1px"></asp:TextBox>
+        <asp:Label ID="lPassword" runat="server" style="margin-left: 15px" Text="Пароль:" Width="55px"></asp:Label>
+         <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: 15px" BorderWidth="1px"></asp:TextBox>
+           <br />
         <br />
         <asp:Button ID="Sign" runat="server"  Text="Войти"  Width="250px" OnClick="Button1_Click" />
             <br />

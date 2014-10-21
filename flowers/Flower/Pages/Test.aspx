@@ -1,7 +1,11 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="Flower.Pages.Test" %>
 
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script type="text/javascript" src="Scripts/Check.js"> </script>
+   
+   
+ <script type="text/javascript" src="Scripts/Check.js"> </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="margin-left: 200px">
@@ -10,11 +14,95 @@
     <div style="margin-left: 100px; width: 979px;" aria-disabled="False">
 
         <br />
-        Выберите тип букета*<asp:TextBox ID="Type" runat="server" Width="250px" Style="margin-left: 15px" TextMode="Number" BorderWidth="1px"></asp:TextBox>
+        Выберите&nbsp; букеты*
+        <asp:DropDownList ID="FlowerNameList_1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Name">
+            <asp:ListItem></asp:ListItem>
+        </asp:DropDownList>
+&nbsp;<asp:Label ID="Lcount_1" runat="server" Text="в количестве"></asp:Label>
+        &nbsp;<asp:DropDownList ID="FlowerCountList_1" runat="server" style="margin-left: 0px">
+            <asp:ListItem Selected="True">0</asp:ListItem>
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Lsht_1" runat="server" Text="шт."></asp:Label>
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить другой букет" />
+        <br />
+        <asp:DropDownList ID="FlowerNameList_2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Name" Style="margin-left: 135px" Visible="False" >
+            <asp:ListItem></asp:ListItem>
+        </asp:DropDownList>
+&nbsp;<asp:Label ID="Lcount_2" runat="server" Text="в количестве" Visible="False"></asp:Label>
+        &nbsp;<asp:DropDownList ID="FlowerCountList_2" runat="server" Visible="False">
+            <asp:ListItem Selected="True">0</asp:ListItem>
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Lsht_2" runat="server" Text="шт." Visible="False"></asp:Label>
+        <br />
+        <asp:DropDownList ID="FlowerNameList_3" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Name" Style="margin-left: 135px" Visible="False">
+            <asp:ListItem></asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Lcount_3" runat="server" Text="в количестве" Visible="False"></asp:Label>
+        &nbsp;
+        <asp:DropDownList ID="FlowerCountList_3" runat="server" Visible="False">
+            <asp:ListItem Selected="True">0</asp:ListItem>
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Lsht_3" runat="server" Text="шт." Visible="False"></asp:Label>
+        <br />
+        <asp:DropDownList ID="FlowerNameList_4" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Name" Style="margin-left: 135px" Visible="False">
+            <asp:ListItem></asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Lcount_4" runat="server" Text="в количестве" Visible="False"></asp:Label>
+        &nbsp;
+        <asp:DropDownList ID="FlowerCountList_4" runat="server" Visible="False">
+            <asp:ListItem Selected="True">0</asp:ListItem>
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Lsht_4" runat="server" Text="шт." Visible="False"></asp:Label>
+        <br />
+&nbsp;<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="SELECT [Name] FROM [Flowers]"></asp:SqlDataSource>
+        <br />
+        <asp:TextBox ID="Type" runat="server" Width="250px" Style="margin-left: 41px" TextMode="Number" BorderWidth="1px"></asp:TextBox>
         <asp:Label ID="ErrFlower" runat="server" Width="415px" Style="margin-left: 22px" Visible="False"></asp:Label>
         <br />
         <br />
-        ФИО*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 130px" BorderWidth="1px"></asp:TextBox>
+        <br />
+        <br />
+        ФИО*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 122px" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
         Адрес получения*<asp:TextBox ID="Street" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px" ></asp:TextBox>
@@ -71,3 +159,4 @@
     </div>
    
 </asp:Content>
+

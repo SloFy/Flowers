@@ -12,6 +12,8 @@ namespace Flower
 {
     public partial class Request : System.Web.UI.Page
     {
+        
+        
         string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         protected void autoimp()
         {
@@ -81,7 +83,7 @@ namespace Flower
                 }
             }
         }
-        protected void insert_request(string user_id, int flower_id, int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
+        protected void insert_request(string user_id, int flower_id,int count,int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -94,13 +96,13 @@ namespace Flower
                     int id = Convert.ToInt32(select.ExecuteScalar());
                     command = "select price from Flowers where id=" + flower_id;
                     select = new SqlCommand(command, connection);
-                    int money = Convert.ToInt32(select.ExecuteScalar());
+                    int money = count*Convert.ToInt32(select.ExecuteScalar());
                     DateTime now = DateTime.Now;
                     if (user_id == null)
                         user_id = "-1";
                     command = "INSERT INTO Request VALUES ("
                         + id + "," + user_id + "," + flower_id + "," + adress_id + ",'" + now + "','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "')";
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "',"+ count + ")";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
 
@@ -142,27 +144,7 @@ namespace Flower
                 }
             }
         }
-        protected bool check_flower(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    string check = "select count(*) from flowers WHERE id =" + id;
-                    SqlCommand select = new SqlCommand(check, connection);
-
-                    if (select.ExecuteScalar().ToString() != "0")
-                        return true;
-                    else
-                        return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
+      
         protected bool check_date(DateTime date)
         {
             return (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour + 2.0f &&
@@ -254,16 +236,17 @@ namespace Flower
 
             UserList.Text = "";
             int pay = Check_Clicked();
-            if (!check_flower(Convert.ToInt32(Type.Text)))
+            if (FlowerCountList_1.SelectedValue=="0")
             {
-                ErrFlower.Text = "Выбран несуществующий тип букета";
+                ErrFlower.Text = "Неправильное количество!";
                 ErrFlower.Visible = true;
-                Type.BorderColor = Color.Red;
+                FlowerCountList_1.BorderColor = Color.Red;
+                
             }
             else
             {
                 ErrFlower.Visible = false;
-                Type.BorderColor = Color.Black;
+                FlowerCountList_1.BorderColor = Color.Black;
                 int adress_id;
 
                 string s;
@@ -289,14 +272,14 @@ namespace Flower
 
 
 
-                if (Type.Text != "" && Name.Text != "" && Street.Text != "" && Building.Text != "" && Date_Time.Text != ""
+                if (Name.Text != "" && Street.Text != "" && Building.Text != "" && Date_Time.Text != ""
                        && Sender_Phone.Text != "" && Receiver_Phone.Text != "" && Check_Clicked() != 0)
                 {
 
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
-
-                        insert_request(check_user(Sender_Phone.Text), Convert.ToInt32(Type.Text), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
+                        int flower_id = getFlower_id(FlowerNameList_1.SelectedValue);
+                        insert_request(check_user(Sender_Phone.Text),flower_id, Convert.ToInt32(FlowerCountList_1.SelectedValue), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
 
@@ -322,6 +305,42 @@ namespace Flower
                 }
 
 
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            ContentPlaceHolder Cont = (ContentPlaceHolder)Master.FindControl("MainContent");
+            int i;
+                for ( i = 2; i <= 4; i++)
+                {
+                    if ((((DropDownList)(Cont.FindControl("FlowerNameList_" + i))).Visible) != true)
+                        break;
+                }
+                string ListName_id="FlowerNameList_"+i;
+                string ListCount_id="FlowerCountList_"+i;
+                string Lcount_id = "Lcount_" + i;
+                string Lsht_id = "Lsht_" + i;
+                ((DropDownList)(Cont.FindControl(ListName_id))).Visible = ((DropDownList)(Cont.FindControl(ListCount_id))).Visible = ((Label)(Cont.FindControl(Lcount_id))).Visible = ((Label)(Cont.FindControl(Lsht_id))).Visible = true;
+                
+
+
+        }
+        protected int getFlower_id(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {                  
+                    connection.Open();
+                    string select = "select id from Flowers where name='" + name + "'";
+                    SqlCommand getid = new SqlCommand(select, connection);
+                   return Convert.ToInt32(getid.ExecuteScalar().ToString());                 
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
             }
         }
 
