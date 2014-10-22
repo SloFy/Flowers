@@ -20,7 +20,7 @@
     <form runat="server">
     <div class="page">
         <div class="header">
-            <div class="cont_head" style="margin-left: 438px; width: 1124px;">
+            <div class="cont_head" style="margin-left: 400px; width: 1124px;">
             <asp:ImageButton ID="ImageButton4" runat="server" Height="130px" ImageAlign="Top" ImageUrl="~/Images/Лого1.png" Width="200px" style="margin-left: 465px; margin-top: 15px;" AccessKey="p" PostBackUrl="~/Pages//Main.aspx" ToolTip="Перейти к заказу букетов" ValidateRequestMode="Disabled" />
         <br />
             <asp:Menu ID="Menu1" runat="server" CssClass="dynamic" Orientation="Horizontal" Style="margin-left: 0px"  >
@@ -35,7 +35,7 @@
         </div>
             </div>
         <div class="main">
-            <div class="cont_Main" style="margin-left: 460px">
+            <div class="cont_Main" style="margin-left: 390px">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" ValidateRequestMode="Disabled" />
 
 

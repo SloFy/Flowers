@@ -34,6 +34,16 @@
         <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px" Visible="False"></asp:Label>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить другой букет" Visible="False" />
         <br />
+        <asp:GridView ID="GridView1" runat="server">
+            <Columns>
+                <asp:BoundField HeaderText="#" />
+                <asp:BoundField HeaderText="Букет" />
+                <asp:BoundField HeaderText="Количество" />
+                <asp:BoundField />
+                <asp:CommandField ShowEditButton="True" />
+            </Columns>
+        </asp:GridView>
+        <br />
         <br />
         ФИО*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 122px" BorderWidth="1px"></asp:TextBox>
         <br />

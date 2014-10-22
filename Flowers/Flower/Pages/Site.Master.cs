@@ -13,5 +13,12 @@ namespace Flower
         {
 
         }
+        public class Item
+        {
+            
+            public string name;
+            public int count ;
+            public Item() { name = ""; count = 0; }
+        }
     }
 }
