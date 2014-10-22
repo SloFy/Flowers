@@ -32,17 +32,29 @@
             <asp:ListItem>10</asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Lsht_1" runat="server" Text="шт."></asp:Label>
-        <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px" Visible="False"></asp:Label>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить другой букет" />
+        <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px"></asp:Label>
         <br />
-        <br />
-        <asp:GridView ID="Request_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataRequest_Flowers">
+        <asp:GridView ID="Request_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataRequest_Flowers" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField HeaderText="Букет" DataField="Букет" ReadOnly="True" SortExpression="Букет" />
-                <asp:BoundField HeaderText="Количество" DataField="Количество" SortExpression="Количество" />
+                <asp:BoundField DataField="Букет" HeaderText="Букет" SortExpression="Букет" />
+                <asp:BoundField DataField="Количество" HeaderText="Количество" SortExpression="Количество" />
             </Columns>
+            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+            <SortedAscendingCellStyle BackColor="#FDF5AC" />
+            <SortedAscendingHeaderStyle BackColor="#4D0000" />
+            <SortedDescendingCellStyle BackColor="#FCF6C0" />
+            <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataRequest_Flowers" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="SELECT (SELECT Name FROM Flowers WHERE (Request_Flowers.Flower_ID = Request_Flowers.Flower_ID)) AS Букет, Count AS Количество FROM Request_Flowers WHERE (Request_ID = - 2)"></asp:SqlDataSource>
+        <br />
+        <asp:SqlDataSource ID="SqlDataRequest_Flowers" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id&lt;-1
+            
+            " ></asp:SqlDataSource>
         <br />
         ФИО*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 122px" BorderWidth="1px"></asp:TextBox>
         <br />

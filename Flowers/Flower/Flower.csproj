@@ -99,6 +99,7 @@
     <Content Include="Pages\Main.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs" />
     <Compile Include="Pages\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

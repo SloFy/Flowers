@@ -49,15 +49,6 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.Label Lsht_1;
         
         /// <summary>
-        /// ErrFlower элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrFlower;
-        
-        /// <summary>
         /// Button2 элемент управления.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,15 @@ namespace Flower.Pages {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// ErrFlower элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrFlower;
         
         /// <summary>
         /// Request_Grid элемент управления.

@@ -13,12 +13,17 @@ namespace Flower.Pages
 {
     public partial class Test : System.Web.UI.Page
     {
-      //  List<int> tb = new List<int>();
-        List<Flower.Site.Item> tb = new List<Flower.Site.Item>();
+        
+       
         
         string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         protected void autoimp()
         {
+            
+            
+
+            
+            
             if ((Session["user_id"]) != null)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -35,7 +40,8 @@ namespace Flower.Pages
                         Sender_Phone.Text = select.ExecuteScalar().ToString();
                         AdressSource.SelectCommand = "select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         AdressBox.Visible = Adress_label.Visible = true;
-
+                        if (Session["id_array"] != null)
+                            SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + Session["id_array"] + ")";
 
 
                     }
@@ -48,10 +54,11 @@ namespace Flower.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["id_array"]!=null)
+            SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + Session["id_array"] + ")";
             Receiver_Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
             Sender_Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
-            ErrFlower.Visible = false;
+            ErrFlower.Enabled = false;
             autoimp();
         }
         protected int Insert_Adress(string street, string building, string korpus, string flat)
@@ -125,6 +132,31 @@ namespace Flower.Pages
                 }
             }
         }
+        protected int insert_requset_flowers(string name,int count)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string command = "select count(*) from request_flowers";
+                    SqlCommand Sqlcomm = new SqlCommand(command, connection);
+                    int id = Convert.ToInt32(Sqlcomm.ExecuteScalar().ToString());
+                    int flower_id = getFlower_id(name);
+                    Sqlcomm.CommandText="Insert into request_flowers(ID,flower_id,count) values(" + id + "," + flower_id + "," + count + ")";                    
+                    Sqlcomm.ExecuteNonQuery();
+                    return id;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+
+
+
+        }
+
         protected string check_user(string Sender_Phone)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -145,8 +177,7 @@ namespace Flower.Pages
                     return "-1";
                 }
             }
-        }
-      
+        }      
         protected bool check_date(DateTime date)
         {
             return (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour + 2.0f &&
@@ -188,6 +219,22 @@ namespace Flower.Pages
                 }
             }
         }
+        int Check_Clicked()
+        {
+            for (int i = 0; i < PayList.Items.Count; i++)
+            {
+
+                if (PayList.Items[i].Selected)
+                {
+
+                    return i + 1;
+
+                }
+
+            }
+            return 0;
+
+        }
         protected int get_adress_id(string street, string building, string korpus, string flat)
         {
             int adress_id = -1;
@@ -216,23 +263,24 @@ namespace Flower.Pages
                 }
             }
         }
-
-        int Check_Clicked()
+        protected int getFlower_id(string name)
         {
-            for (int i = 0; i < PayList.Items.Count; i++)
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
-                if (PayList.Items[i].Selected)
+                try
                 {
-
-                    return i + 1;
-
+                    connection.Open();
+                    string select = "select id from Flowers where name='" + name + "'";
+                    SqlCommand getid = new SqlCommand(select, connection);
+                    return Convert.ToInt32(getid.ExecuteScalar().ToString());
                 }
-
+                catch (Exception)
+                {
+                    return -1;
+                }
             }
-            return 0;
-
         }
+     
         protected void Button1_Click(object sender, EventArgs e)
         {
 
@@ -309,62 +357,39 @@ namespace Flower.Pages
 
             }
         }
-
         protected void Button2_Click(object sender, EventArgs e)
         {
-            /*  Flower.Site.Item new_item=new Flower.Site.Item();
-                    new_item.count=Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString());                  
-                    new_item.name = FlowerNameList_1.SelectedValue.ToString();
-                    tb.Add(new_item);                  
-                    string a = tb[tb.Count-1].name;
-                    */
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if ((Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString())) != 0)
             {
-                try
-                {
-                    connection.Open();
-                    SqlDataRequest_Flowers.Update();
-                    Request_Grid.DataSourceID = "SqlDataRequest_Flowers";
+                ErrFlower.Enabled = false;
+                ErrFlower.Visible = false;
+                FlowerCountList_1.BorderColor = Color.Black;
+                
 
-                    /*   
-                    
-                            string count = "select count(*)from Temp_table";
-                            SqlCommand command = new SqlCommand(count, connection);
-                            int id = Convert.ToInt32(command.ExecuteScalar());
-                            string insert = "INSERT INTO Temp_table VALUES (" + id + ",'"
-                              + FlowerNameList_1.SelectedValue.ToString()+"')";
-                            command.CommandText = insert;
-                            command.ExecuteNonQuery();
-                            tb.Add(id);
-                            SqlDataRequest_Flowers.SelectCommand=
-                        }
-                     */
-                }
-                catch (Exception)
-                {
+                int request_flower_id = insert_requset_flowers(FlowerNameList_1.SelectedValue.ToString(), Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString()));
+                string id_array;
+                if (Session["id_array"] != null)
+                    id_array = (String)Session["id_array"];
+                else
+                    id_array = "";
 
-                }
-
-
+                if (id_array == "")
+                    id_array = request_flower_id.ToString();
+                else
+                    id_array += "," + request_flower_id.ToString();
+                SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + id_array + ")";
+                Session["id_array"] = id_array;
             }
-        }
-        protected int getFlower_id(string name)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            else
             {
-                try
-                {                  
-                    connection.Open();
-                    string select = "select id from Flowers where name='" + name + "'";
-                    SqlCommand getid = new SqlCommand(select, connection);
-                   return Convert.ToInt32(getid.ExecuteScalar().ToString());                 
-                }
-                catch (Exception)
-                {
-                    return -1;
-                }
+                ErrFlower.Text = "Неправильное количество!";
+                ErrFlower.Enabled = true;
+                ErrFlower.Visible = true;
+                FlowerCountList_1.BorderColor = Color.Red;
             }
-        }
+        }        
+        
+
 
     }
 
