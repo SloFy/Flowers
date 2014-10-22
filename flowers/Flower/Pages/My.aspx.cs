@@ -42,10 +42,11 @@ namespace Flower.Pages
                         Session["user_id"] = select.ExecuteScalar().ToString();
                         Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
                         Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = true;
-                        Welcome.Text = "Личный кабинет"; 
+                        Welcome.Text = "Личный кабинет";
+                        connection.Close();
                     }
               }
-                catch (Exception ex)
+                catch (Exception )
                 {                    
                 }
             }
@@ -61,11 +62,12 @@ namespace Flower.Pages
                 try
                 {
                     connection.Open();
-                  
-                    SAdress.SelectCommand= "select street,building,korpus,flat from adress_new where user_id=" + Session["user_id"].ToString();
-                    GridAdress.Visible = true;           
+
+                    SAdress.SelectCommand = "select street as Улица ,building as Дом ,korpus as Корпус ,flat as Квартира from adress_new where user_id=" + Session["user_id"].ToString();
+                    GridAdress.Visible = true;
+                    connection.Close();
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                 }
@@ -87,11 +89,12 @@ namespace Flower.Pages
             {
                 try
                 {
-                    connection.Open();                    
-                    SRequest.SelectCommand = "select *  from request where user_id=" + Session["user_id"].ToString();
-                    GridRequest.Visible = true; 
+                    connection.Open();
+                    SRequest.SelectCommand = "select a.Street + ','+ a.Building +'-'+a.Korpus+'-'+a.Flat as Адрес,r.reg_date as [Дата заказа],r.Receiver_Name as [Имя получателя],r.money as [К оплате],r.status as [Статус заказа] from Request_new r, Adress_New a where r.adress=a.id AND r.user_id=" + Session["user_id"].ToString();
+                    GridRequest.Visible = true;
+                    connection.Close();
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                 }

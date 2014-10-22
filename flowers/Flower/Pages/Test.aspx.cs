@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 
+
+
 namespace Flower.Pages
 {
     public partial class Test : System.Web.UI.Page
@@ -92,7 +94,7 @@ namespace Flower.Pages
                 }
             }
         }
-        protected void insert_request(string user_id, int flower_id,int count,int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
+        protected void insert_request(string user_id, string id_array,  int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -103,24 +105,55 @@ namespace Flower.Pages
                     string command = "select count(*)from Request";
                     SqlCommand select = new SqlCommand(command, connection);
                     int id = Convert.ToInt32(select.ExecuteScalar());
-                    command = "select price from Flowers where id=" + flower_id;
-                    select = new SqlCommand(command, connection);
-                    int money = count*Convert.ToInt32(select.ExecuteScalar());
-                    DateTime now = DateTime.Now;
+                    List<int> flower_request_list=new List<int>();  
+                    List<int> money_array=new List<int>();
+                     List<int> count_array=new List<int>();
+                     string id_array_local = id_array;
+                    while (id_array!="")
+                    {
+                        string add_id="";
+                    if (id_array.IndexOf(",") != -1)
+                    {
+                        add_id = id_array.Substring(0, id_array.IndexOf(","));
+                        flower_request_list.Add(Convert.ToInt32(add_id));
+                        id_array = id_array.Remove(0, add_id.Length + 1);
+                    }
+                        
+                    else
+                    { 
+                        add_id = id_array;
+                        flower_request_list.Add(Convert.ToInt32(add_id));
+                        id_array = id_array.Remove(0, add_id.Length);
+                    }
+                    }
+                    SqlCommand update=new SqlCommand(command,connection);
+                    update.CommandText = "update request_flowers set request_id=" + id + " where id in (" + id_array_local + ")";
+                        update.ExecuteNonQuery();
+                    int money=0;
+                                        for (int i = 0; i < flower_request_list.Count;i++ )
+                    {
+
+                        select.CommandText = "select price from flowers where id=(select flower_id from request_flowers where id=" + flower_request_list[i]+")";
+                        int a = Convert.ToInt32(select.ExecuteNonQuery());
+                        select.CommandText = "select count from request_flowers where id=" + flower_request_list[i];
+                        int b = Convert.ToInt32(select.ExecuteNonQuery());
+                        money += a * b;
+                    }
+                 DateTime now = DateTime.Now;
                     if (user_id == null)
                         user_id = "-1";
-                    command = "INSERT INTO Request VALUES ("
-                        + id + "," + user_id + "," + flower_id + "," + adress_id + ",'" + now + "','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "',"+ count + ")";
+                    command = "INSERT INTO Request_New VALUES ("
+                        + id + "," + user_id + ","+ adress_id + ",'" + now + "','"
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
-
+                    
                     if (user_id != "-1")
                     {
                         select.CommandText = "select mail from users where id=" + Convert.ToInt32(user_id);
                         string Mail = select.ExecuteScalar().ToString();
-                        string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букет №"
-                            + flower_id + ", Адрес: " + adress_id + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
+                        string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букеты №"
+                             + ", Адрес: " + adress_id + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
                         WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
                     }
 
@@ -273,12 +306,16 @@ namespace Flower.Pages
                     string select = "select id from Flowers where name='" + name + "'";
                     SqlCommand getid = new SqlCommand(select, connection);
                     return Convert.ToInt32(getid.ExecuteScalar().ToString());
+                    connection.Close();
+
                 }
                 catch (Exception)
                 {
                     return -1;
                 }
+                
             }
+            
         }
      
         protected void Button1_Click(object sender, EventArgs e)
@@ -286,41 +323,22 @@ namespace Flower.Pages
 
             UserList.Text = "";
             int pay = Check_Clicked();
-            if (FlowerCountList_1.SelectedValue=="0")
-            {
-                ErrFlower.Text = "Неправильное количество!";
-                ErrFlower.Visible = true;
-                FlowerCountList_1.BorderColor = Color.Red;
-                
-            }
-            else
-            {
-                ErrFlower.Visible = false;
-                FlowerCountList_1.BorderColor = Color.Black;
+
                 int adress_id;
 
                 string s;
                 if (AdressBox.SelectedValue.ToString() != "" && Street.Text == "")
                 {
                     s = AdressBox.SelectedValue.ToString();
-
                     Street.Text = s.Substring(0, s.IndexOf(','));
-
                     s = s.Remove(0, Street.Text.Length + 1);
-
                     Building.Text = s.Substring(0, s.IndexOf('-'));
-
                     s = s.Remove(0, Building.Text.Length + 1);
-
                     Korpus.Text = s.Substring(0, s.IndexOf('-'));
-
                     s = s.Remove(0, Korpus.Text.Length + 1);
-
                     Flat.Text = s;
                 }
                 adress_id = get_adress_id(Street.Text, Building.Text, Korpus.Text, Flat.Text);
-
-
 
                 if (Name.Text != "" && Street.Text != "" && Building.Text != "" && Date_Time.Text != ""
                        && Sender_Phone.Text != "" && Receiver_Phone.Text != "" && Check_Clicked() != 0)
@@ -329,10 +347,10 @@ namespace Flower.Pages
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
                         int flower_id = getFlower_id(FlowerNameList_1.SelectedValue);
-                        insert_request(check_user(Sender_Phone.Text),flower_id, Convert.ToInt32(FlowerCountList_1.SelectedValue), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
+                        insert_request(check_user(Sender_Phone.Text), Session["id_array"].ToString(), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
-
+                        Session["id_array"] = null;
                         if (pay == 1)
                         {
                             Response.Redirect("Pay.aspx");
@@ -355,7 +373,7 @@ namespace Flower.Pages
                 }
 
 
-            }
+            
         }
         protected void Button2_Click(object sender, EventArgs e)
         {

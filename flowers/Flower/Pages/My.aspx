@@ -37,31 +37,24 @@
 
 
           
-        <asp:SqlDataSource ID="SAdress" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select street,building,korpus,flat from adress_new where user_id=-2"></asp:SqlDataSource>
-        <asp:SqlDataSource ID="SRequest" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select * from request where id=-1"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SAdress" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select street as Улица ,building as Дом ,korpus as Корпус ,flat as Квартира from adress_new where user_id=-2"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SRequest" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select a.Street + ','+ a.Building +'-'+a.Korpus+'-'+a.Flat as Адрес,r.reg_date as [Дата заказа], r.Receiver_Name as [Имя получателя],r.money as [К оплате],r.status as [Статус заказа] from Request_new r, Adress_New a where r.adress=a.id AND r.user_id=-1
+"></asp:SqlDataSource>
         <asp:GridView ID="GridAdress" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SAdress" Visible="False">
             <Columns>
-                <asp:BoundField DataField="street" HeaderText="street" SortExpression="street" />
-                <asp:BoundField DataField="building" HeaderText="building" SortExpression="building" />
-                <asp:BoundField DataField="korpus" HeaderText="korpus" SortExpression="korpus" />
-                <asp:BoundField DataField="flat" HeaderText="flat" SortExpression="flat" />
+                <asp:BoundField DataField="Улица" HeaderText="Улица" SortExpression="Улица" />
+                <asp:BoundField DataField="Дом" HeaderText="Дом" SortExpression="Дом" />
+                <asp:BoundField DataField="Корпус" HeaderText="Корпус" SortExpression="Корпус" />
+                <asp:BoundField DataField="Квартира" HeaderText="Квартира" SortExpression="Квартира" />
             </Columns>
         </asp:GridView>
-        <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SRequest" Visible="False">
+        <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataSourceID="SRequest" Visible="False">
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
-                <asp:BoundField DataField="User_ID" HeaderText="User_ID" SortExpression="User_ID" />
-                <asp:BoundField DataField="Flower_ID" HeaderText="Flower_ID" SortExpression="Flower_ID" />
-                <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
-                <asp:BoundField DataField="Reg_Date" HeaderText="Reg_Date" SortExpression="Reg_Date" />
-                <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-                <asp:BoundField DataField="Sender_Phone" HeaderText="Sender_Phone" SortExpression="Sender_Phone" />
-                <asp:BoundField DataField="Receiver_Phone" HeaderText="Receiver_Phone" SortExpression="Receiver_Phone" />
-                <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
-                <asp:BoundField DataField="Money" HeaderText="Money" SortExpression="Money" />
-                <asp:BoundField DataField="PayCode" HeaderText="PayCode" SortExpression="PayCode" />
-                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
-                <asp:BoundField DataField="Receiver_Name" HeaderText="Receiver_Name" SortExpression="Receiver_Name" />
+                <asp:BoundField DataField="Адрес" HeaderText="Адрес" ReadOnly="True" SortExpression="Адрес" />
+                <asp:BoundField DataField="Дата заказа" HeaderText="Дата заказа" SortExpression="Дата заказа" />
+                <asp:BoundField DataField="Имя получателя" HeaderText="Имя получателя" SortExpression="Имя получателя" />
+                <asp:BoundField DataField="К оплате" HeaderText="К оплате" SortExpression="К оплате" />
+                <asp:BoundField DataField="Статус заказа" HeaderText="Статус заказа" SortExpression="Статус заказа" />
             </Columns>
         </asp:GridView>
        </div>

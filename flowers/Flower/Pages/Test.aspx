@@ -32,7 +32,7 @@
             <asp:ListItem>10</asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Lsht_1" runat="server" Text="шт."></asp:Label>
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить другой букет" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить" />
         <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px"></asp:Label>
         <br />
         <asp:GridView ID="Request_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataRequest_Flowers" CellPadding="4" ForeColor="#333333" GridLines="None">
