@@ -67,6 +67,15 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.Button Sign;
         
         /// <summary>
+        /// Back_Pass элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Back_Pass;
+        
+        /// <summary>
         /// Badress элемент управления.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,33 @@ namespace Flower.Pages {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Exit;
+        
+        /// <summary>
+        /// Change_Pass элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Change_Pass;
+        
+        /// <summary>
+        /// LNew_Pass элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LNew_Pass;
+        
+        /// <summary>
+        /// New_Pass элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox New_Pass;
         
         /// <summary>
         /// SAdress элемент управления.

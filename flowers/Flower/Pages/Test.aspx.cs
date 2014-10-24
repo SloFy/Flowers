@@ -94,7 +94,7 @@ namespace Flower.Pages
                 }
             }
         }
-        protected void insert_request(string user_id, string id_array,  int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
+        protected void insert_request(string user_id, string id_array,  int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name, string note2,string name,string last_name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -141,10 +141,13 @@ namespace Flower.Pages
                     }
                  DateTime now = DateTime.Now;
                     if (user_id == null)
+                    {
                         user_id = "-1";
+                        note2 += "Заказчик: " + name + " " + last_name;
+                    }
                     command = "INSERT INTO Request_New VALUES ("
                         + id + "," + user_id + ","+ adress_id + ",'" + now + "','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "')";
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "','" + note2 + "')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
                     
@@ -347,7 +350,7 @@ namespace Flower.Pages
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
                         int flower_id = getFlower_id(FlowerNameList_1.SelectedValue);
-                        insert_request(check_user(Sender_Phone.Text), Session["id_array"].ToString(), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
+                        insert_request(check_user(Sender_Phone.Text), Session["id_array"].ToString(), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text,Note_2.Text,Name.Text,Last_Name.Text);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
                         Session["id_array"] = null;

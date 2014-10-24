@@ -37,7 +37,7 @@ namespace Flower {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Login_error;
+        protected global::System.Web.UI.WebControls.Label Login_error;
         
         /// <summary>
         /// Password элемент управления.
@@ -47,6 +47,33 @@ namespace Flower {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
+        
+        /// <summary>
+        /// Pass_error1 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Pass_error1;
+        
+        /// <summary>
+        /// Password2 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Password2;
+        
+        /// <summary>
+        /// Pass_error2 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Pass_error2;
         
         /// <summary>
         /// FirstName элемент управления.
@@ -82,7 +109,7 @@ namespace Flower {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Mail_error;
+        protected global::System.Web.UI.WebControls.Label Mail_error;
         
         /// <summary>
         /// Phone элемент управления.
@@ -100,7 +127,7 @@ namespace Flower {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Phone_error;
+        protected global::System.Web.UI.WebControls.Label Phone_error;
         
         /// <summary>
         /// Button1 элемент управления.
@@ -118,6 +145,6 @@ namespace Flower {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserList;
+        protected global::System.Web.UI.WebControls.Label UserList;
     }
 }

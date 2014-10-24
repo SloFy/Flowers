@@ -21,7 +21,10 @@
          <asp:TextBox ID="Password" runat="server"  TextMode="Password" style="margin-left: 15px" BorderWidth="1px"></asp:TextBox>
            <br />
         <br />
-        <asp:Button ID="Sign" runat="server"  Text="Войти"  Width="250px" OnClick="Button1_Click" />
+        <asp:Button ID="Sign" runat="server"  Text="Войти"  Width="250px" OnClick="Sign_Click" />
+            <br />
+           <br />
+        <asp:Button ID="Back_Pass" runat="server"  Text="Восстановить пароль"  Width="250px" OnClick="Back_Pass_Click" />
             <br />
         <br />
         <asp:Button ID="Badress" runat="server"  Text="Вывести список адресов"  Width="250px" Visible="False" OnClick="Badress_Click" />
@@ -31,6 +34,14 @@
         <br />
         <br />
         <asp:Button ID="Exit" runat="server"  Text="Выйти"  Width="250px" Visible="False" OnClick="Exit_Click" />
+           <br />
+           <br />
+        <asp:Button ID="Change_Pass" runat="server"  Text="Сменить пароль"  Width="250px" Visible="False" OnClick="Change_Pass_Click" />
+           <br />
+           <br />
+           <asp:Label ID="LNew_Pass" runat="server" style="margin-bottom: 2px" Text="Новый пароль:" Visible="False" Width="117px"></asp:Label>
+           <asp:TextBox ID="New_Pass" runat="server" Visible="False"></asp:TextBox>
+           <br />
         <br />
         <br />
        
@@ -48,6 +59,9 @@
                 <asp:BoundField DataField="Квартира" HeaderText="Квартира" SortExpression="Квартира" />
             </Columns>
         </asp:GridView>
+           
+           <br />
+           
         <asp:GridView ID="GridRequest" runat="server" AutoGenerateColumns="False" DataSourceID="SRequest" Visible="False">
             <Columns>
                 <asp:BoundField DataField="Адрес" HeaderText="Адрес" ReadOnly="True" SortExpression="Адрес" />

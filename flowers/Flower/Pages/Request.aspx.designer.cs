@@ -85,6 +85,15 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.TextBox Name;
         
         /// <summary>
+        /// Last_Name элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Last_Name;
+        
+        /// <summary>
         /// Street элемент управления.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,15 @@ namespace Flower {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Note;
+        
+        /// <summary>
+        /// Note_2 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Note_2;
         
         /// <summary>
         /// PayList элемент управления.

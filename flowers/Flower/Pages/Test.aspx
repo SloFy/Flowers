@@ -56,7 +56,10 @@
             
             " ></asp:SqlDataSource>
         <br />
-        ФИО*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 122px" BorderWidth="1px"></asp:TextBox>
+        Имя*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 129px" BorderWidth="1px"></asp:TextBox>
+        <br />
+        <br />
+        Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 101px" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
         Адрес получения*<asp:TextBox ID="Street" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px"></asp:TextBox>
@@ -90,6 +93,10 @@
         <br />
         <br />
         Подпись к букету<asp:TextBox ID="Note" runat="server" Width="250px" Style="margin-left: 46px" BorderWidth="1px"></asp:TextBox>
+
+        <br />
+        <br />
+        Комментарий<asp:TextBox ID="Note_2" runat="server" Width="250px" Style="margin-left: 69px" BorderWidth="1px"></asp:TextBox>
 
         <br />
 

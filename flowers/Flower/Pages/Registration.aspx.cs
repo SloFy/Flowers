@@ -73,31 +73,44 @@ namespace Flower
             
             Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
         }
-        protected void check_input(string login,string mail, string phone)
+        protected bool check_input(string login,string mail, string phone)
         {
             if (login == "1")
-                        {
-                            Login_error.Visible = true;
-                            Login_error.Text = "Введенный логин уже занят другим пользователем";
-                            UserList.Text = "Провал";
-                            Login.BorderColor = Color.Red;
-                        }
+            {
+                Login_error.Visible = true;
+                Login_error.Text = "Введенный логин уже занят другим пользователем";
+                UserList.Text = "Провал";
+                Login.BorderColor = Color.Red;
+                return false;
+            }
 
-                        if (phone == "1")
-                        {
-                            Phone_error.Visible = true;
-                            Phone_error.Text = "Пользователь с таким телефоном уже зарегистрирован";
-                            UserList.Text = "Провал";
-                            Phone.BorderColor = Color.Red;
-                        }
+            else if (phone == "1")
+            {
+                Phone_error.Visible = true;
+                Phone_error.Text = "Пользователь с таким телефоном уже зарегистрирован";
+                UserList.Text = "Провал";
+                Phone.BorderColor = Color.Red;
+                return false;
+            }
 
-                        if (mail == "1")
-                        {
-                            Mail_error.Visible = true;
-                            Mail_error.Text = "Пользователь с такой почтой уже зарегистрирован";
-                            UserList.Text = "Провал";
-                            Mail.BorderColor = Color.Red;
-                        }
+            else if (mail == "1")
+            {
+                Mail_error.Visible = true;
+                Mail_error.Text = "Пользователь с такой почтой уже зарегистрирован";
+                UserList.Text = "Провал";
+                Mail.BorderColor = Color.Red;
+                return false;
+            }
+                else if (Password.Text!=Password2.Text)
+            {
+                Pass_error1.Visible = Pass_error2.Visible = true;               
+                Pass_error2.Text = Pass_error1.Text= "Несовпадение паролей";
+                UserList.Text = "Провал";
+                Password.BorderColor =Password2.BorderColor= Color.Red;
+                return false;
+            }
+            else
+                return true;
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -116,6 +129,7 @@ namespace Flower
                     string login_cnt = "select count(*) from Users WHERE Login = '" + Login.Text + "'";
                     string Phone_cnt = "select count(*) from Users WHERE Phone = " + Phone.Text;
                     string mail_cnt = "select count(*) from Users WHERE Mail = '" + Mail.Text + "'";
+                    
 
                     SqlCommand select_login = new SqlCommand(login_cnt, connection);
                     new_login = select_login.ExecuteScalar().ToString();
@@ -124,15 +138,13 @@ namespace Flower
                     new_Phone = select_Phone.ExecuteScalar().ToString();
 
                     SqlCommand select_mail = new SqlCommand(mail_cnt, connection);
-                    new_mail = select_mail.ExecuteScalar().ToString();                  
+                    new_mail = select_mail.ExecuteScalar().ToString();
 
-                    if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != "" && Phone.Text != "")
+                    if (Login.Text != "" && Password.Text != "" && FirstName.Text != "" && Mail.Text != "" && Phone.Text != "" && Password2.Text != "")
                     {
-                        if (new_login == "0" && new_Phone == "0" && new_mail == "0")
+                        if (new_login == "0" && new_Phone == "0" && new_mail == "0" && check_input(new_login,new_mail,new_Phone)==true)
                         {
-                            Login_error.Visible = false;
-                            Phone_error.Visible = false;
-                            Mail_error.Visible = false;
+                            Login_error.Visible = Phone_error.Visible =Pass_error1.Visible=Pass_error2.Visible=Mail_error.Visible= false;
                             Insert_user(Login.Text, Password.Text, FirstName.Text, LastName.Text, Mail.Text, Phone.Text);
                             UserList.Text = "Успешная регистрация";
                             string send = FirstName.Text + ", Вы зарегистрировались на сате достаки букетов Black Flower Power Со следющими личными данными: Логин: "
@@ -143,7 +155,7 @@ namespace Flower
 
                         }
 
-                        check_input(new_login,new_mail,new_Phone);
+                    
 
                     }
                     else
@@ -153,7 +165,7 @@ namespace Flower
 
                 }
 
-                catch (Exception ex)
+                catch (Exception )
                 {
                 }
 

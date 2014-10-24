@@ -13,13 +13,18 @@
         <br />
         Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Login" runat="server" BorderWidth="1px"></asp:TextBox>
-        <asp:TextBox ID="Login_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:TextBox>
+        <asp:Label ID="Login_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
         <br />
         <br />
         Введите&nbsp; пароль*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Password" runat="server" TextMode="Password" BorderWidth="1px"></asp:TextBox>
+        <asp:Label ID="Pass_error1" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
+        <br />
+        Подтвердите пароль*
+        <asp:TextBox ID="Password2" runat="server" TextMode="Password" BorderWidth="1px" style="margin-left: 0px"></asp:TextBox>
+        <asp:Label ID="Pass_error2" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
         <br />
         Введите имя*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,14 +39,14 @@
         <br />
         Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Mail" runat="server" TextMode="Email" BorderWidth="1px"></asp:TextBox>
-        <asp:TextBox ID="Mail_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px" Height="17px"></asp:TextBox>
+        <asp:Label ID="Mail_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px" Height="17px"></asp:Label>
         <br />
         <br />
         <br />
         Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Phone" runat="server" TextMode="Phone" BorderWidth="1px" MaxLength="11"></asp:TextBox>
 
-        <asp:TextBox ID="Phone_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:TextBox>
+        <asp:Label ID="Phone_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
 
         <br />
 
@@ -58,6 +63,6 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
     <p>
-        <asp:TextBox ID="UserList" runat="server" Height="16px" Width="366px"></asp:TextBox>
+        <asp:Label ID="UserList" runat="server" Height="16px" Width="366px"></asp:Label>
     </p>
 </asp:Content>

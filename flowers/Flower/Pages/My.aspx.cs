@@ -12,19 +12,30 @@ namespace Flower.Pages
     public partial class My : System.Web.UI.Page
     {
         string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-        
+        public static string GetPass(int x)
+        {
+            string pass="";
+            var r=new Random();
+            while (pass.Length < x)
+            {
+                Char c = (char)r.Next(33, 125);
+                if (Char.IsLetterOrDigit(c))
+                    pass += c;
+            }
+            return pass;
+        }
               protected void Page_Load(object sender, EventArgs e)
         {
             if ((Session["user_id"]) != null)
             {
                 
                 Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
-                Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = true;
+                Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible = LNew_Pass.Visible = true;
                 Welcome.Text = "Личный кабинет";
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Sign_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -40,10 +51,12 @@ namespace Flower.Pages
                     {
                         select = new SqlCommand("select id from Users where login="+"'"+Login.Text+"'", connection);
                         Session["user_id"] = select.ExecuteScalar().ToString();
-                        Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
-                        Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = true;
+                        Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible=Back_Pass.Visible = false;
+                        Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible = LNew_Pass.Visible = true;
                         Welcome.Text = "Личный кабинет";
-                        connection.Close();
+                        Back_Pass.Visible=false;
+                        
+                            connection.Close();
                     }
               }
                 catch (Exception )
@@ -79,7 +92,7 @@ namespace Flower.Pages
         {
             Session["user_id"]=null;           
                 Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = true;
-                Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible=GridRequest.Visible=false;
+                Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible = LNew_Pass.Visible = false;
                 Welcome.Text = "Вход в личный кабинет";          
             
         }
@@ -101,6 +114,57 @@ namespace Flower.Pages
 
             }
         }
+
+        protected void Back_Pass_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string newPass=GetPass(16);
+                  SqlCommand command=new SqlCommand("update users set pass="+newPass+" where login=" + "'" + Login.Text + "'",connection);
+                 command.ExecuteNonQuery();
+                     string send = "Новый пароль: "+newPass;
+                   command.CommandText="select mail from users where login=" + "'" + Login.Text + "'";
+                   string mail=command.ExecuteScalar().ToString();
+                   WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",mail , "Восстановление пароля BlackFlowerPower", send);
+                    connection.Close();
+                    
+
+                }
+                catch (Exception )
+                {
+
+                }
+
+            }
+        }
+
+        protected void Change_Pass_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {                  
+                    connection.Open();                    
+                    SqlCommand command = new SqlCommand("update users set pass=" + New_Pass.Text + " where login=" + "'" + Login.Text + "'", connection);
+                    command.ExecuteNonQuery();
+                    string send = "Новый пароль: " + New_Pass.Text; ;
+                    command.CommandText = "select mail from users where login=" + "'" + Login.Text + "'";
+                    string mail = command.ExecuteScalar().ToString();
+                    WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", mail, "Восстановление пароля BlackFlowerPower", send);
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+        }
+        
+        
 
         
     }

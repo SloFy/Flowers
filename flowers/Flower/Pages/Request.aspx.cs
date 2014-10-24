@@ -28,7 +28,7 @@ namespace Flower
                         SqlCommand select = new SqlCommand(command, connection);
                         Name.Text = select.ExecuteScalar().ToString();
                         select.CommandText = "select last_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        Name.Text += " " + select.ExecuteScalar().ToString();
+                        Last_Name.Text = " " + select.ExecuteScalar().ToString();
                         select.CommandText = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
                         Sender_Phone.Text = select.ExecuteScalar().ToString();
                         AdressSource.SelectCommand = "select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
@@ -83,7 +83,7 @@ namespace Flower
                 }
             }
         }
-        protected void insert_request(string user_id, int flower_id,int count,int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name)
+        protected void insert_request(string user_id, int flower_id,int count,int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name, string note2,string name,string last_name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -99,10 +99,15 @@ namespace Flower
                     int money = count*Convert.ToInt32(select.ExecuteScalar());
                     DateTime now = DateTime.Now;
                     if (user_id == null)
+                    {
                         user_id = "-1";
+                        note2 += "Заказчик: " + name + " " + last_name;
+                    }
+                        
+                    
                     command = "INSERT INTO Request VALUES ("
                         + id + "," + user_id + "," + flower_id + "," + adress_id + ",'" + now + "','"
-                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "',"+ count + ")";
+                        + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "'," + count + ",'" + note2 + "')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
 
@@ -117,7 +122,7 @@ namespace Flower
 
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                 }
@@ -279,7 +284,7 @@ namespace Flower
                     if (check_date(Convert.ToDateTime(Date_Time.Text)))
                     {
                         int flower_id = getFlower_id(FlowerNameList_1.SelectedValue);
-                        insert_request(check_user(Sender_Phone.Text),flower_id, Convert.ToInt32(FlowerCountList_1.SelectedValue), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text);
+                        insert_request(check_user(Sender_Phone.Text),flower_id, Convert.ToInt32(FlowerCountList_1.SelectedValue), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text,Note_2.Text,Name.Text,Last_Name.Text);
                         UserList.Visible = true;
                         UserList.Text = "Заказ оформлен успешно!";
 
