@@ -59,6 +59,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Captcha\Default.aspx" />
+    <Content Include="Pages\JpegImage.aspx" />
     <Content Include="Images\1.png" />
     <Content Include="Images\2.png" />
     <Content Include="Images\3.png" />
@@ -99,6 +101,15 @@
     <Content Include="Pages\Main.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\CaptchaImage.cs" />
+    <Compile Include="Captcha\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\JpegImage.aspx.cs">
+      <DependentUpon>JpegImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs" />
     <Compile Include="Pages\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>

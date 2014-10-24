@@ -109,6 +109,18 @@
         </asp:RadioButtonList>
 
 
+        <img src="JpegImage.aspx" /><br />
+        <p>
+            <strong>Введите код с картинки:</strong><br />
+            <asp:TextBox ID="CodeNumberTextBox" runat="server"  BorderWidth="1px"></asp:TextBox>
+            <asp:Label ID="MessageLabel" runat="server" Style="margin-left: 15px" Visible="False"></asp:Label>
+        </p>
+
+
+        <p>
+            &nbsp;</p>
+
+
         <br />
         <asp:Button ID="Button1" runat="server" Text="Оформить заказ" Width="216px" OnClick="Button1_Click" />
         <br />

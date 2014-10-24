@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Request.aspx.cs" Inherits="Flower.Request" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
 
@@ -7,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="margin-left: 200px">
-        Заполните форму заказа(поля, отмеченные знаком &quot;*&quot; заполняются обязательно):
+        &nbsp;Заполните форму заказа(поля, отмеченные знаком &quot;*&quot; заполняются обязательно):
     </div>
     <div style="margin-left: 100px; width: 979px;" aria-disabled="False">
 
@@ -31,21 +32,31 @@
             <asp:ListItem>10</asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Lsht_1" runat="server" Text="шт."></asp:Label>
-        <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px" Visible="False"></asp:Label>
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить другой букет" Visible="False" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить" />
+        <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px"></asp:Label>
         <br />
-        <asp:GridView ID="GridView1" runat="server">
+        <asp:GridView ID="Request_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataRequest_Flowers" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField HeaderText="#" />
-                <asp:BoundField HeaderText="Букет" />
-                <asp:BoundField HeaderText="Количество" />
-                <asp:BoundField />
-                <asp:CommandField ShowEditButton="True" />
+                <asp:BoundField DataField="Букет" HeaderText="Букет" SortExpression="Букет" />
+                <asp:BoundField DataField="Количество" HeaderText="Количество" SortExpression="Количество" />
             </Columns>
+            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+            <SortedAscendingCellStyle BackColor="#FDF5AC" />
+            <SortedAscendingHeaderStyle BackColor="#4D0000" />
+            <SortedDescendingCellStyle BackColor="#FCF6C0" />
+            <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
         <br />
+        <asp:SqlDataSource ID="SqlDataRequest_Flowers" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id&lt;-1
+            
+            " ></asp:SqlDataSource>
         <br />
-        Имя* <asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 125px" BorderWidth="1px"></asp:TextBox>
+        Имя*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 129px" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
         Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 101px" BorderWidth="1px"></asp:TextBox>
@@ -98,6 +109,18 @@
         </asp:RadioButtonList>
 
 
+        <img src="JpegImage.aspx" /><br />
+        <p>
+            <strong>Введите код с картинки:</strong><br />
+            <asp:TextBox ID="CodeNumberTextBox" runat="server"  BorderWidth="1px"></asp:TextBox>
+            <asp:Label ID="MessageLabel" runat="server" Style="margin-left: 15px" Visible="False"></asp:Label>
+        </p>
+
+
+        <p>
+            &nbsp;</p>
+
+
         <br />
         <asp:Button ID="Button1" runat="server" Text="Оформить заказ" Width="216px" OnClick="Button1_Click" />
         <br />
@@ -111,4 +134,3 @@
     </div>
 
 </asp:Content>
-

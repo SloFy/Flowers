@@ -49,15 +49,6 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.Label Lsht_1;
         
         /// <summary>
-        /// ErrFlower элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrFlower;
-        
-        /// <summary>
         /// Button2 элемент управления.
         /// </summary>
         /// <remarks>
@@ -67,13 +58,31 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// GridView1 элемент управления.
+        /// ErrFlower элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label ErrFlower;
+        
+        /// <summary>
+        /// Request_Grid элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Request_Grid;
+        
+        /// <summary>
+        /// SqlDataRequest_Flowers элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataRequest_Flowers;
         
         /// <summary>
         /// Name элемент управления.
@@ -263,6 +272,24 @@ namespace Flower {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList PayList;
+        
+        /// <summary>
+        /// CodeNumberTextBox элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CodeNumberTextBox;
+        
+        /// <summary>
+        /// MessageLabel элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MessageLabel;
         
         /// <summary>
         /// Button1 элемент управления.
