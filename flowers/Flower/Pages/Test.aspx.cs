@@ -483,11 +483,14 @@ namespace Flower.Pages
                     string select = "select count(*) from users ";
                     SqlCommand getcnt = new SqlCommand(select, connection);
                     int cnt = Convert.ToInt32(Convert.ToInt32(getcnt.ExecuteScalar().ToString()));
-                    for (int i = 1; i <cnt ; i++)
+                    for (int i = -1; i <cnt ; i++)
                     {
-                        getcnt.CommandText = "select pass from users where id=" + i;
-                        getcnt.CommandText = "update users set pass='" + Flower.CS.RC4.Encript_string(getcnt.ExecuteScalar().ToString(),"Key") + "'where id=" + i;
-                        getcnt.ExecuteNonQuery();
+                        if (i != 0)
+                        {
+                            getcnt.CommandText = "select pass from users where id=" + i;
+                            getcnt.CommandText = "update users set pass='" + Flower.CS.RC4.Encript_string(getcnt.ExecuteScalar().ToString(), "Key") + "'where id=" + i;
+                            getcnt.ExecuteNonQuery();
+                        }
                     }
                         connection.Close();
 

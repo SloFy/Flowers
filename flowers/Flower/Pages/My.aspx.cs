@@ -28,8 +28,8 @@ namespace Flower.Pages
         {
             if ((Session["user_id"]) != null)
             {
-                
-                Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
+
+                Back_Pass.Visible = Back_Pass.Visible = Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = false;
                 Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible = LNew_Pass.Visible = true;
                 Welcome.Text = "Личный кабинет";
             }
@@ -90,8 +90,9 @@ namespace Flower.Pages
         }
         protected void Exit_Click(object sender, EventArgs e)
         {
-            Session["user_id"]=null;           
-                Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = true;
+            Session["user_id"]=null;
+            
+            Back_Pass.Visible = Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible = true;
                 Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible = LNew_Pass.Visible = false;
                 Welcome.Text = "Вход в личный кабинет";          
             
@@ -121,10 +122,12 @@ namespace Flower.Pages
                 try
                 {
                     connection.Open();
-                    string newPass = Flower.CS.RC4.Encript_string(GetPass(16), "Key");
-                  SqlCommand command=new SqlCommand("update users set pass="+newPass+" where login=" + "'" + Login.Text + "'",connection);
+                    string newPass = GetPass(15);
+                    string send = "Новый пароль: " + newPass+"     Рекомендуем поменять пароль при первой же возможности";
+                    newPass = Flower.CS.RC4.Encript_string(newPass, "Key");
+                  SqlCommand command=new SqlCommand("update users set pass='"+newPass+"' where login=" + "'" + Login.Text + "'",connection);
                  command.ExecuteNonQuery();
-                 string send = "Новый пароль: " + Flower.CS.RC4.Descript_string(newPass, "Key");
+                
                    command.CommandText="select mail from users where login=" + "'" + Login.Text + "'";
                    string mail=command.ExecuteScalar().ToString();
                    Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",mail , "Восстановление пароля BlackFlowerPower", send);
@@ -146,12 +149,12 @@ namespace Flower.Pages
                 try
                 {                  
                     connection.Open();
-                    SqlCommand command = new SqlCommand("update users set pass=" + Flower.CS.RC4.Encript_string(New_Pass.Text, "Key") + " where login=" + "'" + Login.Text + "'", connection);
+                    SqlCommand command = new SqlCommand("update users set pass='" + Flower.CS.RC4.Encript_string(New_Pass.Text, "Key") + "' where id="+ Session["user_id"].ToString(), connection);
                     command.ExecuteNonQuery();
-                    string send = "Новый пароль: " + New_Pass.Text; ;
-                    command.CommandText = "select mail from users where login=" + "'" + Login.Text + "'";
-                    string mail = command.ExecuteScalar().ToString();
-                    Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", mail, "Восстановление пароля BlackFlowerPower", send);
+                   /// string send = "Новый пароль: " + New_Pass.Text;
+                 //   command.CommandText = "select mail from users where id=" + Session["user_id"].ToString();
+                   // string mail = command.ExecuteScalar().ToString();
+                  //  Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", mail, "Смена пароля BlackFlowerPower", send);
                     connection.Close();
                 }
                 catch (Exception)
