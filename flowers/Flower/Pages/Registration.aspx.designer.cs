@@ -10,7 +10,7 @@
 namespace Flower {
     
     
-    public partial class WebForm1 {
+    public partial class Registration {
         
         /// <summary>
         /// First_label элемент управления.

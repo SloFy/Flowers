@@ -166,7 +166,7 @@ namespace Flower.Pages
                         string Mail = select.ExecuteScalar().ToString();
                         string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букеты №"
                              + ", Адрес: " + adress_id + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
-                        WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
+                        Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
                     }
 
 
@@ -443,39 +443,7 @@ namespace Flower.Pages
 
 		// For generating random numbers.
 		private Random random = new Random();
-	/*
-		private void Page_Load(object sender, System.EventArgs e)
-		{
-			if (!this.IsPostBack)
-
-				// Create a random code and store it in the Session object.
-				this.Session["CaptchaImageText"] = GenerateRandomCode();
-
-			else
-			{
-				// On a postback, check the user input.
-				if (this.CodeNumberTextBox.Text == this.Session["CaptchaImageText"].ToString())
-				{
-					// Display an informational message.
-					this.MessageLabel.CssClass = "info";
-					this.MessageLabel.Text = "Correct!";
-				}
-				else
-				{
-					// Display an error message.
-					this.MessageLabel.CssClass = "error";
-					this.MessageLabel.Text = "ERROR: Incorrect, try again.";
-
-					// Clear the input and create a new random code.
-					this.CodeNumberTextBox.Text = "";
-					this.Session["CaptchaImageText"] = GenerateRandomCode();
-				}
-			}
-		}
-        */
-		//
-		// Returns a string of six random digits.
-		//
+	
 		private string GenerateRandomCode()
 		{
 			string s = "";
@@ -504,6 +472,33 @@ namespace Flower.Pages
 
 		}
 		#endregion
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string select = "select count(*) from users ";
+                    SqlCommand getcnt = new SqlCommand(select, connection);
+                    int cnt = Convert.ToInt32(Convert.ToInt32(getcnt.ExecuteScalar().ToString()));
+                    for (int i = 1; i <cnt ; i++)
+                    {
+                        getcnt.CommandText = "select pass from users where id=" + i;
+                        getcnt.CommandText = "update users set pass='" + Flower.CS.RC4.Encript_string(getcnt.ExecuteScalar().ToString(),"Key") + "'where id=" + i;
+                        getcnt.ExecuteNonQuery();
+                    }
+                        connection.Close();
+
+                }
+                catch (Exception)
+                {
+                    
+                }
+
+            }
+        }
 
 
 

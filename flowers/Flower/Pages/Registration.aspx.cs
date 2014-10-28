@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace Flower
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Registration : System.Web.UI.Page
     {
         string connectionString = @"Data Source="+Environment.MachineName+";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
         public static void SendMail(string smtpServer, string from, string password, string mailto, string caption, string message, string attachFile = null)
@@ -41,7 +41,7 @@ namespace Flower
                 throw new Exception("Mail.Send: " + e.Message);
             }
         }
-        protected void Insert_user(string login, string passs, string first_name, string last_name, string mail, string phone)
+        protected void Insert_user(string login, string pass, string first_name, string last_name, string mail, string phone)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -51,10 +51,10 @@ namespace Flower
                     string count = "select count(*)from Users";
                     SqlCommand select = new SqlCommand(count, connection);
                     int id = Convert.ToInt32(select.ExecuteScalar());
-
+                    string cripted_pass = Flower.CS.RC4.Encript_string(pass,"Key");
                     string insert_user = "INSERT INTO Users VALUES (" + id + ",'"
-                      + Login.Text + "','" + Password.Text + "','" + FirstName.Text + "','" + LastName.Text +
-                      "','" + Mail.Text + "','" + Phone.Text + "')";
+                      + login + "','" + cripted_pass + "','" + first_name + "','" + last_name +
+                      "','" + mail + "','" + phone + "')";
                     SqlCommand insert = new SqlCommand(insert_user, connection);
                     insert.ExecuteNonQuery();
                 }

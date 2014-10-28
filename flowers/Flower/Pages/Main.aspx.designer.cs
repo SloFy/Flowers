@@ -10,7 +10,7 @@
 namespace Flower {
     
     
-    public partial class WebForm4 {
+    public partial class Main {
         
         /// <summary>
         /// ImageButton1 элемент управления.

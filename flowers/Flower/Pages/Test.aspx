@@ -60,6 +60,7 @@
         <br />
         <br />
         Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 101px" BorderWidth="1px"></asp:TextBox>
+        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Button" />
         <br />
         <br />
         Адрес получения*<asp:TextBox ID="Street" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px"></asp:TextBox>

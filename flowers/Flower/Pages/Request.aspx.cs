@@ -163,7 +163,7 @@ namespace Flower
                         string Mail = select.ExecuteScalar().ToString();
                         string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букеты №"
                              + ", Адрес: " + adress_id + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
-                        WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
+                        Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
                     }
 
 

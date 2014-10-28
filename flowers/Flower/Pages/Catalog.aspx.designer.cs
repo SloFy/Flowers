@@ -10,7 +10,7 @@
 namespace Flower {
     
     
-    public partial class WebForm2 {
+    public partial class Catalog {
         
         /// <summary>
         /// Privet элемент управления.

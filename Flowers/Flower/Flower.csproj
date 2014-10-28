@@ -100,6 +100,8 @@
     <Content Include="Pages\Main.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CS\Cripto.cs" />
+    <Compile Include="CS\CodeFile1.cs" />
     <Compile Include="Pages\CaptchaImage.cs" />
     <Compile Include="Pages\JpegImage.aspx.cs">
       <DependentUpon>JpegImage.aspx</DependentUpon>

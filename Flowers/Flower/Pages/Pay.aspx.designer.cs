@@ -10,7 +10,7 @@
 namespace Flower.Pages {
     
     
-    public partial class WebForm2 {
+    public partial class Pay {
         
         /// <summary>
         /// Privet элемент управления.
@@ -31,13 +31,13 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.TextBox Login;
         
         /// <summary>
-        /// Name0 элемент управления.
+        /// CVC элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Name0;
+        protected global::System.Web.UI.WebControls.TextBox CVC;
         
         /// <summary>
         /// Name элемент управления.

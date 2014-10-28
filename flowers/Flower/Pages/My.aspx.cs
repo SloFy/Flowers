@@ -24,7 +24,7 @@ namespace Flower.Pages
             }
             return pass;
         }
-              protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if ((Session["user_id"]) != null)
             {
@@ -46,8 +46,8 @@ namespace Flower.Pages
                     string command = "select pass from Users where login=" + "'" + Login.Text + "'";
                     SqlCommand select = new SqlCommand(command, connection);
                     password = select.ExecuteScalar().ToString();
-
-                    if (password == (Password.Text.ToString()))
+                    //password = Flower.CS.RC4.Encript_string(password, "Key");
+                    if (password== Flower.CS.RC4.Encript_string(Password.Text.ToString(), "Key"))
                     {
                         select = new SqlCommand("select id from Users where login="+"'"+Login.Text+"'", connection);
                         Session["user_id"] = select.ExecuteScalar().ToString();
@@ -114,7 +114,6 @@ namespace Flower.Pages
 
             }
         }
-
         protected void Back_Pass_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -122,13 +121,13 @@ namespace Flower.Pages
                 try
                 {
                     connection.Open();
-                    string newPass=GetPass(16);
+                    string newPass = Flower.CS.RC4.Encript_string(GetPass(16), "Key");
                   SqlCommand command=new SqlCommand("update users set pass="+newPass+" where login=" + "'" + Login.Text + "'",connection);
                  command.ExecuteNonQuery();
-                     string send = "Новый пароль: "+newPass;
+                 string send = "Новый пароль: " + Flower.CS.RC4.Descript_string(newPass, "Key");
                    command.CommandText="select mail from users where login=" + "'" + Login.Text + "'";
                    string mail=command.ExecuteScalar().ToString();
-                   WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",mail , "Восстановление пароля BlackFlowerPower", send);
+                   Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488",mail , "Восстановление пароля BlackFlowerPower", send);
                     connection.Close();
                     
 
@@ -140,20 +139,19 @@ namespace Flower.Pages
 
             }
         }
-
         protected void Change_Pass_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {                  
-                    connection.Open();                    
-                    SqlCommand command = new SqlCommand("update users set pass=" + New_Pass.Text + " where login=" + "'" + Login.Text + "'", connection);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("update users set pass=" + Flower.CS.RC4.Encript_string(New_Pass.Text, "Key") + " where login=" + "'" + Login.Text + "'", connection);
                     command.ExecuteNonQuery();
                     string send = "Новый пароль: " + New_Pass.Text; ;
                     command.CommandText = "select mail from users where login=" + "'" + Login.Text + "'";
                     string mail = command.ExecuteScalar().ToString();
-                    WebForm1.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", mail, "Восстановление пароля BlackFlowerPower", send);
+                    Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", mail, "Восстановление пароля BlackFlowerPower", send);
                     connection.Close();
                 }
                 catch (Exception)
