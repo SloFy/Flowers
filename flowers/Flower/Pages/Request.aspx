@@ -57,23 +57,23 @@
             " ></asp:SqlDataSource>
         <br />
         Имя*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 129px" BorderWidth="1px"></asp:TextBox>
-        <br />
-        <br />
-        Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 101px" BorderWidth="1px"></asp:TextBox>
+        &nbsp;
+        Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 8px" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
         Адрес получения*<asp:TextBox ID="Street" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px"></asp:TextBox>
         <asp:TextBox ID="Building" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
         <asp:TextBox ID="Korpus" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
         <asp:TextBox ID="Flat" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
+        &nbsp;
+        <asp:Label ID="Adress_label" runat="server" Text="Выберите адрес" Visible="False"></asp:Label>
+        <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="Адрес" DataValueField="Адрес" Rows="1" Style="margin-left: 55px" Visible="False" Width="255px"></asp:ListBox>
         <br />
         <asp:Label ID="LStreet" runat="server" Text="Улица" Style="margin-left: 200px"></asp:Label>
         <asp:Label ID="LBuilding" runat="server" Text="Дом" Style="margin-left: 60px"></asp:Label>
         <asp:Label ID="LKorpus" runat="server" Text="Корпус" Style="margin-left: 5px"></asp:Label>
         <asp:Label ID="Lflat" runat="server" Text="Квартира" Style="margin-left: 5px"></asp:Label>
         <br />
-        <asp:Label ID="Adress_label" runat="server" Text="Выберите адрес" Visible="False"></asp:Label>
-        <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="Адрес" DataValueField="Адрес" Rows="1" Style="margin-left: 55px" Visible="False" Width="255px"></asp:ListBox>
         <asp:SqlDataSource ID="AdressSource" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where id=-1"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="SELECT [Name] FROM [Flowers]"></asp:SqlDataSource>
         <br />
@@ -96,7 +96,7 @@
 
         <br />
         <br />
-        Комментарий<asp:TextBox ID="Note_2" runat="server" Width="250px" Style="margin-left: 69px" BorderWidth="1px"></asp:TextBox>
+        Комментарий<asp:TextBox ID="Note_2" runat="server" Width="250px" Style="margin-left: 69px" BorderWidth="1px" Height="57px" Rows="4" TextMode="MultiLine"></asp:TextBox>
 
         <br />
 
@@ -107,21 +107,14 @@
             <asp:ListItem>Оплата наличными при получении</asp:ListItem>
             <asp:ListItem>Оплата по карте при получении</asp:ListItem>
         </asp:RadioButtonList>
-
-
-        <img src="JpegImage.aspx" /><br />
         <p>
-            <strong>Введите код с картинки:</strong><br />
+            <strong>Введите код с картинки:</strong></p>
+        <p>
+           <img src="JpegImage.aspx"><br>
+            <br />
             <asp:TextBox ID="CodeNumberTextBox" runat="server"  BorderWidth="1px"></asp:TextBox>
             <asp:Label ID="MessageLabel" runat="server" Style="margin-left: 15px" Visible="False"></asp:Label>
         </p>
-
-
-        <p>
-            &nbsp;</p>
-
-
-        <br />
         <asp:Button ID="Button1" runat="server" Text="Оформить заказ" Width="216px" OnClick="Button1_Click" />
         <br />
         <asp:Label ID="UserList" runat="server" Text="Label" Visible="False"></asp:Label>
