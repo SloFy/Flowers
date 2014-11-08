@@ -439,7 +439,7 @@ namespace Flower
 		
 
 		// For generating random numbers.
-		private Random random = new Random();
+		public static Random random = new Random();
 	/*
 		private void Page_Load(object sender, System.EventArgs e)
 		{
@@ -473,11 +473,11 @@ namespace Flower
 		//
 		// Returns a string of six random digits.
 		//
-		private string GenerateRandomCode()
+		public static string GenerateRandomCode()
 		{
 			string s = "";
 			for (int i = 0; i < 6; i++)
-				s = String.Concat(s, this.random.Next(10).ToString());
+				s = String.Concat(s, Flower.Request.random.Next(10).ToString());
 			return s;
 		}
 

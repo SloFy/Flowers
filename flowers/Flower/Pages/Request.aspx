@@ -35,7 +35,8 @@
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить" />
         <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px"></asp:Label>
         <br />
-        <asp:GridView ID="Request_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataRequest_Flowers" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <br />
+        <asp:GridView ID="Request_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataRequest_Flowers" CellPadding="4" ForeColor="#333333" GridLines="None" Width="522px">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="Букет" HeaderText="Букет" SortExpression="Букет" />
@@ -58,7 +59,7 @@
         <br />
         Имя*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 129px" BorderWidth="1px"></asp:TextBox>
         &nbsp;
-        Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 8px" BorderWidth="1px"></asp:TextBox>
+        Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 97px" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
         Адрес получения*<asp:TextBox ID="Street" runat="server" Width="125px" Style="margin-left: 40px" BorderWidth="1px"></asp:TextBox>
@@ -67,11 +68,11 @@
         <asp:TextBox ID="Flat" runat="server" Width="30px" Style="margin-left: 5px" BorderWidth="1px"></asp:TextBox>
         &nbsp;
         <asp:Label ID="Adress_label" runat="server" Text="Выберите адрес" Visible="False"></asp:Label>
-        <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="Адрес" DataValueField="Адрес" Rows="1" Style="margin-left: 55px" Visible="False" Width="255px"></asp:ListBox>
+        <asp:ListBox ID="AdressBox" runat="server" DataSourceID="AdressSource" DataTextField="Адрес" DataValueField="Адрес" Rows="1" Style="margin-left: 48px" Visible="False" Width="255px"></asp:ListBox>
         <br />
         <asp:Label ID="LStreet" runat="server" Text="Улица" Style="margin-left: 200px"></asp:Label>
-        <asp:Label ID="LBuilding" runat="server" Text="Дом" Style="margin-left: 60px"></asp:Label>
-        <asp:Label ID="LKorpus" runat="server" Text="Корпус" Style="margin-left: 5px"></asp:Label>
+        <asp:Label ID="LBuilding" runat="server" Text="Дом" Style="margin-left: 52px"  Width="32px"></asp:Label>
+        <asp:Label ID="LKorpus" runat="server" Text="Корпус" Style="margin-left: 5px" Width="51px"></asp:Label>
         <asp:Label ID="Lflat" runat="server" Text="Квартира" Style="margin-left: 5px"></asp:Label>
         <br />
         <asp:SqlDataSource ID="AdressSource" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where id=-1"></asp:SqlDataSource>
@@ -81,8 +82,7 @@
         <br />
         <br />
         Телефон заказчика*<asp:TextBox ID="Sender_Phone" runat="server" Width="250px" Style="margin-left: 28px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
-        <br />
-        <br />
+        &nbsp;
         Телефон получателя*<asp:TextBox ID="Receiver_Phone" runat="server" Width="250px" Style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
@@ -90,8 +90,7 @@
         <asp:TextBox ID="Receiver_Name" runat="server" Width="250px" Style="margin-left: 50px" BorderWidth="1px"></asp:TextBox>
 
 
-        <br />
-        <br />
+        &nbsp;
         Подпись к букету<asp:TextBox ID="Note" runat="server" Width="250px" Style="margin-left: 46px" BorderWidth="1px"></asp:TextBox>
 
         <br />

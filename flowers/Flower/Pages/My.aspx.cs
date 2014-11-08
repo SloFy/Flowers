@@ -46,13 +46,15 @@ namespace Flower.Pages
                     string command = "select pass from Users where login=" + "'" + Login.Text + "'";
                     SqlCommand select = new SqlCommand(command, connection);
                     password = select.ExecuteScalar().ToString();
-                    //password = Flower.CS.RC4.Encript_string(password, "Key");
+                    
                     if (password== Flower.CS.RC4.Encript_string(Password.Text.ToString(), "Key"))
                     {
                         select = new SqlCommand("select id from Users where login="+"'"+Login.Text+"'", connection);
                         Session["user_id"] = select.ExecuteScalar().ToString();
                         Login.Visible = Password.Visible = Sign.Visible = lLogin.Visible = lPassword.Visible=Back_Pass.Visible = false;
-                        Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible = LNew_Pass.Visible = true;
+                        Badress.Visible = Brequests.Visible = Exit.Visible = GridAdress.Visible = GridRequest.Visible = Change_Pass.Visible = New_Pass.Visible  =New_Pass_2.Visible=LNew_Pass_2.Visible=LNew_Pass.Visible= true;
+                       
+                       
                         Welcome.Text = "Личный кабинет";
                         Back_Pass.Visible=false;
                         
@@ -64,8 +66,6 @@ namespace Flower.Pages
                 }
             }
             
-
-              
         }
 
         protected void Badress_Click(object sender, EventArgs e)

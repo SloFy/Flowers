@@ -67,10 +67,10 @@ namespace Flower
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Session["CaptchaImageText"] = Flower.Request.GenerateRandomCode();
             Login_error.Visible = false;
             Phone_error.Visible = false;
-            Mail_error.Visible = false;
-            
+            Mail_error.Visible = false;            
             Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
         }
         protected bool check_input(string login,string mail, string phone)

@@ -40,7 +40,14 @@
            <br />
            <br />
            <asp:Label ID="LNew_Pass" runat="server" style="margin-bottom: 2px" Text="Новый пароль:" Visible="False" Width="117px"></asp:Label>
+           <br />
+          
            <asp:TextBox ID="New_Pass" runat="server" Visible="False"></asp:TextBox>
+           <br />
+           <br />
+           <asp:Label ID="LNew_Pass_2" runat="server" style="margin-bottom: 2px" Text="Повторите пароль:" Visible="False" Width="149px"></asp:Label>
+           <br />
+           <asp:TextBox ID="New_Pass_2" runat="server" Visible="False"></asp:TextBox>
            <br />
         <br />
         <br />

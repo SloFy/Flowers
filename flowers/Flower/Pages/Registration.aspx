@@ -16,14 +16,13 @@
         <asp:Label ID="Login_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
         <br />
-        <br />
         Введите&nbsp; пароль*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Password" runat="server" TextMode="Password" BorderWidth="1px"></asp:TextBox>
         <asp:Label ID="Pass_error1" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
         <br />
         Подтвердите пароль*
-        <asp:TextBox ID="Password2" runat="server" TextMode="Password" BorderWidth="1px" style="margin-left: 0px"></asp:TextBox>
+        <asp:TextBox ID="Password2" runat="server" TextMode="Password" BorderWidth="1px" style="margin-left: 3px"></asp:TextBox>
         <asp:Label ID="Pass_error2" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
         <br />
@@ -31,16 +30,13 @@
         <asp:TextBox ID="FirstName" runat="server" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
-        <br />
         Введите фамилию&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="LastName" runat="server" BorderWidth="1px"></asp:TextBox>
-        <br />
         <br />
         <br />
         Введите почту*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Mail" runat="server" TextMode="Email" BorderWidth="1px"></asp:TextBox>
         <asp:Label ID="Mail_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px" Height="17px"></asp:Label>
-        <br />
         <br />
         <br />
         Введите телефон*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,9 +45,17 @@
         <asp:Label ID="Phone_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
 
         <br />
+        <p>
+            <strong>Введите код с картинки:</strong></p>
+        <p>
+            <img src="JpegImage.aspx" /><br />
+            <br />
+            <asp:TextBox ID="CodeNumberTextBox" runat="server" BorderWidth="1px"></asp:TextBox>
+            <asp:Label ID="MessageLabel" runat="server" Style="margin-left: 15px" Visible="False"></asp:Label>
+        </p>
 
         <br />
-        <br />
+
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" />
         <br />
         <br />

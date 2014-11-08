@@ -130,6 +130,24 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.Label Phone_error;
         
         /// <summary>
+        /// CodeNumberTextBox элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CodeNumberTextBox;
+        
+        /// <summary>
+        /// MessageLabel элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MessageLabel;
+        
+        /// <summary>
         /// Button1 элемент управления.
         /// </summary>
         /// <remarks>
