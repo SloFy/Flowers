@@ -58,6 +58,15 @@ namespace Flower.Pages {
         protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
+        /// LError элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LError;
+        
+        /// <summary>
         /// Sign элемент управления.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace Flower.Pages {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox New_Pass_2;
+        
+        /// <summary>
+        /// LError_pass элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LError_pass;
         
         /// <summary>
         /// SAdress элемент управления.

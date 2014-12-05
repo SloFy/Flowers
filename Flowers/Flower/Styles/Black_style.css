@@ -1,17 +1,20 @@
 .body {
    
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: repeat-x scroll 0 0 rgba(0, 0, 0, 0);
    color: black;
     font-family: "Helvetica Neue","Lucida Grande","Segoe UI",Arial,Helvetica,Verdana,sans-serif;
     width: 1900px;
-     margin: 0px auto 0px auto;
     
+    margin-top: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
 
       
 }
 
 .main {     
-     background: url("/Images/Main.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+     background: url("/Images/Main.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
      display: inline-block;
    
     min-height: 419px;
@@ -22,10 +25,16 @@
   }
 
 .header{
-     background: url("/Images/Head.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+     background: url("/Images/Head.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
      display: inline-block;
      width: 1900px;
      margin: 0px auto 0px auto;
-     
-     
+
+ 
 }
+
+.footer
+{
+     text-align: center;
+}
+     

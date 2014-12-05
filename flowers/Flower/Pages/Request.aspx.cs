@@ -11,59 +11,138 @@ using System.Drawing;
 namespace Flower
 {
     public partial class Request : System.Web.UI.Page
-   
-    
     {
-       
-       
-        
         string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-        protected void autoimp()
+
+        protected void Go_Click(object sender, EventArgs e)
         {
-            
-            
-
-            
-            
-            if ((Session["user_id"]) != null)
+            default_color();
+            if (check_text_boxes())
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+            UserList.Text = "";
+            MessageLabel.Text = "";
+            CodeNumberTextBox.BorderColor = Color.Black;
+            int pay = Check_Clicked();
+            int adress_id;
+            string s;
+            if (AdressBox.SelectedValue.ToString() != "" && Street.Text == "")
+            {
+                s = AdressBox.SelectedValue.ToString();
+                Street.Text = s.Substring(0, s.IndexOf(','));
+                s = s.Remove(0, Street.Text.Length + 1);
+                Building.Text = s.Substring(0, s.IndexOf('-'));
+                s = s.Remove(0, Building.Text.Length + 1);
+                Korpus.Text = s.Substring(0, s.IndexOf('-'));
+                s = s.Remove(0, Korpus.Text.Length + 1);
+                Flat.Text = s;
+            }
+            adress_id = get_adress_id(Street.Text, Building.Text, Korpus.Text, Flat.Text);
+            
+                if (check_date(Convert.ToDateTime(Date_Time.Text)))
                 {
-                    try
+                    int flower_id = getFlower_id(FlowerNameList_1.SelectedValue);
+                    insert_request(check_user(Sender_Phone.Text), Session["id_array"].ToString(), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text, Note_2.Text, Name.Text, Last_Name.Text);
+                    UserList.Visible = true;
+                    UserList.Text = "Заказ оформлен успешно!";
+                    Session["id_array"] = null;
+                    if (pay == 1)
                     {
-                        connection.Open();
-                        string command = "select first_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        SqlCommand select = new SqlCommand(command, connection);
-                        Name.Text = select.ExecuteScalar().ToString();
-                        select.CommandText = "select last_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        Name.Text += " " + select.ExecuteScalar().ToString();
-                        select.CommandText = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        Sender_Phone.Text = select.ExecuteScalar().ToString();
-                        AdressSource.SelectCommand = "select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
-                        AdressBox.Visible = Adress_label.Visible = true;
-                        if (Session["id_array"] != null)
-                            SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + Session["id_array"] + ")";
-
-
+                        Response.Redirect("Pay.aspx");
                     }
-                    catch (Exception)
-                    {
-                    }
+                    else
+                        Response.Redirect("Catalog.aspx");
+                }
+                else
+                {
+                    UserList.Text = "Необходимо указывать дату, отличающуюся от текущей не менее чем на 2 часа и не более чем на 10 дней";
+                    UserList.Visible = true;
+                    Date_Time.BorderColor = Color.Red;
+
                 }
             }
         }
 
+        private bool check_text_boxes()
+        {
+            bool person_data=Person.Checked;
+
+            bool captcha = check_captcha();
+            bool output = (Name.Text.Trim() != "" && Street.Text.Trim() != "" && Building.Text.Trim() != "" && Date_Time.Text.Trim() != ""
+                   && Sender_Phone.Text.Trim() != "" && Receiver_Phone.Text.Trim() != "" && Check_Clicked() != 0 && captcha && Session["id_array"] != null && person_data);
+            if (output)
+                return output;
+            if (Session["id_array"] == null)
+            {
+                UserList.Visible = true;
+                FlowerCountList_1.BorderColor = FlowerNameList_1.BorderColor = Color.Red;
+            }
+            if (!person_data) Person.ForeColor = Color.Red;
+
+            if (Name.Text.Trim() == "") Name.BorderColor = Color.Red;
+            if (Sender_Phone.Text.Trim() == "") Sender_Phone.BorderColor = Color.Red;
+            if (Receiver_Phone.Text.Trim() == "") Receiver_Phone.BorderColor = Color.Red;
+            if (Street.Text.Trim() == "") Street.BorderColor = Color.Red;
+            if (Building.Text.Trim() == "") Building.BorderColor = Color.Red;
+            if (Date_Time.Text.Trim() == "") Date_Time.BorderColor = Color.Red;
+            if (!captcha)
+            {
+                MessageLabel.Text = "Неправильный код с картинки";
+                CodeNumberTextBox.BorderColor = Color.Red;
+            }
+            if (Street.Text.Trim() == "") Street.BorderColor = Color.Red;
+            UserList.Text = "Заполните все поля, помеченные знаком *";
+
+            return output;
+        }
+        protected void Add_Click(object sender, EventArgs e)
+        {
+            if ((Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString())) != 0)
+            {
+                ErrFlower.Enabled = false;
+                ErrFlower.Visible = false;
+                FlowerCountList_1.BorderColor = Color.Black;
+
+
+                int request_flower_id = insert_requset_flowers(FlowerNameList_1.SelectedValue.ToString(), Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString()));
+                string id_array;
+                if (Session["id_array"] != null)
+                    id_array = (String)Session["id_array"];
+                else
+                    id_array = "";
+
+                if (id_array == "")
+                    id_array = request_flower_id.ToString();
+                else
+                    id_array += "," + request_flower_id.ToString();
+                SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + id_array + ")";
+                Session["id_array"] = id_array;
+                if (Cancel.Visible == false)
+                    Cancel.Visible = true;
+            }
+            else
+            {
+                ErrFlower.Text = "Неправильное количество!";
+                ErrFlower.Enabled = true;
+                ErrFlower.Visible = true;
+                FlowerCountList_1.BorderColor = Color.Red;
+            }
+        }
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Session["id_array"] = null;
+            string id_array = "";
+            SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in ('-1')";
+            Cancel.Visible = false;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
-
-                // Create a random code and store it in the Session object.
                 this.Session["CaptchaImageText"] = GenerateRandomCode();
-            if (Session["id_array"]!=null)
-            SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + Session["id_array"] + ")";
-            Receiver_Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
-            Sender_Phone.Attributes.Add("onkeypress", "return numeralsOnly(event)");
+            if (Session["id_array"] != null)
+                SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + Session["id_array"] + ")";
+            Add_Attributes();
             ErrFlower.Enabled = false;
+            default_color();
             autoimp();
         }
         protected int Insert_Adress(string street, string building, string korpus, string flat)
@@ -97,7 +176,7 @@ namespace Flower
                 }
             }
         }
-        protected void insert_request(string user_id, string id_array,  int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name, string note2,string name,string last_name)
+        protected void insert_request(string user_id, string id_array, int adress_id, DateTime date, string user_phone, string Receiver_Phone, string note, int pay, string Receiver_Name, string note2, string name, string last_name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -105,44 +184,44 @@ namespace Flower
                 {
                     connection.Open();
                     int status = 1;
-                    string command = "select count(*)from Request";
+                    string command = "select count(*)from Request_New";
                     SqlCommand select = new SqlCommand(command, connection);
                     int id = Convert.ToInt32(select.ExecuteScalar());
-                    List<int> flower_request_list=new List<int>();  
-                    List<int> money_array=new List<int>();
-                     List<int> count_array=new List<int>();
-                     string id_array_local = id_array;
-                    while (id_array!="")
+                    List<int> flower_request_list = new List<int>();
+                    List<int> money_array = new List<int>();
+                    List<int> count_array = new List<int>();
+                    string id_array_local = id_array;
+                    while (id_array != "")
                     {
-                        string add_id="";
-                    if (id_array.IndexOf(",") != -1)
-                    {
-                        add_id = id_array.Substring(0, id_array.IndexOf(","));
-                        flower_request_list.Add(Convert.ToInt32(add_id));
-                        id_array = id_array.Remove(0, add_id.Length + 1);
+                        string add_id = "";
+                        if (id_array.IndexOf(",") != -1)
+                        {
+                            add_id = id_array.Substring(0, id_array.IndexOf(","));
+                            flower_request_list.Add(Convert.ToInt32(add_id));
+                            id_array = id_array.Remove(0, add_id.Length + 1);
+                        }
+
+                        else
+                        {
+                            add_id = id_array;
+                            flower_request_list.Add(Convert.ToInt32(add_id));
+                            id_array = id_array.Remove(0, add_id.Length);
+                        }
                     }
-                        
-                    else
-                    { 
-                        add_id = id_array;
-                        flower_request_list.Add(Convert.ToInt32(add_id));
-                        id_array = id_array.Remove(0, add_id.Length);
-                    }
-                    }
-                    SqlCommand update=new SqlCommand(command,connection);
+                    SqlCommand update = new SqlCommand(command, connection);
                     update.CommandText = "update request_flowers set request_id=" + id + " where id in (" + id_array_local + ")";
-                        update.ExecuteNonQuery();
-                    int money=0;
-                                        for (int i = 0; i < flower_request_list.Count;i++ )
+                    update.ExecuteNonQuery();
+                    int money = 0;
+                    for (int i = 0; i < flower_request_list.Count; i++)
                     {
 
-                        select.CommandText = "select price from flowers where id=(select flower_id from request_flowers where id=" + flower_request_list[i]+")";
+                        select.CommandText = "select price from flowers where id=(select flower_id from request_flowers where id=" + flower_request_list[i] + ")";
                         int a = Convert.ToInt32(select.ExecuteNonQuery());
                         select.CommandText = "select count from request_flowers where id=" + flower_request_list[i];
                         int b = Convert.ToInt32(select.ExecuteNonQuery());
                         money += a * b;
                     }
-                 DateTime now = DateTime.Now;
+                    DateTime now = DateTime.Now;
                     if (user_id == null)
                     {
                         user_id = "-1";
@@ -152,11 +231,11 @@ namespace Flower
                     id = Convert.ToInt32(select.ExecuteScalar().ToString());
 
                     command = "INSERT INTO Request_New VALUES ("
-                        + id + "," + user_id + ","+ adress_id + ",'" + now + "','"
+                        + id + "," + user_id + "," + adress_id + ",'" + now + "','"
                         + date + "'," + user_phone + "," + Receiver_Phone + ",'" + note + "'," + money + "," + pay + "," + status + ",'" + Receiver_Name + "','" + note2 + "')";
                     SqlCommand insert = new SqlCommand(command, connection);
                     insert.ExecuteNonQuery();
-                    
+
                     if (user_id != "-1")
                     {
                         select.CommandText = "select mail from users where id=" + Convert.ToInt32(user_id);
@@ -168,13 +247,13 @@ namespace Flower
 
 
                 }
-                catch (Exception )
+                catch (Exception)
                 {
 
                 }
             }
         }
-        protected int insert_requset_flowers(string name,int count)
+        protected int insert_requset_flowers(string name, int count)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -185,7 +264,7 @@ namespace Flower
                     SqlCommand Sqlcomm = new SqlCommand(command, connection);
                     int id = Convert.ToInt32(Sqlcomm.ExecuteScalar().ToString());
                     int flower_id = getFlower_id(name);
-                    Sqlcomm.CommandText="Insert into request_flowers(ID,flower_id,count) values(" + id + "," + flower_id + "," + count + ")";                    
+                    Sqlcomm.CommandText = "Insert into request_flowers(ID,flower_id,count) values(" + id + "," + flower_id + "," + count + ")";
                     Sqlcomm.ExecuteNonQuery();
                     return id;
                 }
@@ -198,7 +277,6 @@ namespace Flower
 
 
         }
-
         protected string check_user(string Sender_Phone)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -219,7 +297,7 @@ namespace Flower
                     return "-1";
                 }
             }
-        }      
+        }
         protected bool check_date(DateTime date)
         {
             return (Convert.ToDateTime(Date_Time.Text).Hour >= DateTime.Now.Hour + 2.0f &&
@@ -265,19 +343,14 @@ namespace Flower
         {
             for (int i = 0; i < PayList.Items.Count; i++)
             {
-
                 if (PayList.Items[i].Selected)
                 {
-
                     return i + 1;
-
                 }
-
             }
             return 0;
-
         }
-        public bool check_captcha()
+        public  bool check_captcha()
         {
             if (this.CodeNumberTextBox.Text == this.Session["CaptchaImageText"].ToString())
                 return true;
@@ -322,188 +395,117 @@ namespace Flower
                     string select = "select id from Flowers where name='" + name + "'";
                     SqlCommand getid = new SqlCommand(select, connection);
                     return Convert.ToInt32(getid.ExecuteScalar().ToString());
-                    connection.Close();
 
                 }
                 catch (Exception)
                 {
                     return -1;
                 }
-                
+
             }
-            
+
         }
-     
-        protected void Button1_Click(object sender, EventArgs e)
+
+        protected void Add_Attributes()
+        {
+            string ev = "onkeypress";
+            string num = "return numeralsOnly(event)";
+            string sym = "return symbolsOnly(event)";
+            Receiver_Phone.Attributes.Add(ev, num);
+            Sender_Phone.Attributes.Add(ev, num);
+            Korpus.Attributes.Add(ev, num);
+            Building.Attributes.Add(ev, num);
+            Flat.Attributes.Add(ev, num);
+            Receiver_Name.Attributes.Add(ev, sym);
+            Name.Attributes.Add(ev, sym);
+            Last_Name.Attributes.Add(ev, sym);
+
+        }
+        public static Random random = new Random();
+        public static string GenerateRandomCode()
+        {
+            string s = "";
+            for (int i = 0; i < 6; i++)
+                s = String.Concat(s, Flower.Request.random.Next(10).ToString());
+            return s;
+        }
+        #region Web Form Designer generated code
+        override protected void OnInit(EventArgs e)
+        {
+            //
+            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
+            //
+            InitializeComponent();
+            base.OnInit(e);
+        }
+        private void InitializeComponent()
+        {
+            this.Load += new System.EventHandler(this.Page_Load);
+
+        }
+        #endregion
+        
+        protected void Name_TextChanged(object sender, EventArgs e)
+        {
+            if (Name.Text.ToString().Trim() == "")
+                Name.BorderColor = Color.Red;
+        }
+        protected void Sender_Phone_TextChanged(object sender, EventArgs e)
+        {
+            if (Sender_Phone.Text.ToString().Trim() == "")
+                Sender_Phone.BorderColor = Color.Red;
+        }
+        protected void Receiver_Phone_TextChanged(object sender, EventArgs e)
+        {
+            if (Receiver_Phone.Text.ToString().Trim() == "")
+                Receiver_Phone.BorderColor = Color.Red;
+        }
+        protected void default_color()
+        {
+           Person.ForeColor= CodeNumberTextBox.BorderColor = Receiver_Phone.BorderColor = Building.BorderColor = Street.BorderColor = Date_Time.BorderColor = FlowerNameList_1.BorderColor = FlowerCountList_1.BorderColor = Date_Time.BorderColor = Name.BorderColor = Last_Name.BorderColor = Sender_Phone.BorderColor = Receiver_Name.BorderColor = Color.Black;
+        }
+        protected void autoimp()
         {
 
-            UserList.Text = "";
-            MessageLabel.Text = "";
-            CodeNumberTextBox.BorderColor = Color.Black;
-            int pay = Check_Clicked();
 
-                int adress_id;
-
-                string s;
-                if (AdressBox.SelectedValue.ToString() != "" && Street.Text == "")
-                {
-                    s = AdressBox.SelectedValue.ToString();
-                    Street.Text = s.Substring(0, s.IndexOf(','));
-                    s = s.Remove(0, Street.Text.Length + 1);
-                    Building.Text = s.Substring(0, s.IndexOf('-'));
-                    s = s.Remove(0, Building.Text.Length + 1);
-                    Korpus.Text = s.Substring(0, s.IndexOf('-'));
-                    s = s.Remove(0, Korpus.Text.Length + 1);
-                    Flat.Text = s;
-                }
-                adress_id = get_adress_id(Street.Text, Building.Text, Korpus.Text, Flat.Text);
-                if (!check_captcha())
-                {
-                    MessageLabel.Text = "Неправильный код с картинки";
-                    CodeNumberTextBox.BorderColor = Color.Red;
-                }
-
-                if (Name.Text != "" && Street.Text != "" && Building.Text != "" && Date_Time.Text != ""
-                       && Sender_Phone.Text != "" && Receiver_Phone.Text != "" && Check_Clicked() != 0 && check_captcha() && Session["id_array"]!=null)
-                {
-                    
-
-                    if (check_date(Convert.ToDateTime(Date_Time.Text)))
-                    {
-                        int flower_id = getFlower_id(FlowerNameList_1.SelectedValue);
-                        insert_request(check_user(Sender_Phone.Text), Session["id_array"].ToString(), adress_id, Convert.ToDateTime(Date_Time.Text), Sender_Phone.Text, Receiver_Phone.Text, Note.Text, pay, Receiver_Name.Text,Note_2.Text,Name.Text,Last_Name.Text);
-                        UserList.Visible = true;
-                        UserList.Text = "Заказ оформлен успешно!";
-                        Session["id_array"] = null;
-                        if (pay == 1)
-                        {
-                            Response.Redirect("Pay.aspx");
-                        }
-                    }
-
-                    else
-                    {
-                        UserList.Text = "Необходимо указывать дату, отличающуюся от текущей не менее чем на 2 часа и не более чем на 10 дней";
-                        UserList.Visible = true;
-
-                    }
-                }
-                else if (Session["id_array"]==null)
-                {
-                    UserList.Visible = true;
-                    UserList.Text = "Вы не выбрали цветы";
-                }
-                else
-                {
-                    UserList.Visible = true;
-                    UserList.Text = "Заполните все поля, помеченные знаком *";
-
-
-                }
-
-
+            if (Session["id_array"] != null)
+                Cancel.Visible = true;
             
-        }
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            if ((Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString())) != 0)
+
+            if ((Session["user_id"]) != null)
             {
-                ErrFlower.Enabled = false;
-                ErrFlower.Visible = false;
-                FlowerCountList_1.BorderColor = Color.Black;
-                
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+                        string command = "select first_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        SqlCommand select = new SqlCommand(command, connection);
+                        Name.Text = select.ExecuteScalar().ToString();
+                        select.CommandText = "select last_name from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        Last_Name.Text = " " + select.ExecuteScalar().ToString();
+                        select.CommandText = "select phone from Users where id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        Sender_Phone.Text = select.ExecuteScalar().ToString();
+                        AdressSource.SelectCommand = "select Street + ','+ Building +'-'+Korpus+'-'+Flat as Адрес from Adress_New where user_id=" + "'" + ((Session["user_id"]).ToString()) + "'";
+                        AdressBox.Visible = Adress_label.Visible = true;
+                        if (Session["id_array"] != null)
+                            SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + Session["id_array"] + ")";
+                        Person.Checked = true;
 
-                int request_flower_id = insert_requset_flowers(FlowerNameList_1.SelectedValue.ToString(), Convert.ToInt32(FlowerCountList_1.SelectedValue.ToString()));
-                string id_array;
-                if (Session["id_array"] != null)
-                    id_array = (String)Session["id_array"];
-                else
-                    id_array = "";
-
-                if (id_array == "")
-                    id_array = request_flower_id.ToString();
-                else
-                    id_array += "," + request_flower_id.ToString();
-                SqlDataRequest_Flowers.SelectCommand = "select f.name as Букет,r_f.count as Количество from request_flowers r_f,flowers f where r_f.flower_id=f.id AND r_f.id in (" + id_array + ")";
-                Session["id_array"] = id_array;
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
             }
             else
             {
-                ErrFlower.Text = "Неправильное количество!";
-                ErrFlower.Enabled = true;
-                ErrFlower.Visible = true;
-                FlowerCountList_1.BorderColor = Color.Red;
+                Person.Visible = true;
+                Person.Checked = false;
             }
-        }        
+        }
+
         
-		
-
-		// For generating random numbers.
-		public static Random random = new Random();
-	/*
-		private void Page_Load(object sender, System.EventArgs e)
-		{
-			if (!this.IsPostBack)
-
-				// Create a random code and store it in the Session object.
-				this.Session["CaptchaImageText"] = GenerateRandomCode();
-
-			else
-			{
-				// On a postback, check the user input.
-				if (this.CodeNumberTextBox.Text == this.Session["CaptchaImageText"].ToString())
-				{
-					// Display an informational message.
-					this.MessageLabel.CssClass = "info";
-					this.MessageLabel.Text = "Correct!";
-				}
-				else
-				{
-					// Display an error message.
-					this.MessageLabel.CssClass = "error";
-					this.MessageLabel.Text = "ERROR: Incorrect, try again.";
-
-					// Clear the input and create a new random code.
-					this.CodeNumberTextBox.Text = "";
-					this.Session["CaptchaImageText"] = GenerateRandomCode();
-				}
-			}
-		}
-        */
-		//
-		// Returns a string of six random digits.
-		//
-		public static string GenerateRandomCode()
-		{
-			string s = "";
-			for (int i = 0; i < 6; i++)
-				s = String.Concat(s, Flower.Request.random.Next(10).ToString());
-			return s;
-		}
-
-		#region Web Form Designer generated code
-		override protected void OnInit(EventArgs e)
-		{
-			//
-			// CODEGEN: This call is required by the ASP.NET Web Form Designer.
-			//
-			InitializeComponent();
-			base.OnInit(e);
-		}
-		
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{    
-			this.Load += new System.EventHandler(this.Page_Load);
-
-		}
-		#endregion
-
-
-
     }
 
 }

@@ -49,13 +49,22 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.Label Lsht_1;
         
         /// <summary>
-        /// Button2 элемент управления.
+        /// Add элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button Add;
+        
+        /// <summary>
+        /// Cancel элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Cancel;
         
         /// <summary>
         /// ErrFlower элемент управления.
@@ -292,13 +301,22 @@ namespace Flower {
         protected global::System.Web.UI.WebControls.Label MessageLabel;
         
         /// <summary>
-        /// Button1 элемент управления.
+        /// Person элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.CheckBox Person;
+        
+        /// <summary>
+        /// Go элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Go;
         
         /// <summary>
         /// UserList элемент управления.

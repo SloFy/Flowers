@@ -12,7 +12,7 @@
 
         <br />
         Введите логин*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Login" runat="server" BorderWidth="1px"></asp:TextBox>
+        <asp:TextBox ID="Login" runat="server" BorderWidth="1px" OnTextChanged="Login_TextChanged"></asp:TextBox>
         <asp:Label ID="Login_error" runat="server" BorderStyle="None" Style="margin-left: 40px" Width="370px"></asp:Label>
         <br />
         <br />
@@ -56,8 +56,11 @@
 
         <br />
 
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" />
+        <asp:CheckBox ID="Person" runat="server"  Text="Я согласен на обработку персональных данных" />
         <br />
+
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Зарегистрироваться" />
+        &nbsp; .<br />
         <br />
 
 

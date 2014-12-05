@@ -17,6 +17,7 @@
     </style>
 </head>
 <body>
+
     <form runat="server">
     <div class="page">
         <div class="header">
@@ -38,15 +39,11 @@
             <div class="cont_Main" style="margin-left: 390px">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" ValidateRequestMode="Disabled" />
 
-
         </div>
+           <asp:HyperLink ID="Public_oferta" runat="server" BorderStyle="Groove" Font-Size="Larger" style="margin-left:868px" NavigateUrl="~/Pages/Test.aspx">Текст публичной оферты.</asp:HyperLink> 
         </div>
+        
              </div>
-        <div class="clear">
-        </div>
-   
-        <div class="footer">
-        </div>
     </form>
 </body>
 </html>

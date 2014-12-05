@@ -32,7 +32,8 @@
             <asp:ListItem>10</asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Lsht_1" runat="server" Text="шт."></asp:Label>
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Добавить" />
+        <asp:Button ID="Add" runat="server" OnClick="Add_Click" Text="Добавить" />
+        <asp:Button ID="Cancel" runat="server" OnClick="Cancel_Click" Text="Отмена" style="margin-left: 25px" Visible="False" />
         <asp:Label ID="ErrFlower" runat="server" Width="126px" Style="margin-left: 22px"></asp:Label>
         <br />
         <br />
@@ -57,7 +58,7 @@
             
             " ></asp:SqlDataSource>
         <br />
-        Имя*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 129px" BorderWidth="1px"></asp:TextBox>
+        Имя*<asp:TextBox ID="Name" runat="server" Width="250px" Style="margin-left: 129px" BorderWidth="1px" OnTextChanged="Name_TextChanged"></asp:TextBox>
         &nbsp;
         Фамилия<asp:TextBox ID="Last_Name" runat="server" Width="250px" Style="margin-left: 97px" BorderWidth="1px"></asp:TextBox>
         <br />
@@ -81,9 +82,9 @@
         Дата и время доставки*<asp:TextBox ID="Date_Time" runat="server" Width="250px" Style="margin-left: 0px" TextMode="DateTimeLocal" BorderWidth="1px"></asp:TextBox>
         <br />
         <br />
-        Телефон заказчика*<asp:TextBox ID="Sender_Phone" runat="server" Width="250px" Style="margin-left: 28px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
+        Телефон заказчика*<asp:TextBox ID="Sender_Phone" runat="server" Width="250px" Style="margin-left: 28px" TextMode="Phone" MaxLength="11" BorderWidth="1px" OnTextChanged="Sender_Phone_TextChanged"></asp:TextBox>
         &nbsp;
-        Телефон получателя*<asp:TextBox ID="Receiver_Phone" runat="server" Width="250px" Style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px"></asp:TextBox>
+        Телефон получателя*<asp:TextBox ID="Receiver_Phone" runat="server" Width="250px" Style="margin-left: 17px" TextMode="Phone" MaxLength="11" BorderWidth="1px" OnTextChanged="Receiver_Phone_TextChanged"></asp:TextBox>
         <br />
         <br />
         Имя получателя
@@ -114,7 +115,9 @@
             <asp:TextBox ID="CodeNumberTextBox" runat="server"  BorderWidth="1px"></asp:TextBox>
             <asp:Label ID="MessageLabel" runat="server" Style="margin-left: 15px" Visible="False"></asp:Label>
         </p>
-        <asp:Button ID="Button1" runat="server" Text="Оформить заказ" Width="216px" OnClick="Button1_Click" />
+        <asp:CheckBox ID="Person" runat="server"  Text="Я согласен на обработку персональных данных" Visible="False" />
+&nbsp;<br />
+        <asp:Button ID="Go" runat="server" Text="Оформить заказ" Width="216px" OnClick="Go_Click" />
         <br />
         <asp:Label ID="UserList" runat="server" Text="Label" Visible="False"></asp:Label>
         <br />
