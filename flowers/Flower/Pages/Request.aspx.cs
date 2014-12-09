@@ -211,6 +211,7 @@ namespace Flower
                     update.CommandText = "update request_flowers set request_id=" + id + " where id in (" + id_array_local + ")";
                     update.ExecuteNonQuery();
                     int money = 0;
+                    string info_to_mail = "";
                     for (int i = 0; i < flower_request_list.Count; i++)
                     {
                         int curr_id = flower_request_list[i];
@@ -219,7 +220,9 @@ namespace Flower
                         select.CommandText = "select count from request_flowers where id=" + curr_id;
                         int b = Convert.ToInt32(select.ExecuteScalar());
                         money += a * b;
-                    }
+                        select.CommandText="select name from  flowers where id=(select flower_id from request_flowers where id=" + curr_id + ")";
+                        info_to_mail += select.ExecuteScalar().ToString()+" ("+b+"шт.), ";
+                        }
                     DateTime now = DateTime.Now;
                     if (user_id == null)
                     {
@@ -237,10 +240,13 @@ namespace Flower
 
                     if (user_id != "-1")
                     {
+                        
                         select.CommandText = "select mail from users where id=" + Convert.ToInt32(user_id);
                         string Mail = select.ExecuteScalar().ToString();
-                        string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букеты №"
-                             + ", Адрес: " + adress_id + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
+                        select.CommandText="select Street + ','+ Building +'-'+Korpus+'-'+Flat from Adress_New where id=" + "'" + adress_id + "'";
+                        string adress = select.ExecuteScalar().ToString();
+                        string send = "Вы сделали заказ на сате достаки букетов Black Flower Power: Букеты :"
+                             + info_to_mail+" Адрес: " + adress + ", доставить к " + date.ToString() + ", Телефон заказчика :" + user_phone + ", Телефон принимающего: " + Receiver_Phone + ", Сумма к оплате: " + money;
                         Registration.SendMail("smtp.mail.ru", "black_flower_power@mail.ru", "black1488", Mail, "Ваш заказ ", send);
                     }
 
