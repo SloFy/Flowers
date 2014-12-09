@@ -7,23 +7,14 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-
 namespace Flower
 {
     public partial class Request : System.Web.UI.Page
     {
         string connectionString = @"Data Source=" + Environment.MachineName + ";Initial Catalog=Flower_DB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-
         protected void Go_Click(object sender, EventArgs e)
         {
             default_color();
-            if (check_text_boxes())
-            {
-            UserList.Text = "";
-            MessageLabel.Text = "";
-            CodeNumberTextBox.BorderColor = Color.Black;
-            int pay = Check_Clicked();
-            int adress_id;
             string s;
             if (AdressBox.SelectedValue.ToString() != "" && Street.Text == "")
             {
@@ -36,6 +27,15 @@ namespace Flower
                 s = s.Remove(0, Korpus.Text.Length + 1);
                 Flat.Text = s;
             }
+            if (check_text_boxes())
+            {
+            UserList.Text = "";
+            MessageLabel.Text = "";
+            CodeNumberTextBox.BorderColor = Color.Black;
+            int pay = Check_Clicked();
+            int adress_id;
+            
+           
             adress_id = get_adress_id(Street.Text, Building.Text, Korpus.Text, Flat.Text);
             
                 if (check_date(Convert.ToDateTime(Date_Time.Text)))
@@ -61,7 +61,6 @@ namespace Flower
                 }
             }
         }
-
         private bool check_text_boxes()
         {
             bool person_data=Person.Checked;
@@ -77,7 +76,7 @@ namespace Flower
                 FlowerCountList_1.BorderColor = FlowerNameList_1.BorderColor = Color.Red;
             }
             if (!person_data) Person.ForeColor = Color.Red;
-
+            if(Check_Clicked()!=0) PayList.BorderColor=Color.Red;
             if (Name.Text.Trim() == "") Name.BorderColor = Color.Red;
             if (Sender_Phone.Text.Trim() == "") Sender_Phone.BorderColor = Color.Red;
             if (Receiver_Phone.Text.Trim() == "") Receiver_Phone.BorderColor = Color.Red;
@@ -214,11 +213,11 @@ namespace Flower
                     int money = 0;
                     for (int i = 0; i < flower_request_list.Count; i++)
                     {
-
-                        select.CommandText = "select price from flowers where id=(select flower_id from request_flowers where id=" + flower_request_list[i] + ")";
-                        int a = Convert.ToInt32(select.ExecuteNonQuery());
-                        select.CommandText = "select count from request_flowers where id=" + flower_request_list[i];
-                        int b = Convert.ToInt32(select.ExecuteNonQuery());
+                        int curr_id = flower_request_list[i];
+                        select.CommandText = "select price from flowers where id=(select flower_id from request_flowers where id=" + curr_id + ")";
+                        int a = Convert.ToInt32(select.ExecuteScalar());
+                        select.CommandText = "select count from request_flowers where id=" + curr_id;
+                        int b = Convert.ToInt32(select.ExecuteScalar());
                         money += a * b;
                     }
                     DateTime now = DateTime.Now;
@@ -405,7 +404,6 @@ namespace Flower
             }
 
         }
-
         protected void Add_Attributes()
         {
             string ev = "onkeypress";
@@ -444,7 +442,6 @@ namespace Flower
 
         }
         #endregion
-        
         protected void Name_TextChanged(object sender, EventArgs e)
         {
             if (Name.Text.ToString().Trim() == "")
@@ -462,7 +459,7 @@ namespace Flower
         }
         protected void default_color()
         {
-           Person.ForeColor= CodeNumberTextBox.BorderColor = Receiver_Phone.BorderColor = Building.BorderColor = Street.BorderColor = Date_Time.BorderColor = FlowerNameList_1.BorderColor = FlowerCountList_1.BorderColor = Date_Time.BorderColor = Name.BorderColor = Last_Name.BorderColor = Sender_Phone.BorderColor = Receiver_Name.BorderColor = Color.Black;
+           PayList.BorderColor=Person.ForeColor= CodeNumberTextBox.BorderColor = Receiver_Phone.BorderColor = Building.BorderColor = Street.BorderColor = Date_Time.BorderColor = FlowerNameList_1.BorderColor = FlowerCountList_1.BorderColor = Date_Time.BorderColor = Name.BorderColor = Last_Name.BorderColor = Sender_Phone.BorderColor = Receiver_Name.BorderColor = Color.Black;
         }
         protected void autoimp()
         {

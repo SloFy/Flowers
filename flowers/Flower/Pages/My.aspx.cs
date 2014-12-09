@@ -113,7 +113,7 @@ namespace Flower.Pages
                 try
                 {
                     connection.Open();
-                    SRequest.SelectCommand = "select a.Street + ','+ a.Building +'-'+a.Korpus+'-'+a.Flat as Адрес,r.reg_date as [Дата заказа],r.Receiver_Name as [Имя получателя],r.money as [К оплате],r.status as [Статус заказа] from Request_new r, Adress_New a where r.adress=a.id AND r.user_id=" + Session["user_id"].ToString();
+                    SRequest.SelectCommand = "select a.Street + ','+ a.Building +'-'+a.Korpus+'-'+a.Flat as Адрес,r.reg_date as [Дата заказа], r.Receiver_Name as [Имя получателя],r.money as [К оплате], CASE r.Status WHEN 1 THEN 'Принят' END as [Статус заказа] from Request_new r, Adress_New a where r.adress=a.id AND r.user_id=" + Session["user_id"].ToString();
                     GridRequest.Visible = true;
                     connection.Close();
                 }
