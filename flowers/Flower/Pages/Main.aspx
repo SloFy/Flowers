@@ -4,6 +4,4 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
- <asp:ImageButton ID="ImageButton1" runat="server" Height="644px" ImageUrl="~/Images/Black.jpg" PostBackUrl="~/Pages//Request.aspx" Width="829px" />
-        
-</asp:Content>
+ </asp:Content>

@@ -64,7 +64,7 @@
           
         <asp:SqlDataSource ID="SAdress" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select street as Улица ,building as Дом ,korpus as Корпус ,flat as Квартира from adress_new where user_id=-2"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SRequest" runat="server" ConnectionString="<%$ ConnectionStrings:Flower_DBConnectionString %>" SelectCommand="select a.Street + ','+ a.Building +'-'+a.Korpus+'-'+a.Flat as Адрес,r.reg_date as [Дата заказа], r.Receiver_Name as [Имя получателя],r.money as [К оплате], CASE r.Status WHEN 1 THEN 'Принят' END as [Статус заказа] from Request_new r, Adress_New a where r.adress=a.id AND r.user_id=-2"></asp:SqlDataSource>
-        <asp:GridView ID="GridAdress" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SAdress" Visible="False">
+        <asp:GridView ID="GridAdress" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SAdress" Visible="False" style="margin-right: 0px">
             <Columns>
                 <asp:BoundField DataField="Улица" HeaderText="Улица" SortExpression="Улица" />
                 <asp:BoundField DataField="Дом" HeaderText="Дом" SortExpression="Дом" />
